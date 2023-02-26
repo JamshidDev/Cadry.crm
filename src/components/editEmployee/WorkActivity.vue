@@ -53,7 +53,7 @@
           </template>
           <template #body="slotProps">
             <div class="text-center cursor-pointer font-semibold">
-              {{ slotProps.data.date1 }}
+              {{Formatter.arrowDateFormat(slotProps.data.date1)  }}
             </div>
           </template>
         </Column>
@@ -63,7 +63,7 @@
           </template>
           <template #body="slotProps">
             <div class="text-center cursor-pointer font-semibold">
-              {{ slotProps.data.date2 }}
+              {{ Formatter.arrowDateFormat(slotProps.data.date2)  }}
             </div>
           </template>
         </Column>
@@ -120,25 +120,47 @@
         <div class="grid pt-2">
           <div class="col-12 sm:col-6 md:col-6 lg:col-6 xl:col-6">
             <h6 class="mb-2 pl-2 text-500">Qachondan</h6>
-            <InputText
+            <!-- <InputText
               type="text"
               class="w-full font-semibold"
               placeholder="Yilni kiriting"
               id="stuff_date1"
               v-model="careerDialogdate1"
               v-maska="'####'"
-            />
+            /> -->
+            <Calendar
+            class="w-full"
+            :manualInput="true"
+            id="new_cadry_positionDate"
+            v-model="careerDialogdate1"
+            v-maska="'##/##/####'"
+            placeholder="Sanani tanlang"
+            dateFormat="dd/mm/yy"
+            :showButtonBar="true"
+          />
+          
           </div>
           <div class="col-12 sm:col-6 md:col-6 lg:col-6 xl:col-6">
             <h6 class="mb-2 pl-2 text-500">Qachongacha</h6>
-            <InputText
+            <!-- <InputText
               type="text"
               class="w-full font-semibold"
               placeholder="Yilni kiriting"
               id="stuff_date2"
               v-model="careerDialogdate2"
               v-maska="'####'"
-            />
+            /> -->
+            <Calendar
+            class="w-full"
+            :manualInput="true"
+            id="new_cadry_positionDate"
+            v-model="careerDialogdate2"
+            v-maska="'##/##/####'"
+            placeholder="Sanani tanlang"
+            dateFormat="dd/mm/yy"
+            :showButtonBar="true"
+          />
+
           </div>
 
           <div class="col-12">
@@ -177,6 +199,7 @@ import EditButton from "../buttons/EditButton.vue";
 import employeeCarreer from "../../service/servises/employeeCarreer";
 import ProgressBarLoader from "../loaders/ProgressBarLoader.vue";
 import AddButton from "../buttons/AddButton.vue";
+import Formatter from "@/util/formatter";
 export default {
   components: {
     DeleteButton,
@@ -186,6 +209,7 @@ export default {
   },
   data() {
     return {
+      Formatter,
       barLoader: false,
       careerList: [],
       careerDialog: false,
@@ -232,16 +256,16 @@ export default {
     },
     addingCaarres() {
       this.careerDialogType = true;
-      (this.careerDialogdate1 = ""),
-        (this.careerDialogdate2 = ""),
-        (this.careerDialogname = ""),
-        this.controlDialog(true);
+      this.careerDialogdate1 = "";
+      this.careerDialogdate2 = "";
+      this.careerDialogname = "";
+      this.controlDialog(true);
     },
     editCareer(event) {
       this.careerDialogType = false;
       this.career_id = event.id;
-      this.careerDialogdate1 = event.date1;
-      this.careerDialogdate2 = event.date2;
+      this.careerDialogdate1 = Formatter.interDateFormatter(event.date1);
+      this.careerDialogdate2 =  Formatter.interDateFormatter(event.date2);
       this.careerDialogname = event.staff_name;
       this.controlDialog(true);
     },
@@ -250,8 +274,8 @@ export default {
       this.controlDialog(false);
       let id = this.$route.params.id;
       let data = {
-        date1: this.careerDialogdate1,
-        date2: this.careerDialogdate2,
+        date1: Formatter.interDateFormatter(this.careerDialogdate1), 
+        date2: Formatter.interDateFormatter(this.careerDialogdate2), 
         staff: this.careerDialogname,
       };
 

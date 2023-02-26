@@ -39,7 +39,7 @@
         </div>
       </div>
     </div>
-    <div class="col-12 surface-0 ">
+    <div class="col-12 surface-0 py-6 ">
       <div class="grid">
         <!-- Personal imformation details -->
     <div class="col-12">
@@ -50,12 +50,19 @@
           <div class="employee-avatar-box">
             <div class="img-box" @click="$refs.file.click()" :class="{'img-box-invalid' : submitted_blob && !cropper_blob }">
               <img
+              v-if="!image.src"
                 class="employee-avatar"
-                :src="image.src? image.src : 'https://unilibrary.uz/static/media/placeholder.ac5bb684.svg'"
+                src="../assets/avatar/empty-avatar.jpg"
+                alt=""
+              />
+              <img
+                v-if="image.src"
+                class="employee-avatar"
+                :src="image.src"
                 alt=""
               />
               <div class="hover-element">
-                <i class="pi pi-pencil"></i>
+                <i class="pi pi-cloud-upload"></i>
               </div>
             </div>
           </div>
@@ -632,6 +639,11 @@
                 class="w-full"
               />
             </div>
+
+            <div class="col-12">
+              <h6 class="mb-2 pl-2 text-500">Pochta manzili</h6>
+            <InputText type="text" class="w-full font-semibold" placeholder="Kiritng" id="email" v-model="gmail" />
+            </div>
           </div>
         </div>
 
@@ -649,6 +661,24 @@
                   'p-invalid': v$.employeeMilitaryTitle.$invalid && submitted,
                 }"
               />
+            </div>
+            <div class="col-12 pt-6 pb-3">
+              <Checkbox inputId="binary" v-model="inostrans" :binary="true"  />
+                <span class="pl-4 text-500 text-base font-medium">Xorij fuqarosi</span>
+            </div>
+            <div class="col-12">
+              <h6 class="mb-2 pl-2 text-500">Tugash mudati</h6>
+            <Calendar
+              class="w-full font-semibold"
+              :manualInput="true"
+              id="date_inostrans"
+              v-model="date_inostrans"
+              v-maska="'##/##/####'"
+              placeholder="Sanani tanlang"
+              dateFormat="dd/mm/yy"
+              :showButtonBar="true"
+              :disabled="!inostrans"
+            />
             </div>
           </div>
         </div>
@@ -669,26 +699,6 @@
               />
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-12 mb-8">
-      <div class="grid xl:px-4 xl:mx-4 lg:px-2 xl:mx-2">
-        <div class="col-12">
-          <p
-            class="
-              bg-yellow-50
-              font-medium
-              border-1 border-yellow-100
-              text-yellow-500
-              px-4
-              py-2
-            "
-          >
-            Kiritilayotgan ma'lumotlar to'g'riligi bo'yicha javobgarlik
-            korxonaning masul xodimi zimmasga yuklangan.
-          </p>
         </div>
       </div>
     </div>
@@ -713,7 +723,6 @@
             :stencil-props="{
               aspectRatio: 3 / 4,
             }"
-            @change="changeCropper"
             :src="image.src"
             :autoZoom="true"
           />
@@ -748,7 +757,7 @@
     </div>
   </div>
 </template>
-<script>
+<script>import avatar from '../assets/avatar/empty-avatar.jpg'
   import SuccessAlert from "../components/Alerts/SuccessAlert.vue";
   import WarningAlert from "../components/Alerts/WarningAlert.vue";
 import employeeAdd from "../service/servises/employeeAdd";
@@ -817,6 +826,9 @@ export default {
       comment:null,
       order:null,
       status_dec:null,
+      gmail: null,
+      inostrans: false,
+      date_inostrans: null,
 
 
 
@@ -965,6 +977,10 @@ export default {
         form.append("order",this.order)
         form.append("status_dec",this.status_dec)
 
+        form.append("gmail",this.gmail)
+        form.append("inostrans",this.inostrans? 1 : 0)
+        form.append("date_inostrans", this.inostrans? Formatter.outDateFormatter(this.date_inostrans) : null)
+
 
 
         console.table(form);
@@ -1099,6 +1115,7 @@ export default {
     .employee-avatar {
       width: 120px;
       height: 160px;
+      object-fit: cover;
     }
     .hover-element {
       width: 100%;
@@ -1110,7 +1127,7 @@ export default {
       display: flex;
       justify-content: center;
       align-items: center;
-      transition: all 0.3s ease;
+      transition: all 0.2s linear;
       top: 0px;
       & > i {
         font-size: 24px;

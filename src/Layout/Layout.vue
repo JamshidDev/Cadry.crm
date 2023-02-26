@@ -53,11 +53,11 @@ export default {
       mobile_screen_width: 991,
     };
   },
-  created() {
-    if (this.SCREEN_WIDTH > this.mobile_screen_width) {
-      this.sidebar = false;
-    }
-  },
+  // created() {
+  //   if (this.SCREEN_WIDTH > this.mobile_screen_width) {
+  //     this.sidebar = false;
+  //   }
+  // },
   computed: {
     ...mapGetters(["get_menuType", "get_Sidebar", "get_screenWidth"]),
     layoutClass() {
@@ -68,7 +68,7 @@ export default {
           close_sidebar: this.sidebar,
           sidebar_static: this.sidebar_statsic,
           sidebar_overall:
-            this.SCREEN_WIDTH > this.mobile_screen_width && this.sidebar,
+          this.get_screenWidth > this.mobile_screen_width && this.sidebar,
         },
       ];
     },
@@ -79,11 +79,11 @@ export default {
     // },
   },
   watch: {
-    SCREEN_WIDTH(width) {
-      if (width < this.mobile_screen_width) {
-        this.sidebar = true;
-      }
-    },
+    // SCREEN_WIDTH(width) {
+    //   if (width < this.mobile_screen_width) {
+    //     this.sidebar = true;
+    //   }
+    // },
     get_menuType(type) {
       if (type) {
         this.actionSidebar(false);
@@ -92,22 +92,25 @@ export default {
     },
     get_screenWidth(screen_width) {
       if (screen_width < this.mobile_screen_width) {
-        this.sidebar = false;
+        if (!this.mobile_active){
+          this.sidebar = false;
         this.actionSidebar(false);
+        }
+        
       } else {
         if (this.mobile_active) {
           this.sidebar = false;
           this.actionSidebar(false);
+          this.mobile_active = false;
         }
       }
     },
   },
-
   methods: {
     ...mapActions(["actionSidebar"]),
     changeNavbar() {
       this.actionSidebar(!this.sidebar);
-      if (this.SCREEN_WIDTH < this.mobile_screen_width) {
+      if (this.get_screenWidth < this.mobile_screen_width) {
         this.mobile_active = !this.sidebar;
       }
       this.sidebar = !this.sidebar;
@@ -130,14 +133,12 @@ export default {
   position: relative !important;
   width: 100% !important;
 }
-
 .slide-right-enter-active{
   transition: all 0.2s linear;
 }
 .slide-right-leave-active {
   transition: all 0.1s linear;
 }
-
 .slide-right-enter-from {
   transform: translateY(-10px);
   opacity: 0;
@@ -149,5 +150,4 @@ export default {
 .slide-right-leave-from {
   transform: scale(1);
 }
-
 </style>

@@ -55,7 +55,7 @@
               </Dropdown>
             </div>
 
-            <div class="col-12 sm:col-6 md:col-6 lg:col-3 xl:col-3 p-fluid">
+            <div class="col-12 sm:col-6 md:col-6 lg:col-3 xl:col-3 p-fluid">d
               <h6 class="mb-1 pl-2 text-sm">
                 Korxona -
                 {{
@@ -814,7 +814,7 @@
         showGridlines
         class="p-datatable-sm"
         v-show="totalCadries"
-        v-model:selection="selectitem"
+        v-model:selection="selectitem" selectionMode="multiple"
       >
         <template #header v-if="selectMode">
           <div class="grid">
@@ -1128,7 +1128,7 @@ export default {
       districtLoading: false,
       birth_districtLoading: false,
 
-      selectitem: [],
+      selectitem: null,
       isSelectAll: false,
       selectOptions: [],
       selectAllOption: [],

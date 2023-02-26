@@ -18,7 +18,7 @@
 
     <div class="col-12 py-0">
       <div class="grid py-0">
-        <div class="col-12 sm:col-6 md:col-6 lg:col-2 xl:col-2 p-fluid">
+        <div class="col-12 flex justify-content-between">
           <InputText
             type="text"
             v-model="searchPartName"
@@ -26,36 +26,23 @@
             class="p-inputtext-sm"
             @keyup.enter="searchByName()"
           />
-        </div>
-        <div
-          class="
-            col-12
-            sm:col-6
-            md:col-6
-            lg:col-2
-            xl:col-2
-            p-fluid
-            xl:col-offset-6
-            lg:col-offset-6
-            flex justify-content-end
-          "
-        >
+        <div class="flex gap-2">
           <Button
                       icon="pi pi-cloud-download"
-            class="p-button-success p-button-sm xl:ml-2 lg:ml-2"
+            class="p-button-success p-button-sm "
             @click="export_Data_toExcel()"
             v-tooltip.bottom="`Ma'lumotlarni yuklash`"
           ></Button>
-        </div>
-        <div class="col-12 sm:col-6 md:col-6 lg:col-2 xl:col-2 p-fluid">
           <Button
             icon="pi pi-plus"
             label="Qo'shish"
-            class="p-button-info p-button-sm xl:ml-2 lg:ml-2"
+            class="p-button-info p-button-sm"
             @click="addItemVacation()"
             v-tooltip.bottom="`Xodimni ta'tilga yuborish`"
           ></Button>
         </div>
+        </div>
+      
       </div>
     </div>
 

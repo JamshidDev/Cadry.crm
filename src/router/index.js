@@ -276,6 +276,20 @@ const routes = [
         },
       },
       {
+        path: "/admin/country-zone",
+        name: "country-zone",
+        component: function () {
+          return import("../views/Regions/RegionPage.vue");
+        },
+      },
+      {
+        path: "/admin/country-zone/districts/:id/:name",
+        name: "districts",
+        component: function () {
+          return import("../views/Districts/DistrictPage.vue");
+        },
+      },
+      {
         path: "/admin/skill",
         name: "Skill",
 
@@ -344,6 +358,13 @@ const routes = [
         name: "vacation",
         component: function () {
           return import("../views/VacationPage.vue");
+        },
+      },
+      {
+        path: "/admin/vacation-date",
+        name: "vacation-date",
+        component: function () {
+          return import("../views/VacationDate/VacationDate.vue");
         },
       },
       {

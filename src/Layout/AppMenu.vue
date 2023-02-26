@@ -86,6 +86,12 @@ export default {
               to: "/admin/historycadry",
               visible: () => this.get_adminPermissions("organization_archive"),
             },
+            {
+              label: "Hududlar",
+              icon: "pi pi-database",
+              to: "/admin/country-zone",
+              visible: () => this.get_adminPermissions("organization_archive"),
+            },
           ],
         },
         {
@@ -107,6 +113,14 @@ export default {
                 this.get_adminPermissions("organization_vacations"),
               to: "/admin/vacation",
             },
+            {
+              label: "Ta'til muddati",
+              icon: "pi pi-calendar",
+              visible: () =>
+                this.get_adminPermissions("organization_vacations"),
+              to: "/admin/vacation-date",
+            },
+           
             {
               label: "Tibbiy ko'rik",
               icon: "pi pi-id-card",
@@ -199,17 +213,6 @@ export default {
               label: "Amallar",
               icon: "pi pi-shield",
               visible: () => this.get_adminPermissions("admin"),
-            },
-          ],
-        },
-        {
-          label: "Platforma",
-          icon: "pi pi-prime",
-          items: [
-            {
-              label: "Qo'llanma",
-              icon: "pi pi-book",
-              to: "/guide",
             },
           ],
         },

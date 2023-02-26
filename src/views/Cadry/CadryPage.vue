@@ -25,12 +25,13 @@
                   </div>
                 </template>
               </SelectButton>
-              <Button
+              <span></span>
+              <!-- <Button
                 icon="pi pi-sync"
                 class="p-button-secondary "
                 label="Lotin"
                 v-tooltip.bottom="`Ma'lumotlarni lotinchaga o'girish`"
-              />
+              /> -->
             </div>
             <div class="col-12 flex mt-4 xl:mt-0 lg:mt-0 md:mt-0 justify-content-center xl:hidden lg:hidden md:hidden">
               <SelectButton

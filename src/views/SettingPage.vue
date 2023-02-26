@@ -42,7 +42,7 @@
         </div>
       </div>
     </div>
-    <div
+    <!-- <div
       class="
         col-12
         sm:col-12
@@ -79,7 +79,7 @@
         <div class="font-medium text-base uppercase">Gorizantal menyu</div>
         <InputSwitch v-model="menuType" @change="changeMenu()" />
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 <script>

@@ -1,15 +1,14 @@
 const state = {
   appScrollX: 0,
   appScrollY: 0,
-  screenWidth: screen.width,
-  screenHeight: screen.height,
+  screenWidth: window.innerWidth,
+  screenHeight:  window.innerHeight,
   activeHorizantal: JSON.parse(localStorage.getItem("menu")) || false,
   activeSidebar: JSON.parse(localStorage.getItem("sidebar")) || false,
   page: 1,
   per_page: 10,
   isDark: JSON.parse(localStorage.getItem("theme-dark")) || false,
 };
-
 const getters = {
   get_appScrollX(state) {
     return state.appScrollX;

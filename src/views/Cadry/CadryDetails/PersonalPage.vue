@@ -6,39 +6,18 @@
   </div>
   <div v-if="!barLoader" class="grid card surface-0 py-4 px-2">
     <div class="col-12 md:col-6 lg:col-6 xl:col-6">
-      <InputText
-        type="number"
-        class="font-semibold mr-2 p-inputtext-sm"
-        placeholder="Tabel raqami"
-        v-model="order"
-        :class="{ 'p-invalid': v$.adressStreet.$invalid && submitted }"
-        v-tooltip.bottom="`Xodimning tabel raqami`"
-      />
-      <InputText
-        type="number"
-        class="font-semibold p-inputtext-sm"
-        placeholder="Karta raqami"
-        v-tooltip.bottom="`Xodimning karta raqami`"
-        v-model="status_dec"
-        :class="{ 'p-invalid': v$.adressStreet.$invalid && submitted }"
-      />
+      <InputText type="number" class="font-semibold mr-2 p-inputtext-sm" placeholder="Tabel raqami" v-model="order"
+        :class="{ 'p-invalid': v$.adressStreet.$invalid && submitted }" v-tooltip.bottom="`Xodimning tabel raqami`" />
+      <InputText type="number" class="font-semibold p-inputtext-sm" placeholder="Karta raqami"
+        v-tooltip.bottom="`Xodimning karta raqami`" v-model="status_dec"
+        :class="{ 'p-invalid': v$.adressStreet.$invalid && submitted }" />
     </div>
     <div class="col-12 md:col-6 lg:col-6 xl:col-6">
       <div class="flex justify-content-end">
-        <Button
-          icon="pi pi-trash"
-          @click="controFinishDialog(true)"
-          class="p-button-danger p-button-sm mx-2"
-          label="Yakunlash"
-          v-tooltip.bottom="`Xodim mehnat faoliyatini yakunlash`"
-        />
-        <Button
-          icon="pi pi-save"
-          @click="updateEmployee(!v$.$invalid)"
-          class="p-button-secondary p-button-sm"
-          label="Saqlash"
-          v-tooltip.bottom="`Ma'lumotlarni qayta saqlash`"
-        />
+        <Button icon="pi pi-trash" @click="controFinishDialog(true)" class="p-button-danger p-button-sm mx-2"
+          label="Yakunlash" v-tooltip.bottom="`Xodim mehnat faoliyatini yakunlash`" />
+        <Button icon="pi pi-save" @click="updateEmployee(!v$.$invalid)" class="p-button-secondary p-button-sm"
+          label="Saqlash" v-tooltip.bottom="`Ma'lumotlarni qayta saqlash`" />
       </div>
     </div>
 
@@ -49,19 +28,15 @@
             <div class="col-12">
               <div class="employee-avatar-box">
                 <div class="img-box" @click="$refs.file_add.click()">
-                  <img
-                    class="employee-avatar"
-                    :src="defaulAvatar ? defaulAvatar : default_avatar"
-                    alt=""
-                  />
+                  <img class="employee-avatar" :src="defaulAvatar ? defaulAvatar : default_avatar" alt="" />
                   <div class="hover-element">
                     <i class="pi pi-pencil"></i>
                   </div>
                 </div>
               </div>
-             
+
             </div>
-          
+
           </div>
         </div>
 
@@ -69,35 +44,20 @@
         <div class="col-12 sm:col-12 md:col-6 lg:col-3 xl:col-3">
           <div class="grid">
             <div class="col-12">
-              <h6 class="mb-2 pl-2 text-500 text-sm">Familiya</h6>
-              <InputText
-                type="text"
-                class="w-full p-inputtext-sm font-normal text-base"
-                placeholder="Familiyani kiriting"
-                v-model="v$.lastName.$model"
-                :class="{ 'p-invalid': v$.lastName.$invalid && submitted }"
-              />
+              <h6 class="mb-2 pl-2 text-500">Familiya</h6>
+              <InputText type="text" class="w-full p-inputtext-sm font-normal text-base" placeholder="Familiyani kiriting"
+                v-model="v$.lastName.$model" :class="{ 'p-invalid': v$.lastName.$invalid && submitted }" />
             </div>
             <div class="col-12">
               <h6 class="mb-2 pl-2 text-500">Ism</h6>
-              <InputText
-                type="text"
-                class="w-full font-semibold"
-                placeholder="Ismni kiriting"
-                id="lastName"
-                v-model="v$.firstName.$model"
-                :class="{ 'p-invalid': v$.firstName.$invalid && submitted }"
-              />
+              <InputText type="text" class="w-full font-semibold" placeholder="Ismni kiriting" id="lastName"
+                v-model="v$.firstName.$model" :class="{ 'p-invalid': v$.firstName.$invalid && submitted }" />
             </div>
             <div class="col-12">
               <h6 class="mb-2 pl-2 text-500">Sharif</h6>
-              <InputText
-                type="text"
-                v-model="v$.thirdName.$model"
-                :class="{ 'p-invalid': v$.thirdName.$invalid && submitted }"
-                class="w-full font-semibold"
-                placeholder="Sharifni kiriting"
-              />
+              <InputText type="text" v-model="v$.thirdName.$model"
+                :class="{ 'p-invalid': v$.thirdName.$invalid && submitted }" class="w-full font-semibold"
+                placeholder="Sharifni kiriting" />
             </div>
           </div>
         </div>
@@ -107,48 +67,23 @@
           <div class="grid">
             <div class="col-12">
               <h6 class="mb-2 pl-2 text-500">Tug'ilgan sanasi (kun-oy-yil)</h6>
-              <Calendar
-                class="w-full font-semibold"
-                :manualInput="true"
-                id="bornDate"
-                v-model="v$.bornDate.$model"
-                v-maska="'##/##/####'"
-                :class="{ 'p-invalid': v$.bornDate.$invalid && submitted }"
-                dateFormat="dd/mm/yy"
-                :showButtonBar="true"
-                placeholder="Sanani tanlang"
-              />
+              <Calendar class="w-full font-semibold" :manualInput="true" id="bornDate" v-model="v$.bornDate.$model"
+                v-maska="'##/##/####'" :class="{ 'p-invalid': v$.bornDate.$invalid && submitted }" dateFormat="dd/mm/yy"
+                :showButtonBar="true" placeholder="Sanani tanlang" />
             </div>
             <div class="col-12">
               <h6 class="mb-2 pl-2 text-500">Tug'ilgan viloyati</h6>
-              <Dropdown
-                id="bornRegion"
-                v-model="v$.bornRegion.$model"
-                :class="{ 'p-invalid': v$.bornRegion.$invalid && submitted }"
-                :options="regionList"
-                optionLabel="name"
-                placeholder="Viloyatni tanlang"
-                class="w-full font-semibold"
-              />
+              <Dropdown id="bornRegion" v-model="v$.bornRegion.$model"
+                :class="{ 'p-invalid': v$.bornRegion.$invalid && submitted }" :options="regionList" optionLabel="name"
+                placeholder="Viloyatni tanlang" class="w-full font-semibold" />
             </div>
             <div class="col-12 p-fluid">
               <h6 class="mb-2 pl-2 text-500">Tug'ilgan tumani</h6>
-              <Dropdown
-                id="bornDistric"
-                v-model="v$.bornDistric.$model"
-                :class="{ 'p-invalid': v$.bornDistric.$invalid && submitted }"
-                :options="districtList"
-                optionLabel="name"
-                :filter="true"
-                placeholder="Tumanni tanlang"
-                class="w-full font-semibold"
-                @change="changeBornDistrict"
-              >
+              <Dropdown id="bornDistric" v-model="v$.bornDistric.$model"
+                :class="{ 'p-invalid': v$.bornDistric.$invalid && submitted }" :options="districtList" optionLabel="name"
+                :filter="true" placeholder="Tumanni tanlang" class="w-full font-semibold" @change="changeBornDistrict">
                 <template #value="slotProps">
-                  <div
-                    class="country-item country-item-value"
-                    v-if="slotProps.value"
-                  >
+                  <div class="country-item country-item-value" v-if="slotProps.value">
                     <div>{{ slotProps.value.name }}</div>
                   </div>
                   <span v-else>
@@ -170,32 +105,16 @@
           <div class="grid">
             <div class="col-12 p-fluid">
               <h6 class="mb-2 pl-2 text-500">Yashash manzili</h6>
-              <Dropdown
-                id="adressRegion"
-                v-model="v$.adressRegion.$model"
-                :class="{ 'p-invalid': v$.adressRegion.$invalid && submitted }"
-                :options="regionList"
-                optionLabel="name"
-                optionValue="id"
-                placeholder="Viloyatni tanlang"
-                class="w-full font-semibold"
-              />
+              <Dropdown id="adressRegion" v-model="v$.adressRegion.$model"
+                :class="{ 'p-invalid': v$.adressRegion.$invalid && submitted }" :options="regionList" optionLabel="name"
+                optionValue="id" placeholder="Viloyatni tanlang" class="w-full font-semibold" />
             </div>
             <div class="col-12 p-fluid">
               <h6 class="mb-2 pl-2 text-500">Yashash manzili</h6>
-              <Dropdown
-                id="adressDistrict"
-                v-model="v$.adressDistrict.$model"
-                :class="{
-                  'p-invalid': v$.adressDistrict.$invalid && submitted,
-                }"
-                :options="districtList"
-                optionLabel="name"
-                :filter="true"
-                placeholder="Tumanni tanlang"
-                class="w-full font-semibold"
-                @change="changeadressDistrict"
-              >
+              <Dropdown id="adressDistrict" v-model="v$.adressDistrict.$model" :class="{
+                'p-invalid': v$.adressDistrict.$invalid && submitted,
+              }" :options="districtList" optionLabel="name" :filter="true" placeholder="Tumanni tanlang"
+                class="w-full font-semibold" @change="changeadressDistrict">
                 <template #value="slotProps">
                   <div v-if="slotProps.value">
                     <div>{{ slotProps.value.name }}</div>
@@ -213,14 +132,8 @@
             </div>
             <div class="col-12">
               <h6 class="mb-2 pl-2 text-500">Qo'shimcha manzil</h6>
-              <InputText
-                type="text"
-                class="w-full font-semibold"
-                placeholder="Ko'cha va uy manzili"
-                id="adressStreet"
-                v-model="v$.adressStreet.$model"
-                :class="{ 'p-invalid': v$.adressStreet.$invalid && submitted }"
-              />
+              <InputText type="text" class="w-full font-semibold" placeholder="Ko'cha va uy manzili" id="adressStreet"
+                v-model="v$.adressStreet.$model" :class="{ 'p-invalid': v$.adressStreet.$invalid && submitted }" />
             </div>
           </div>
         </div>
@@ -234,68 +147,35 @@
 
           <div class="col-12 sm:col-12 md:col-6 lg:col-3 xl:col-3">
             <h6 class="mb-2 pl-2 text-500">Pasport seriyasi</h6>
-            <InputText
-              type="text"
-              class="w-full font-semibold"
-              placeholder="Seriyani kiriting"
-              id="passportSeriya"
-              v-model="v$.passportSeriya.$model"
-              v-maska="'SS #######'"
-              :class="{
+            <InputText type="text" class="w-full font-semibold" placeholder="Seriyani kiriting" id="passportSeriya"
+              v-model="v$.passportSeriya.$model" v-maska="'SS #######'" :class="{
                 'p-invalid': v$.passportSeriya.$invalid && submitted,
-              }"
-            />
+              }" />
           </div>
 
           <div class="col-12 sm:col-12 md:col-6 lg:col-3 xl:col-3">
             <h6 class="mb-2 pl-2 text-500">Pasport JSHR</h6>
-            <InputText
-              type="text"
-              class="w-full font-semibold"
-              placeholder="JSHR raqami"
-              id="passportJSHR"
-              v-model="v$.passportJSHR.$model"
-              v-maska="'##############'"
-              :class="{ 'p-invalid': v$.passportJSHR.$invalid && submitted }"
-            />
+            <InputText type="text" class="w-full font-semibold" placeholder="JSHR raqami" id="passportJSHR"
+              v-model="v$.passportJSHR.$model" v-maska="'##############'"
+              :class="{ 'p-invalid': v$.passportJSHR.$invalid && submitted }" />
           </div>
 
           <div class="col-12 sm:col-12 md:col-6 lg:col-3 xl:col-3">
             <h6 class="mb-2 pl-2 text-500">Berilgan viloyat</h6>
-            <Dropdown
-              id="passportRegion"
-              v-model="v$.passportRegion.$model"
-              :class="{
-                'p-invalid': v$.passportRegion.$invalid && submitted,
-              }"
-              :options="regionList"
-              optionLabel="name"
-              optionValue="id"
-              placeholder="Viloyatni tanlang"
-              class="w-full font-semibold"
-            />
+            <Dropdown id="passportRegion" v-model="v$.passportRegion.$model" :class="{
+              'p-invalid': v$.passportRegion.$invalid && submitted,
+            }" :options="regionList" optionLabel="name" optionValue="id" placeholder="Viloyatni tanlang"
+              class="w-full font-semibold" />
           </div>
 
           <div class="col-12 sm:col-12 md:col-6 lg:col-3 xl:col-3">
             <h6 class="mb-2 pl-2 text-500">Berilgan tuman</h6>
-            <Dropdown
-              id="passportDistrict"
-              v-model="v$.passportDistrict.$model"
-              :class="{
-                'p-invalid': v$.passportDistrict.$invalid && submitted,
-              }"
-              :options="districtList"
-              optionLabel="name"
-              :filter="true"
-              placeholder="Tumanni tanlang"
-              class="w-full font-semibold"
-              @change="changePassDistrict"
-            >
+            <Dropdown id="passportDistrict" v-model="v$.passportDistrict.$model" :class="{
+              'p-invalid': v$.passportDistrict.$invalid && submitted,
+            }" :options="districtList" optionLabel="name" :filter="true" placeholder="Tumanni tanlang"
+              class="w-full font-semibold" @change="changePassDistrict">
               <template #value="slotProps">
-                <div
-                  class="country-item country-item-value"
-                  v-if="slotProps.value"
-                >
+                <div class="country-item country-item-value" v-if="slotProps.value">
                   <div>{{ slotProps.value.name }}</div>
                 </div>
                 <span v-else>
@@ -312,79 +192,63 @@
 
           <div class="col-12 sm:col-12 md:col-6 lg:col-3 xl:col-3">
             <h6 class="mb-2 pl-2 text-500">Berilgan sana</h6>
-            <Calendar
-              class="w-full font-semibold"
-              :manualInput="true"
-              id="passportDate"
-              v-model="v$.passportDate.$model"
-              :class="{ 'p-invalid': v$.passportDate.$invalid && submitted }"
-              v-maska="'##/##/####'"
-              placeholder="Sanani tanlang"
-              dateFormat="dd/mm/yy"
-              :showButtonBar="true"
-            />
+            <Calendar class="w-full font-semibold" :manualInput="true" id="passportDate" v-model="v$.passportDate.$model"
+              :class="{ 'p-invalid': v$.passportDate.$invalid && submitted }" v-maska="'##/##/####'"
+              placeholder="Sanani tanlang" dateFormat="dd/mm/yy" :showButtonBar="true" />
           </div>
 
           <div class="col-12 sm:col-12 md:col-6 lg:col-3 xl:col-3">
             <h6 class="mb-2 pl-2 text-500">Qachondan beri ishlaydi(O'TY)</h6>
+            <Calendar class="w-full font-semibold" :manualInput="true" id="passportDate"
+              v-model="v$.positionFirstDate.$model" :class="{
+                'p-invalid': v$.positionFirstDate.$invalid && submitted,
+              }" v-maska="'##/##/####'" placeholder="Sanani tanlang" dateFormat="dd/mm/yy" :showButtonBar="true" />
+          </div>
+          <div class="col-12 sm:col-12 md:col-4 lg:col-2 xl:col-2">
+            <h6 class="mb-2 pl-2 text-500">Telefon raqam</h6>
+            <InputText type="text" class="w-full font-semibold" placeholder="Raqamni kiriting" id="employeePhone"
+              v-model="v$.employeePhone.$model" v-maska="'(##)-###-##-##'" :class="{
+                'p-invalid': v$.employeePhone.$invalid && submitted,
+              }" />
+          </div>
+          <div class="col-12 sm:col-12 md:col-4 lg:col-2 xl:col-2">
+            <h6 class="mb-2 pl-2 text-500">Jinsi</h6>
+            <Dropdown id="employeeGender" v-model="v$.employeeGender.$model" :class="{
+              'p-invalid': v$.employeeGender.$invalid && submitted,
+            }" :options="genderList" optionLabel="name" optionValue="id" placeholder="Jinsini tanlang"
+              class="w-full font-semibold" />
+          </div>
+          <div class="col-12 sm:col-12 md:col-4 lg:col-2 xl:col-2">
+            <h6 class="mb-2 pl-2 text-500">Xizmat darajasi</h6>
+            <Dropdown id="employeeGender" v-model="v$.positionDegree.$model" :class="{
+              'p-invalid': v$.positionDegree.$invalid && submitted,
+            }" :options="workLevel" optionLabel="name" optionValue="id" placeholder="Tanlang"
+              class="w-full font-semibold" />
+          </div>
+          <div class="col-12 sm:col-12 md:col-6 lg:col-3 xl:col-3">
+            <h6 class="mb-2 pl-2 text-500">Pochta manzili</h6>
+            <InputText type="text" class="w-full font-semibold" placeholder="Kiritng" id="email" v-model="gmail" />
+          </div>
+          <div class="col-12 sm:col-12 md:col-6 lg:col-3 xl:col-3 pt-6">
+                <Checkbox inputId="binary" v-model="inostrans" :binary="true"  />
+                <span class="pl-4 text-500 text-base">Xorij fuqarosi</span>
+              </div>
+              <div class="col-12 sm:col-12 md:col-6 lg:col-3 xl:col-3">
+            <h6 class="mb-2 pl-2 text-500">Tugash mudati</h6>
             <Calendar
               class="w-full font-semibold"
               :manualInput="true"
-              id="passportDate"
-              v-model="v$.positionFirstDate.$model"
-              :class="{
-                'p-invalid': v$.positionFirstDate.$invalid && submitted,
-              }"
+              id="date_inostrans"
+              v-model="date_inostrans"
               v-maska="'##/##/####'"
               placeholder="Sanani tanlang"
               dateFormat="dd/mm/yy"
               :showButtonBar="true"
+              :disabled="!inostrans"
             />
           </div>
-          <div class="col-12 sm:col-12 md:col-4 lg:col-2 xl:col-2">
-            <h6 class="mb-2 pl-2 text-500">Telefon raqam</h6>
-            <InputText
-              type="text"
-              class="w-full font-semibold"
-              placeholder="Raqamni kiriting"
-              id="employeePhone"
-              v-model="v$.employeePhone.$model"
-              v-maska="'(##)-###-##-##'"
-              :class="{
-                'p-invalid': v$.employeePhone.$invalid && submitted,
-              }"
-            />
-          </div>
-          <div class="col-12 sm:col-12 md:col-4 lg:col-2 xl:col-2">
-            <h6 class="mb-2 pl-2 text-500">Jinsi</h6>
-            <Dropdown
-              id="employeeGender"
-              v-model="v$.employeeGender.$model"
-              :class="{
-                'p-invalid': v$.employeeGender.$invalid && submitted,
-              }"
-              :options="genderList"
-              optionLabel="name"
-              optionValue="id"
-              placeholder="Jinsini tanlang"
-              class="w-full font-semibold"
-            />
-          </div>
-          <div class="col-12 sm:col-12 md:col-4 lg:col-2 xl:col-2">
-            <h6 class="mb-2 pl-2 text-500">Xizmat darajasi</h6>
-            <Dropdown
-              id="employeeGender"
-              v-model="v$.positionDegree.$model"
-              :class="{
-                'p-invalid': v$.positionDegree.$invalid && submitted,
-              }"
-              :options="workLevel"
-              optionLabel="name"
-              optionValue="id"
-              placeholder="Tanlang"
-              class="w-full font-semibold"
-            />
-          </div>
+
+         
         </div>
       </div>
 
@@ -393,56 +257,28 @@
         <div class="grid xl:px-4 xl:mx-4 lg:px-2 xl:mx-2">
           <div class="col-12 xl:col-6"></div>
           <div class="col-12 xl:col-6 flex justify-content-end">
-            <text-button
-              class="w-16rem"
-              :text="'O\'rindosh lavozimga Tayinlash'"
-              @click="addItemStuff()"
-            ></text-button>
+            <text-button class="w-16rem" :text="'O\'rindosh lavozimga Tayinlash'" @click="addItemStuff()"></text-button>
           </div>
           <div class="col-12">
             <div class="w-full overflow-x-auto">
               <table class="w-full" style="min-width: 600px">
                 <tr>
-                  <td
-                    width="10%"
-                    class="uppercase text-base font-semibold text-center"
-                    style="min-width: 10%"
-                  >
+                  <td width="10%" class="uppercase text-base font-semibold text-center" style="min-width: 10%">
                     Sana
                   </td>
-                  <td
-                    width="50%"
-                    class="uppercase text-base font-semibold"
-                    style="min-width: 50%"
-                  >
+                  <td width="50%" class="uppercase text-base font-semibold" style="min-width: 50%">
                     Lavozim nomi
                   </td>
-                  <td
-                    width="5%"
-                    class="uppercase text-base font-semibold text-center"
-                    style="min-width: 5%"
-                  >
+                  <td width="5%" class="uppercase text-base font-semibold text-center" style="min-width: 5%">
                     Stavka
                   </td>
-                  <td
-                    width="15%"
-                    class="uppercase text-base font-semibold text-center"
-                    style="min-width:15%"
-                  >
+                  <td width="15%" class="uppercase text-base font-semibold text-center" style="min-width:15%">
                     Faoliyat turi
                   </td>
-                  <td
-                    width="20%"
-                    class="uppercase text-base font-semibold text-center py-1 "
-                    style="min-width:20%"
-                  ></td>
+                  <td width="20%" class="uppercase text-base font-semibold text-center py-1 " style="min-width:20%"></td>
                 </tr>
                 <tbody class="pt-4">
-                  <tr
-                    v-for="item in stuffList"
-                    :key="item.id"
-                    class="border-1 border-300 my-1 w-full"
-                  >
+                  <tr v-for="item in stuffList" :key="item.id" class="border-1 border-300 my-1 w-full">
                     <td class="text-sm font-semibold text-blue-600 text-center">
                       {{ formatter.arrowDateFormat(item.staff_date) }}
                     </td>
@@ -456,12 +292,10 @@
                       {{ item.staff_status }}
                     </td>
                     <td class="flex gap-2">
-                      <Button label="Lavozimni o'zgartirish"  @click="editItemStuff(item.id)" class="text-sm font-light py-2" icon="pi pi-user-edit" />
-                      <delete-button
-                        v-if="stuffList.length > 1"
-                        :deleteItem="item.id"
-                        @deleteAcceptEvent="deleteStuffItem($event)"
-                      ></delete-button>
+                      <Button label="Lavozimni o'zgartirish" @click="editItemStuff(item.id)"
+                        class="text-sm font-light py-2" icon="pi pi-user-edit" />
+                      <delete-button v-if="stuffList.length > 1" :deleteItem="item.id"
+                        @deleteAcceptEvent="deleteStuffItem($event)"></delete-button>
                     </td>
                   </tr>
                 </tbody>
@@ -473,61 +307,30 @@
       </div>
 
       <div class="col-12">
-        <input
-          v-show="false"
-          type="file"
-          ref="file_add"
-          @change="uploadImage($event)"
-          accept="image/*"
-        />
-        <Dialog
-          v-model:visible="cropperDialog"
-          :style="{ width: '380px' }"
-          :modal="true"
-          class="bg-blue-700"
-          :closable="false"
-        >
+        <input v-show="false" type="file" ref="file_add" @change="uploadImage($event)" accept="image/*" />
+        <Dialog v-model:visible="cropperDialog" :style="{ width: '380px' }" :modal="true" class="bg-blue-700"
+          :closable="false">
           <template #header>
             <h6 class="font-semibold flex uppercase">Rasmni tekislash</h6>
           </template>
-          <cropper
-            ref="cropper"
-            class="cropper"
-            :stencil-props="{
-              aspectRatio: 3 / 4,
-            }"
-            :src="image.src"
-            :autoZoom="true"
-          />
+          <cropper ref="cropper" class="cropper" :stencil-props="{
+            aspectRatio: 3 / 4,
+          }" :src="image.src" :autoZoom="true" />
           <template #footer>
             <div class="flex justify-content-between">
-              <Button
-                label="Bekor qilish"
-                @click="controlCopper(false)"
-                class="p-button-danger p-button-sm"
-              />
-              <Button
-                label="Tasdiqlash"
-                @click="uploadAvatar()"
-                class="p-button-secondary p-button-sm"
-                autofocus
-              />
+              <Button label="Bekor qilish" @click="controlCopper(false)" class="p-button-danger p-button-sm" />
+              <Button label="Tasdiqlash" @click="uploadAvatar()" class="p-button-secondary p-button-sm" autofocus />
             </div>
           </template>
         </Dialog>
 
-        <Dialog
-          v-model:visible="finishDialog"
-          :breakpoints="{
-            '1960px': '30vw',
-            '1600px': '40vw',
-            '1200px': '70vw',
-            '960px': '80vw',
-            '640px': '90vw',
-          }"
-          :style="{ width: '50vw' }"
-          :modal="true"
-        >
+        <Dialog v-model:visible="finishDialog" :breakpoints="{
+          '1960px': '30vw',
+          '1600px': '40vw',
+          '1200px': '70vw',
+          '960px': '80vw',
+          '640px': '90vw',
+        }" :style="{ width: '50vw' }" :modal="true">
           <template #header>
             <h6 class="uppercase text-lg text-red-500 font-medium">
               Mehnat faoliyatini yakunlash
@@ -536,61 +339,37 @@
           <div class="grid">
             <div class="col-12">
               <h6 class="mb-2 pl-2 text-500">Prikaz raqami</h6>
-              <InputText
-                type="text"
-                class="w-full font-semibold"
-                placeholder="Kiriting"
-                v-model.trim="prikaz_number"
-                :class="{ 'p-invalid': prikaz_num_err && prikaz_submitted }"
-              />
+              <InputText type="text" class="w-full font-semibold" placeholder="Kiriting" v-model.trim="prikaz_number"
+                :class="{ 'p-invalid': prikaz_num_err && prikaz_submitted }" />
             </div>
             <div class="col-12">
               <h6 class="mb-2 pl-2 text-500">Izoh</h6>
-              <Textarea
-                class="w-full font-semibold"
-                :class="{ 'p-invalid': prikaz_comment_err && prikaz_submitted }"
-                placeholder="Kiriting"
-                id="employeePhone"
-                v-model.trim="prikaz_comment"
-                :autoResize="true"
-                rows="1"
-              />
+              <Textarea class="w-full font-semibold" :class="{ 'p-invalid': prikaz_comment_err && prikaz_submitted }"
+                placeholder="Kiriting" id="employeePhone" v-model.trim="prikaz_comment" :autoResize="true" rows="1" />
             </div>
             <div class="col-12">
               <Checkbox inputId="binary" v-model="isBanCadry" :binary="true" />
-              <span class="pl-2 text-500"
-                >Mehnat faoliyati davrida yo'l qo'ygan qo'pol xatolari
-                munosabati bilan</span
-              >
+              <span class="pl-2 text-500">Mehnat faoliyati davrida yo'l qo'ygan qo'pol xatolari
+                munosabati bilan</span>
             </div>
           </div>
 
           <template #footer>
             <div class="col-12 pt-2">
               <div class="flex justify-content-end">
-                <Button
-                  label="Yakunlash"
-                  icon="pi pi-trush"
-                  class="p-button-danger p-button-sm"
-                  @click="removeCadry()"
-                />
+                <Button label="Yakunlash" icon="pi pi-trush" class="p-button-danger p-button-sm" @click="removeCadry()" />
               </div>
             </div>
           </template>
         </Dialog>
 
-        <Dialog
-          v-model:visible="deleteStuffDialog"
-          :breakpoints="{
-            '1960px': '30vw',
-            '1600px': '40vw',
-            '1200px': '70vw',
-            '960px': '80vw',
-            '640px': '90vw',
-          }"
-          :style="{ width: '50vw' }"
-          :modal="true"
-        >
+        <Dialog v-model:visible="deleteStuffDialog" :breakpoints="{
+          '1960px': '30vw',
+          '1600px': '40vw',
+          '1200px': '70vw',
+          '960px': '80vw',
+          '640px': '90vw',
+        }" :style="{ width: '50vw' }" :modal="true">
           <template #header>
             <h6 class="uppercase text-lg text-red-500 font-medium">
               Mehnat faoliyatini yakunlash
@@ -599,94 +378,56 @@
           <div class="grid">
             <div class="col-12">
               <h6 class="mb-2 pl-2 text-500">Prikaz raqami</h6>
-              <InputText
-                type="text"
-                class="w-full font-semibold"
-                placeholder="Kiriting"
-                v-model.trim="delete_prikaz_number"
-                :class="{ 'p-invalid': delete_prikaz && delete_submitted }"
-              />
+              <InputText type="text" class="w-full font-semibold" placeholder="Kiriting"
+                v-model.trim="delete_prikaz_number" :class="{ 'p-invalid': delete_prikaz && delete_submitted }" />
             </div>
             <div class="col-12">
               <h6 class="mb-2 pl-2 text-500">Sana</h6>
-              <Calendar
-                class="w-full font-semibold"
-                :manualInput="true"
-                v-model="delete_date"
-                v-maska="'##/##/####'"
-                placeholder="Sanani tanlang"
-                dateFormat="dd/mm/yy"
-                :showButtonBar="true"
-                :class="{ 'p-invalid': delete_prikaz_date && delete_submitted }"
-              />
+              <Calendar class="w-full font-semibold" :manualInput="true" v-model="delete_date" v-maska="'##/##/####'"
+                placeholder="Sanani tanlang" dateFormat="dd/mm/yy" :showButtonBar="true"
+                :class="{ 'p-invalid': delete_prikaz_date && delete_submitted }" />
             </div>
             <div class="col-12">
               <h6 class="mb-2 pl-2 text-500">Mehnat faoliyati</h6>
-              <Dropdown
-                v-model="delete_career_id"
-                :options="careerList"
-                optionLabel="staff"
-                placeholder="Tanlang"
-                option-value="id"
-                class="w-full"
-                :class="{ 'p-invalid': delete_careerId && delete_submitted }"
-              />
+              <Dropdown v-model="delete_career_id" :options="careerList" optionLabel="staff" placeholder="Tanlang"
+                option-value="id" class="w-full" :class="{ 'p-invalid': delete_careerId && delete_submitted }" />
             </div>
           </div>
 
           <template #footer>
             <div class="col-12 pt-2">
               <div class="flex justify-content-end">
-                <Button
-                  label="Yakunlash"
-                  icon="pi pi-trush"
-                  class="p-button-danger p-button-sm"
-                  @click="deleteStuff()"
-                />
+                <Button label="Yakunlash" icon="pi pi-trush" class="p-button-danger p-button-sm" @click="deleteStuff()" />
               </div>
             </div>
           </template>
         </Dialog>
 
         <!-- Change stuff dialog -->
-        <Dialog
-          v-model:visible="stuffDialog"
-          :breakpoints="{
-            '640px': '90vw',
-          }"
-          :style="{ width: '50vw' }"
-          :modal="true"
-        >
+        <Dialog v-model:visible="stuffDialog" :breakpoints="{
+          '640px': '90vw',
+        }" :style="{ width: '50vw' }" :modal="true">
           <template #header>
             <h6 class="uppercase text-lg text-blue-500 font-medium">
               {{
                 stuffDialogType
-                  ? "O'rindosh lavozimga tayinlash"
-                  : " Lavozimni o'zgartirish"
+                ? "O'rindosh lavozimga tayinlash"
+                : " Lavozimni o'zgartirish"
               }}
             </h6>
           </template>
           <div class="grid">
 
             <div class="col-12" v-show="!stuffDialogType">
-              <Checkbox
-                inputId="binary"
-                v-model="status"
-                :binary="true"
-              />
+              <Checkbox inputId="binary" v-model="status" :binary="true" />
               <span class="pl-2 text-blue-500 font-semibold">Yangi lavozimga tayinlash</span>
             </div>
             <div class="col-12" v-show="stuffDialogType || status">
               <div class="grid py-0">
                 <div class="xl:col-4 lg:col-4 md:col-4 col-12 py-0">
                   <h6 class="mb-2 pl-2 text-500">Prikaz raqam</h6>
-                  <InputText
-                    type="text"
-                    class="w-full font-semibold"
-                    placeholder="Kiriting"
-                    id="command_number"
-                    v-model="command_number"
-                  />
+                  <InputText type="text" class="w-full font-semibold" placeholder="Kiriting" id="command_number"
+                    v-model="command_number" />
                 </div>
               </div>
             </div>
@@ -697,18 +438,10 @@
               <h6 class="mb-2 pl-2 text-500">
                 Bo'limni tanlang ({{ stuff_departmentList.length }})
               </h6>
-              <Dropdown
-                v-model="stuff_department"
-                :options="stuff_departmentList"
-                optionLabel="name"
-                :filter="true"
-                placeholder="Tanlang"
-                class="w-full p-input-sm"
-                @change="changeDepartment"
-                :class="{
+              <Dropdown v-model="stuff_department" :options="stuff_departmentList" optionLabel="name" :filter="true"
+                placeholder="Tanlang" class="w-full p-input-sm" @change="changeDepartment" :class="{
                   'p-invalid': stuff_department_Error && stuff_submitted,
-                }"
-              >
+                }">
                 <template #value="slotProps">
                   <div class="font-semibold" v-if="slotProps.value">
                     <div>{{ slotProps.value.name }}</div>
@@ -728,14 +461,8 @@
               <h6 class="mb-2 pl-2 text-500">
                 Lavozimni tanlang ({{ stuff_stuffList.length }})
               </h6>
-              <Dropdown
-                v-model="stuff_stuff"
-                :options="stuff_stuffList"
-                optionLabel="staff_fullname"
-                :filter="true"
-                placeholder="Tanlang"
-                class="w-full p-input-sm"
-              >
+              <Dropdown v-model="stuff_stuff" :options="stuff_stuffList" optionLabel="staff_fullname" :filter="true"
+                placeholder="Tanlang" class="w-full p-input-sm">
                 <template #value="slotProps">
                   <div class="font-semibold" v-if="slotProps.value">
                     <div>{{ slotProps.value.staff_fullname }}</div>
@@ -754,51 +481,26 @@
 
             <div class="col-12 xl:col-4 lg:col-4">
               <h6 class="mb-2 pl-2 text-500">Faoliyat turi</h6>
-              <Dropdown
-                v-model="stuff_status"
-                :options="stuff_statusList"
-                optionLabel="name"
-                placeholder="Tanlang"
-                class="w-full font-semibold"
-              />
+              <Dropdown v-model="stuff_status" :options="stuff_statusList" optionLabel="name" placeholder="Tanlang"
+                class="w-full font-semibold" />
             </div>
             <div class="col-12 xl:col-4 lg:col-4">
               <h6 class="mb-2 pl-2 text-500">Lavozim sanasi</h6>
-              <Calendar
-                class="w-full font-semibold"
-                :manualInput="true"
-                v-model="stuff_date"
-                v-maska="'##/##/####'"
-                dateFormat="dd/mm/yy"
-                :showButtonBar="true"
-                placeholder="Sanani tanlang"
-              />
+              <Calendar class="w-full font-semibold" :manualInput="true" v-model="stuff_date" v-maska="'##/##/####'"
+                dateFormat="dd/mm/yy" :showButtonBar="true" placeholder="Sanani tanlang" />
             </div>
             <div class="col-12 xl:col-4 lg:col-4">
               <h6 class="mb-2 pl-2 text-500">Plan</h6>
-              <InputText
-                type="number"
-                class="w-full font-semibold"
-                placeholder="Kiriting"
-                id="stavka"
-                v-model="stuff_plan"
-              />
+              <InputText type="number" class="w-full font-semibold" placeholder="Kiriting" id="stavka"
+                v-model="stuff_plan" />
             </div>
-           
+
             <div class="xl:col-4 lg:col-4 md:col-4 col-12">
-              <Checkbox
-                inputId="binary"
-                v-model="status_sverx"
-                :binary="true"
-              />
+              <Checkbox inputId="binary" v-model="status_sverx" :binary="true" />
               <span class="pl-2 text-500">Ortiqcha ish o'rni</span>
             </div>
             <div class="xl:col-4 lg:col-4 md:col-4 col-12">
-              <Checkbox
-                inputId="binary"
-                v-model="status_for_decret"
-                :binary="true"
-              />
+              <Checkbox inputId="binary" v-model="status_for_decret" :binary="true" />
               <span class="pl-2 text-500">Dekretdagi xodim o'rniga</span>
             </div>
             <div class="xl:col-4 lg:col-4 md:col-4 col-12">
@@ -807,32 +509,19 @@
             </div>
             <div class="col-12">
               <Checkbox inputId="binary" v-model="add_career" :binary="true" />
-              <span class="pl-2 text-500"
-                >Xodim mehnat faoliyatiga yangi lavozim nomi qo'shilsinmi</span
-              >
+              <span class="pl-2 text-500">Xodim mehnat faoliyatiga yangi lavozim nomi qo'shilsinmi</span>
             </div>
             <div class="col-12" v-show="add_career && !stuffDialogType">
               <h6 class="mb-2 pl-2 text-500">Mehnat faoliyati</h6>
-              <Dropdown
-                v-model="update_career"
-                :options="check_career_list"
-                optionLabel="staff"
-                placeholder="Tanlang"
-                option-value="id"
-                class="w-full"
-              />
+              <Dropdown v-model="update_career" :options="check_career_list" optionLabel="staff" placeholder="Tanlang"
+                option-value="id" class="w-full" />
             </div>
           </div>
 
           <template #footer>
             <div class="col-12 pt-2">
               <div class="flex justify-content-end">
-                <Button
-                  label="Saqlash"
-                  icon="pi pi-trush"
-                  class="p-button-info p-button-sm"
-                  @click="editStuff()"
-                />
+                <Button label="Saqlash" icon="pi pi-trush" class="p-button-info p-button-sm" @click="editStuff()" />
               </div>
             </div>
           </template>
@@ -844,7 +533,7 @@
     <Toast position="bottom-right" />
   </div>
 </template>
-  <script>
+<script>
 import ProgressBarLoader from "../../../components/loaders/ProgressBarLoader.vue";
 import formatter from "../../../util/formatter";
 import default_avatar from "@/assets/avatar/default_avatar.png";
@@ -939,6 +628,9 @@ export default {
         job_date: null,
         order: null,
         status_dec: null,
+        gmail: null,
+      inostrans: false,
+      date_inostrans: null,
       },
 
       finishDialog: false,
@@ -978,7 +670,7 @@ export default {
       stuff_status: null,
       stuff_plan: 0,
       stuff_date: "",
-      status:false,
+      status: false,
       status_sverx: false,
       status_for_decret: false,
       status_decret: false,
@@ -986,6 +678,9 @@ export default {
       check_career_list: [],
       update_career: null,
       command_number: null,
+      gmail: null,
+      inostrans: false,
+      date_inostrans: null,
 
       stuff_submitted: false,
 
@@ -1139,6 +834,9 @@ export default {
           this.employeeGender = cadry.sex;
 
           this.stuffList = cadry.allStaffs;
+          this.gmail = cadry.gmail;
+          this.inostrans = cadry.inostrans ==1? true : false;
+          this.date_inostrans =cadry.inostrans==1? formatter.interDateFormatter(cadry.date_inostrans) : null;
 
           this.controlLoader(false);
         })
@@ -1171,7 +869,10 @@ export default {
       this.cadry.order = this.order;
       this.cadry.status_dec = this.status_dec;
       this.cadry.job_date = formatter.outDateFormatter(this.positionFirstDate);
-      console.table(this.cadry);
+      this.cadry.gmail = this.gmail;
+      this.cadry.inostrans = this.inostrans;
+      this.cadry.date_inostrans =this.inostrans?  formatter.outDateFormatter(this.date_inostrans) : null;
+
       if (isFormValid) {
         employeeService
           .update_empolyee({ id: this.$route.params.id, data: this.cadry })
@@ -1299,10 +1000,12 @@ export default {
     changeDepartment() {
       let id = this.stuff_department.id;
       this.stuff_stuffList = [];
-      DepartmentStuffService.get_DepartmentStuff({ id,params:{
-        page:1,
-        per_page:100
-      }  }).then((res) => {
+      DepartmentStuffService.get_DepartmentStuff({
+        id, params: {
+          page: 1,
+          per_page: 100
+        }
+      }).then((res) => {
         this.stuff_stuff = null;
         this.stuff_stuffList = res.data.department.data;
       });
@@ -1402,7 +1105,7 @@ export default {
         careerCheck: this.add_career,
         career_id: this.update_career,
         command_number: this.command_number,
-        status:this.status,
+        status: this.status,
       };
       if (!this.stuff_department_Error) {
         if (this.stuffDialogType) {
@@ -1489,13 +1192,14 @@ export default {
   },
 };
 </script>
-  <style lang="scss">
+<style lang="scss">
 .employee-avatar-box {
   width: 100%;
   display: flex;
   justify-content: start;
   align-items: center;
   position: relative;
+
   .img-box {
     position: relative;
     margin-top: 20px;
@@ -1509,10 +1213,12 @@ export default {
     &:hover .hover-element {
       opacity: 1;
     }
+
     .employee-avatar {
       width: 150px;
       height: 100%;
     }
+
     .hover-element {
       width: 100%;
       height: 100%;
@@ -1525,7 +1231,8 @@ export default {
       align-items: center;
       transition: all 0.3s ease;
       top: 0px;
-      & > i {
+
+      &>i {
         font-size: 24px;
         color: #ffffffc9;
       }
