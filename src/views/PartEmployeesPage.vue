@@ -937,7 +937,7 @@
           </template>
         </Column>
         <Column
-          style="min-width: 120px; width: 300px"
+          style="min-width: 100px; width: 200px"
           v-if="!departmentValue?.id"
         >
           <template #header>
@@ -979,6 +979,30 @@
                 "
                 >{{ slotProps.data.organization }}</span
               >
+            </div>
+          </template>
+        </Column>
+        <Column
+          style="min-width: 100px; width: 200px"
+          v-if="!departmentValue?.id"
+        >
+          <template #header>
+            <div class="text-800 text-sm lg:text-base xl:text-base font-medium">
+             Pochta
+            </div>
+          </template>
+          <template #body="slotProps">
+            <div
+              class="
+                text-sm
+                sm:text-sm
+                md:text-sm
+                lg:text-base
+                xl:text-base
+                font-normal
+              "
+            >
+            {{ slotProps.data.gmail }}
             </div>
           </template>
         </Column>

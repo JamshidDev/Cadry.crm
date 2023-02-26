@@ -168,6 +168,91 @@
         </Column>
       </DataTable>
     </div>
+
+
+    <div class="col-12 py-1 px-0 mb-6" v-show="VacationList.length==0">
+      <add-button :title="'Ta\'til muddati'" :text="true"></add-button>
+    </div>
+    <div class="col-12 py-1 px-0" v-show="!VacationList.length==0">
+      <DataTable
+        :value="VacationList"
+        dataKey="id"
+        :paginator="false"
+        responsiveLayout="scroll"
+        showGridlines
+        class="pb-6 p-datatable-sm"
+      >
+        <template #header>
+          <div class="grid">
+            <div class="col-6">
+              <h5
+                class="text-base md:m-0 p-as-md-center uppercase text-blue-600"
+              >
+                Ta'tillar
+              </h5>
+            </div>
+            <div
+              class="col-6 flex justify-content-end align-items-center"
+            ></div>
+          </div>
+        </template>
+        <Column style="min-width: 200px;">
+          <template #header>
+            <div class="text-800 font-semibold">Ta'til turi</div>
+          </template>
+          <template #body="slotProps">
+            <div class="text-left cursor-pointer font-semibold">
+              {{ slotProps.data.status_decret==0? "Mehnat ta'tili" : "Bola parvarishlash ta'tili" }}
+            </div>
+          </template>
+        </Column>
+        <Column style="min-width: 100px; width: 120px">
+          <template #header>
+            <div class="text-800 font-semibold">Qachondan</div>
+          </template>
+          <template #body="slotProps">
+            <div class="font-semibold flex justify-content-center">
+              {{ formatter.arrowDateFormat(slotProps.data.date1) }}
+            </div>
+          </template>
+        </Column>
+        <Column style="min-width: 100px; width: 120px">
+          <template #header>
+            <div class="text-800 font-semibold">Qachongacha</div>
+          </template>
+          <template #body="slotProps">
+            <div class="font-semibold flex justify-content-center">
+              {{ formatter.arrowDateFormat(slotProps.data.date2) }}
+            </div>
+          </template>
+        </Column>
+        <Column style="min-width: 200px; width: 240px">
+          <template #header>
+            <div class="text-800 font-semibold">Ta'til davri</div>
+          </template>
+          <template #body="slotProps">
+            <div class="font-semibold flex justify-content-center">
+              {{slotProps.data.period1? formatter.arrowDateFormat(slotProps.data.period1) : ""}} <span class="mx-3"></span> {{slotProps.data.period2? formatter.arrowDateFormat(slotProps.data.period2) : ""}}
+             </div>
+          </template>
+        </Column>
+
+        <Column :exportable="false" style="min-width: 100px; width: 150px">
+          <template #header>
+            <div class="text-800 font-semibold">Amallar</div>
+          </template>
+          <template #body="slotProps">
+            <div class="flex gap-2">
+            
+              <delete-button
+                :deleteItem="slotProps.data.id"
+                @deleteAcceptEvent="deleteVacation($event)"
+              ></delete-button>
+            </div>
+          </template>
+        </Column>
+      </DataTable>
+    </div>
     
 
     <!--Punishment table -->
@@ -779,6 +864,7 @@ import employeeIncentiveService from "../../service/servises/employeeIncentiveSe
 import employeeStuff from "../../service/servises/employeeStuff";
 import employeeMed from "../../service/servises/employeeMed";
 import VacationService from '@/service/servises/VacationService'
+import VacationDate from '@/service/servises/VacationDate'
 
 import AddButton from '../buttons/AddButton.vue';
 
@@ -1197,6 +1283,12 @@ export default {
       })
     },
 
+    get_VacationDate(){
+      VacationDate.get_Cadry_Vacation_Date({cadry_id:this.$route.params.id}).then((res)=>{
+        console.log(res.data);
+      })
+    },
+
     controlPunishmentDialog(item) {
       this.punishmentDialog = item;
     },
@@ -1220,6 +1312,8 @@ export default {
     this.get_Incentive(this.$route.params.id);
     this.get_vacationList(this.$route.params.id)
     this.get_punishment(this.$route.params.id, true);
+    this.get_VacationDate();
+    console.log(12);
   },
 };
 </script>
