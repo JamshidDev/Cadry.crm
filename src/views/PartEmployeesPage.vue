@@ -922,11 +922,11 @@
 
         <Column style="min-width: 200px">
           <template #header>
-            <div class="text-800 font-semibold">Lavozimi</div>
+            <div class="text-800 text-sm lg:text-base xl:text-base font-medium font-poppins">Lavozimi</div>
           </template>
           <template #body="slotProps">
             <div
-              class="text-sm sm:text-sm md:text-sm lg:text-base xl:text-base"
+              class="text-sm sm:text-sm md:text-sm lg:text-base xl:text-base font-poppins"
             >
               {{
                 slotProps.data.staff
