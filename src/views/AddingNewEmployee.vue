@@ -66,8 +66,8 @@
                 </div>
                 <div class="col-12">
                   <h6 class="mb-2">Sharif</h6>
-                  <InputText type="text" id="new_cadry_thirdName" v-model="v$.thirdName.$model"
-                    :class="{ 'p-invalid': v$.thirdName.$invalid && submitted }" class="w-full font-semibold"
+                  <InputText type="text" id="new_cadry_thirdName" v-model="thirdName"
+                   class="w-full font-semibold"
                     placeholder="Sharifni kiriting" />
                 </div>
               </div>
@@ -190,8 +190,8 @@
             <div class="col-12 sm:col-12 md:col-6 lg:col-3 xl:col-3">
               <h6 class="mb-2 pl-2">Pasport seriyasi</h6>
               <InputText type="text" class="w-full" placeholder="Seriyani kiriting" id="new_cadry_passportSeriya"
-                v-model="v$.passportSeriya.$model"
-                :class="{ 'p-invalid': v$.passportSeriya.$invalid && submitted }" />
+                v-model="passportSeriya"
+                 />
             </div>
 
             <div class="col-12 sm:col-12 md:col-6 lg:col-3 xl:col-3">
@@ -568,7 +568,7 @@ export default {
     return {
       firstName: globalValidate.firtName,
       lastName: globalValidate.lastName,
-      thirdName: globalValidate.thirdName,
+      // thirdName: globalValidate.thirdName,
       bornDate: globalValidate.bornDate,
       bornRegion: globalValidate.bornRegion,
       bornDistric: globalValidate.bornDistric,
@@ -576,7 +576,7 @@ export default {
       adressDistrict: globalValidate.adressDistrict,
       adressStreet: globalValidate.adressStreet,
 
-      passportSeriya: globalValidate.passportSeriya,
+      // passportSeriya: globalValidate.passportSeriya,
       passportJSHR: globalValidate.passportJSHR,
       passportRegion: globalValidate.passportRegion,
       passportDistrict: globalValidate.passportDistrict,
@@ -642,7 +642,7 @@ export default {
         form.append("photo", this.cropper_blob, "avatar.jpg");
         form.append("last_name", this.lastName)
         form.append("first_name", this.firstName)
-        form.append("middle_name", this.thirdName)
+        form.append("middle_name", this.thirdName? this.thirdName : '' )
         form.append("birht_date", Formatter.outDateFormatter(this.bornDate))
         form.append("birth_city_id", this.bornDistric.id)
         form.append("birth_region_id", this.bornRegion)

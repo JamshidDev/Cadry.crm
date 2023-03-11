@@ -19,15 +19,14 @@
       >
         <template #header>
           <h6 class="w-full text-center text-2xl text-red-500 uppercase">
-            Texnik xatolik
+            Server xatosi
           </h6>
         </template>
         <p class="text-2xl font-normat text-red-400 text-center">
           {{ errorMessage.message }}
         </p>
         <p class="text-500 text-base text-center font-medium">
-          Siz bu kutilmagan xatolikni EXODIM ma'sullari guruhiga yuborishingizni
-          so'raymiz!
+          Sizverda kutilmagan xatolik yuzaga keldi...
         </p>
         <template #footer>
           <div class="grid">

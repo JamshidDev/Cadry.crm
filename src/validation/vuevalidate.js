@@ -40,10 +40,10 @@ export const globalValidate = {
 
 
 // Passport validate
-  passportSeriya:{
-    required,
-    minLength: minLength(10),
-  },
+  // passportSeriya:{
+  //   required,
+  //   minLength: minLength(9),
+  // },
   passportJSHR:{
     required,
     minLength: minLength(14),

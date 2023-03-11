@@ -55,8 +55,8 @@
             </div>
             <div class="col-12">
               <h6 class="mb-2 pl-2 text-500">Sharif</h6>
-              <InputText type="text" v-model="v$.thirdName.$model"
-                :class="{ 'p-invalid': v$.thirdName.$invalid && submitted }" class="w-full font-semibold"
+              <InputText type="text" v-model="thirdName"
+                class="w-full font-semibold"
                 placeholder="Sharifni kiriting" />
             </div>
           </div>
@@ -148,9 +148,8 @@
           <div class="col-12 sm:col-12 md:col-6 lg:col-3 xl:col-3">
             <h6 class="mb-2 pl-2 text-500">Pasport seriyasi</h6>
             <InputText type="text" class="w-full font-semibold" placeholder="Seriyani kiriting" id="passportSeriya"
-              v-model="v$.passportSeriya.$model" :class="{
-                'p-invalid': v$.passportSeriya.$invalid && submitted,
-              }" />
+              v-model="passportSeriya"                
+               />
           </div>
 
           <div class="col-12 sm:col-12 md:col-6 lg:col-3 xl:col-3">
@@ -692,7 +691,7 @@ export default {
     return {
       firstName: globalValidate.firtName,
       lastName: globalValidate.lastName,
-      thirdName: globalValidate.thirdName,
+      // thirdName: globalValidate.thirdName,
       bornDate: globalValidate.bornDate,
       bornRegion: globalValidate.bornRegion,
       bornDistric: globalValidate.bornDistric,
@@ -700,7 +699,7 @@ export default {
       adressDistrict: globalValidate.adressDistrict,
       adressStreet: globalValidate.adressStreet,
 
-      passportSeriya: globalValidate.passportSeriya,
+      // passportSeriya: globalValidate.passportSeriya,
       passportJSHR: globalValidate.passportJSHR,
       passportRegion: globalValidate.passportRegion,
       passportDistrict: globalValidate.passportDistrict,
@@ -851,7 +850,7 @@ export default {
       this.submitted = true;
       this.cadry.first_name = this.firstName;
       this.cadry.last_name = this.lastName;
-      this.cadry.middle_name = this.thirdName;
+      this.cadry.middle_name = this.thirdName? this.thirdName : '' ;
       this.cadry.birht_date = formatter.outDateFormatter(this.bornDate);
       this.cadry.birth_region_id = this.bornRegion.id;
       this.cadry.birth_city_id = this.bornDistric.id;
