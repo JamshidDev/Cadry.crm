@@ -276,6 +276,16 @@ const routes = [
         },
       },
       {
+        path: "/admin/tabel",
+        name: "tabel",
+
+        component: function () {
+          return import("../views/Tabel/Tabel.vue");
+        },
+      },
+      
+      
+      {
         path: "/admin/country-zone",
         name: "country-zone",
         component: function () {
@@ -529,13 +539,6 @@ const routes = [
     name: "NotFound",
     component: function () {
       return import("../views/NotFoundPage.vue");
-    },
-  },
-  {
-    path: "/servererror",
-    name: "error",
-    component: function () {
-      return import("../views/ErrorPage.vue");
     },
   },
 

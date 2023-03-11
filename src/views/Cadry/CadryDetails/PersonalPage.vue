@@ -148,7 +148,7 @@
           <div class="col-12 sm:col-12 md:col-6 lg:col-3 xl:col-3">
             <h6 class="mb-2 pl-2 text-500">Pasport seriyasi</h6>
             <InputText type="text" class="w-full font-semibold" placeholder="Seriyani kiriting" id="passportSeriya"
-              v-model="v$.passportSeriya.$model" v-maska="'SS #######'" :class="{
+              v-model="v$.passportSeriya.$model" :class="{
                 'p-invalid': v$.passportSeriya.$invalid && submitted,
               }" />
           </div>
@@ -869,7 +869,7 @@ export default {
       this.cadry.order = this.order;
       this.cadry.status_dec = this.status_dec;
       this.cadry.job_date = formatter.outDateFormatter(this.positionFirstDate);
-      this.cadry.gmail = this.gmail;
+      this.cadry.gmail = this.gmail? this.gmail : '';
       this.cadry.inostrans = this.inostrans;
       this.cadry.date_inostrans =this.inostrans?  formatter.outDateFormatter(this.date_inostrans) : null;
 

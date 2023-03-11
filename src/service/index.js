@@ -1,7 +1,7 @@
 import axios from "axios";
 import router from "../router/index"
 const instance = axios.create({
-    // baseURL: `https://exodim.railway.uz`
+    // baseURL: `http://192.168.180.200`
     baseURL: `https://exodim.itdevs.uz`
 });
 
