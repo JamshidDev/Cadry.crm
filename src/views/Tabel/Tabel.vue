@@ -73,9 +73,9 @@
 
 
                             <td class="tabel-col tabel-col-content content-element" v-for="(item, day_index) in cadry.days"
-                                :key="day_index" v-tooltip.bottom="`${item.day} ${item.weekday}`"
+                                :key="day_index"
                                 :class="`content-bg-${item.category_id}`"
-                                @click="select_day(cadry.id, item.day, cadry_index, day_index)">
+                                @click="select_day(cadry.id, item.day, cadry_index, day_index)" @contextmenu.prevent="unselect_day(cadry_index, day_index)">
                                 <div class="work_panel" v-if="item.category_id">
                                     <span>{{ category_name(item.category_id) }}</span>
                                     <span v-if="item.work_time">{{ item.work_time }}</span>
@@ -267,6 +267,10 @@ export default {
             }
             return true
 
+        },
+        unselect_day(cadry_index, day1_index){
+            this.Tabel_cadry[cadry_index].days[day1_index].category_id = null;
+                this.Tabel_cadry[cadry_index].days[day1_index].work_time = null;
         },
         category_name(id) {
             return this.category_List.filter(item => item.id == id)[0].name

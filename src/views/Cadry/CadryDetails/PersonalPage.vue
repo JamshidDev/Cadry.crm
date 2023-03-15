@@ -55,9 +55,7 @@
             </div>
             <div class="col-12">
               <h6 class="mb-2 pl-2 text-500">Sharif</h6>
-              <InputText type="text" v-model="thirdName"
-                class="w-full font-semibold"
-                placeholder="Sharifni kiriting" />
+              <InputText type="text" v-model="thirdName" class="w-full font-semibold" placeholder="Sharifni kiriting" />
             </div>
           </div>
         </div>
@@ -148,8 +146,7 @@
           <div class="col-12 sm:col-12 md:col-6 lg:col-3 xl:col-3">
             <h6 class="mb-2 pl-2 text-500">Pasport seriyasi</h6>
             <InputText type="text" class="w-full font-semibold" placeholder="Seriyani kiriting" id="passportSeriya"
-              v-model="passportSeriya"                
-               />
+              v-model="passportSeriya" />
           </div>
 
           <div class="col-12 sm:col-12 md:col-6 lg:col-3 xl:col-3">
@@ -229,25 +226,17 @@
             <InputText type="text" class="w-full font-semibold" placeholder="Kiritng" id="email" v-model="gmail" />
           </div>
           <div class="col-12 sm:col-12 md:col-6 lg:col-3 xl:col-3 pt-6">
-                <Checkbox inputId="binary" v-model="inostrans" :binary="true"  />
-                <span class="pl-4 text-500 text-base">Xorij fuqarosi</span>
-              </div>
-              <div class="col-12 sm:col-12 md:col-6 lg:col-3 xl:col-3">
+            <Checkbox inputId="binary" v-model="inostrans" :binary="true" />
+            <span class="pl-4 text-500 text-base">Xorij fuqarosi</span>
+          </div>
+          <div class="col-12 sm:col-12 md:col-6 lg:col-3 xl:col-3">
             <h6 class="mb-2 pl-2 text-500">Tugash mudati</h6>
-            <Calendar
-              class="w-full font-semibold"
-              :manualInput="true"
-              id="date_inostrans"
-              v-model="date_inostrans"
-              v-maska="'##/##/####'"
-              placeholder="Sanani tanlang"
-              dateFormat="dd/mm/yy"
-              :showButtonBar="true"
-              :disabled="!inostrans"
-            />
+            <Calendar class="w-full font-semibold" :manualInput="true" id="date_inostrans" v-model="date_inostrans"
+              v-maska="'##/##/####'" placeholder="Sanani tanlang" dateFormat="dd/mm/yy" :showButtonBar="true"
+              :disabled="!inostrans" />
           </div>
 
-         
+
         </div>
       </div>
 
@@ -422,7 +411,7 @@
               <span class="pl-2 text-blue-500 font-semibold">Yangi lavozimga tayinlash</span>
             </div>
             <div class="col-12" v-show="stuffDialogType || status">
-              <div class="grid py-0">
+              <div class="grid pt-2 pb-0">
                 <div class="xl:col-4 lg:col-4 md:col-4 col-12 py-0">
                   <h6 class="mb-2 pl-2 text-500">Prikaz raqam</h6>
                   <InputText type="text" class="w-full font-semibold" placeholder="Kiriting" id="command_number"
@@ -493,6 +482,29 @@
               <InputText type="number" class="w-full font-semibold" placeholder="Kiriting" id="stavka"
                 v-model="stuff_plan" />
             </div>
+
+            <div class="col-12 xl:col-4 lg:col-4">
+              <h6 class="mb-2 pl-2 text-500">Lavozim raziryadi</h6>
+              <InputText type="number" class="w-full font-semibold" placeholder="Kiriting" id="stavka" v-model="rank" />
+            </div>
+
+            <div class="col-12 xl:col-4 lg:col-4">
+              <h6 class="mb-2 pl-2 text-500">Tarif koeffitsienti </h6>
+              <InputText type="number" class="w-full font-semibold" placeholder="Kiriting" id="stavka"
+                v-model="coefficient" />
+            </div>
+
+
+            <div class="col-12 xl:col-4 lg:col-4">
+              <h6 class="mb-2 pl-2 text-500">Eng kam oylik ish haqi </h6>
+              <InputText type="number" class="w-full font-semibold" placeholder="Kiriting" id="stavka"
+                v-model="min_sum" />
+            </div>
+
+
+
+
+
 
             <div class="xl:col-4 lg:col-4 md:col-4 col-12">
               <Checkbox inputId="binary" v-model="status_sverx" :binary="true" />
@@ -628,8 +640,8 @@ export default {
         order: null,
         status_dec: null,
         gmail: null,
-      inostrans: false,
-      date_inostrans: null,
+        inostrans: false,
+        date_inostrans: null,
       },
 
       finishDialog: false,
@@ -677,6 +689,11 @@ export default {
       check_career_list: [],
       update_career: null,
       command_number: null,
+      rank: null,
+      coefficient: null,
+      min_sum: null,
+
+
       gmail: null,
       inostrans: false,
       date_inostrans: null,
@@ -787,6 +804,10 @@ export default {
         return false;
       }
     },
+
+
+
+    
   },
 
   created() {
@@ -834,8 +855,8 @@ export default {
 
           this.stuffList = cadry.allStaffs;
           this.gmail = cadry.gmail;
-          this.inostrans = cadry.inostrans ==1? true : false;
-          this.date_inostrans =cadry.inostrans==1? formatter.interDateFormatter(cadry.date_inostrans) : null;
+          this.inostrans = cadry.inostrans == 1 ? true : false;
+          this.date_inostrans = cadry.inostrans == 1 ? formatter.interDateFormatter(cadry.date_inostrans) : null;
 
           this.controlLoader(false);
         })
@@ -850,7 +871,7 @@ export default {
       this.submitted = true;
       this.cadry.first_name = this.firstName;
       this.cadry.last_name = this.lastName;
-      this.cadry.middle_name = this.thirdName? this.thirdName : '' ;
+      this.cadry.middle_name = this.thirdName ? this.thirdName : '';
       this.cadry.birht_date = formatter.outDateFormatter(this.bornDate);
       this.cadry.birth_region_id = this.bornRegion.id;
       this.cadry.birth_city_id = this.bornDistric.id;
@@ -868,9 +889,9 @@ export default {
       this.cadry.order = this.order;
       this.cadry.status_dec = this.status_dec;
       this.cadry.job_date = formatter.outDateFormatter(this.positionFirstDate);
-      this.cadry.gmail = this.gmail? this.gmail : '';
+      this.cadry.gmail = this.gmail ? this.gmail : '';
       this.cadry.inostrans = this.inostrans;
-      this.cadry.date_inostrans =this.inostrans?  formatter.outDateFormatter(this.date_inostrans) : null;
+      this.cadry.date_inostrans = this.inostrans ? formatter.outDateFormatter(this.date_inostrans) : null;
 
       if (isFormValid) {
         employeeService
@@ -1064,6 +1085,9 @@ export default {
         this.stuff_date = null;
         this.stuff_department = null;
         this.command_number = null;
+        this.rank = 0;
+        this.coefficient = 0;
+        this.min_sum = 920000;
         this.controlstuffDialog(true);
       });
     },
@@ -1082,8 +1106,11 @@ export default {
         this.stuff_plan = res.data.rate;
         this.status_sverx = res.data.status_decret == 1;
         this.status_decret = res.data.status_for_decret == 1;
-        (this.command_number = null),
-          (this.stuff_date = formatter.interDateFormatter(res.data.staff_date));
+        this.command_number = null;
+        this.rank = res.data.rank;
+        this.coefficient = res.data.coefficient;
+        this.min_sum = res.data.min_sum == 0 ? 920000 : res.data.min_sum;
+        this.stuff_date = formatter.interDateFormatter(res.data.staff_date);
         this.controlstuffDialog(true);
         this.get_check_career();
       });
@@ -1091,7 +1118,6 @@ export default {
 
     editStuff() {
       this.controlstuffDialog(false);
-      console.log(this.stuff_department);
       let data = {
         department_id: this.stuff_department.id,
         staff_id: this.stuff_stuff.id,
@@ -1105,8 +1131,14 @@ export default {
         career_id: this.update_career,
         command_number: this.command_number,
         status: this.status,
+        rank: this.rank,
+        coefficient: this.coefficient,
+        min_sum: this.min_sum,
+
       };
       if (!this.stuff_department_Error) {
+
+
         if (this.stuffDialogType) {
           let id = this.$route.params.id;
           delete data.career_id;

@@ -21,10 +21,15 @@ const delete_Task = (payload)=>{
     return axios.delete(`/api/user/task/${payload.task_id}/delete`)
 }
 
+// /api/cadry/export/department
+const export_department = (payload)=>{
+    return axios.get(`/api/cadry/export/department`, { responseType: 'blob' })
+}
 
 
 
 
 
 
-export default {get_ResumeDetails, get_exportAnyDetails, get_cadryZip,get_Task,delete_Task}
+
+export default {get_ResumeDetails, get_exportAnyDetails, get_cadryZip,get_Task,delete_Task,export_department}

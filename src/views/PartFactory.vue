@@ -30,6 +30,14 @@
             </div>
             <div class="col-12 xl:col-6 lg:col-6 md:col-6 sm:col-6 flex justify-content-end align-items-center">
               <Button
+                icon="pi pi-download"
+                label=""
+                class="p-button-success p-button-sm mr-2"
+                @click="dowload_department_stuff()"
+                v-tooltip.bottom="`Shtat jadvalini yuklash`"
+                :loading="download_loading"
+              ></Button>
+              <Button
                 icon="pi pi-sitemap"
                 label="Biriktirish"
                 class="p-button-warning p-button-sm mr-2 xl:block lg:block md:block hidden"
@@ -450,6 +458,7 @@ import DepartmentStuffService from "@/service/servises/DepartmentStuffService";
 import DepartmentLoader from "../components/loaders/DepartmentLoader.vue";
 import BreadCrumb from "../components/BreadCrumb/BreadCrumb.vue";
 import NoDataComponent from "../components/EmptyComponent/NoDataComponent.vue";
+import EksportService from "@/service/servises/EksportService";
 export default {
   components: {
     DeleteButton,
@@ -464,6 +473,7 @@ export default {
     return {
       selectitem:null,
       loader: false,
+      download_loading:false,
       searchPartName: null,
       totalDepartment: 0,
       partDialog: false,
@@ -691,6 +701,28 @@ export default {
             console.log(error);
           });
       
+    },
+    dowload_department_stuff(){
+      let now_date = new Date();
+      let year = now_date.getFullYear();
+      let month = now_date.getMonth() + 1;
+      let day = now_date.getDate()
+      EksportService
+      this.download_loading = true;
+      EksportService.export_department().then((response) => {
+                console.log(response);
+                var fileURL = window.URL.createObjectURL(new Blob([response.data], {
+                    type:
+                        'application/excelx'
+                }));
+                var fileLink = document.createElement('a');
+                fileLink.href = fileURL;
+                fileLink.setAttribute('download', `Shtat jadval(${day>10? day : '0'+day}-${month>10? month :'0'+month}-${year}).xlsx`);
+                document.body.appendChild(fileLink);
+                fileLink.click();
+                document.body.removeChild(fileLink);
+                this.download_loading = false;
+            })
     },
     
 
