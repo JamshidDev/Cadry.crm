@@ -27,12 +27,14 @@
                 <InputText class="p-inputtext-sm" v-model.trim="search_cadry" :disabled="loading" placeholder="Qidiruv..."
                     @keyup="search_name(this.search_cadry)" @keyup.enter="search_name(this.search_cadry)" />
             </span>
-            <Button icon="pi pi-microsoft" @click="auto_select()" label="" :loading="loading" v-tooltip.bottom="`Bo'sh katakchalarni to'ldirish`"
-                class="p-button-secondary text-sm p-button-sm"></Button>
-            <Button icon="pi pi-sync" @click="auto_clear()" label="" :loading="loading" v-tooltip.bottom="`Barcha katakchalarni tozalsh (istisno - РП)`"
+            <Button icon="pi pi-microsoft" @click="auto_select()" label="" :loading="loading"
+                v-tooltip.bottom="`Bo'sh katakchalarni to'ldirish`" class="p-button-secondary text-sm p-button-sm"></Button>
+            <Button icon="pi pi-sync" @click="auto_clear()" label="" :loading="loading"
+                v-tooltip.bottom="`Barcha katakchalarni tozalash (istisno - РП)`"
                 class="p-button-danger text-sm p-button-sm"></Button>
-            <ToggleButton v-model="is_delete" onLabel="Faol" offLabel="Tozalash" :disabled="loading" v-tooltip.bottom="`Tanlash yo'li bilan tozalash`"
-                onIcon="pi pi-circle-fill" offIcon="pi pi-ban" class="text-sm font-normal uppercase p-button-sm" />
+            <ToggleButton v-model="is_delete" onLabel="Faol" offLabel="Tozalash" :disabled="loading"
+                v-tooltip.bottom="`Tanlash yo'li bilan tozalash`" onIcon="pi pi-circle-fill" offIcon="pi pi-ban"
+                class="text-sm font-normal uppercase p-button-sm" />
         </div>
 
 
@@ -224,6 +226,8 @@ export default {
         },
         get_tabels(payload) {
             this.loading = true;
+            this.download_loading = true;
+            this.save_loading = true;
             TabelService.get_Tabels({
                 year: payload.year,
                 month: payload.month,
@@ -249,6 +253,8 @@ export default {
                 this.search_tabel_list = res.data.cadries;
                 this.pagination_page(this.search_tabel_list, this.params.per_page, this.params.page);
                 this.loading = false;
+                this.download_loading = false;
+                this.save_loading = false;
             })
         },
         async select_day(cadry_id, day, cadry_index, day1_index) {
@@ -336,7 +342,7 @@ export default {
                         if (this.Tabel_days[index].before_day) {
                             day.category_id = 1;
                             day.work_time = 7;
-                        }else{
+                        } else {
                             day.category_id = this.current_work_type;
                             day.work_time = this.current_work_time;
                         }
