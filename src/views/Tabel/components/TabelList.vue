@@ -50,12 +50,6 @@ export default {
     components: {
         ProgressBarLoader
     },
-    props: {
-        tabel_value: {
-            type: Object,
-            default: null,
-        }
-    },
     data() {
         return {
             Tabel_days: [],
@@ -82,7 +76,15 @@ export default {
         }
     },
     computed:{
-        ...mapGetters(["get_tabel_days", "get_cadry_list"])
+        ...mapGetters(["get_tabel_days", "get_cadry_list", "get_category_val","get_category_list"])
+    },
+    watch:{
+        get_category_val: {
+      handler(newValue, oldValue) {
+       console.log(newValue);
+      },
+      deep: true
+    }
     },
     methods: {
         ...mapActions(["set_tabel_days", "set_category_list", "set_cadry_list"]),
@@ -138,92 +140,13 @@ export default {
 
     mounted() {
         this.get_tabels()
-        console.log(this.tabel_value);
     }
 }
 </script>
 
 
 <style lang="scss" scoped>
-.tabel-container {
-    width: 100%;
-    background-color: #fff;
-    min-width: 1100px;
-}
 
-
-.tabel-box {
-    width: 100%;
-    border: 1px solid #ced4da;
-    border-collapse: collapse;
-
-    .tabel-col {
-        width: 40px;
-        max-width: 40px;
-        min-width: 30px;
-        height: 40px;
-        border: 1px solid #ced4da;
-
-        .content-month {
-            display: flex;
-            flex-direction: column;
-
-            span {
-                width: 100%;
-                text-align: center;
-                font-weight: 500;
-                font-size: 12px;
-            }
-        }
-
-        .summ {
-            display: flex;
-            flex-direction: column;
-
-            span {
-                width: 100%;
-                text-align: center;
-                font-weight: 500;
-                font-size: 12px;
-            }
-        }
-
-      
-    }
-    .tabel-col-sum{
-        max-width: 60px;
-            min-width: 60px;
-            border: 1px solid #ced4da;
-        .total_summ {
-            span {
-                display: block;
-                text-align: center;
-                font-weight: 500;
-                font-size: 12px;
-            }
-        }
-    }
-
-    .tabel-col-header {
-        border: 1px solid #ced4da;
-        width: 120px;
-        max-width: 120px;
-        min-width: 100px;
-        text-align: center;
-
-        span {
-            display: inline-block;
-            width: 100%;
-            text-align: center;
-            font-weight: 500;
-            font-size: 12px;
-        }
-    }
-}
-
-* {
-    user-select: none !important;
-}
 </style>
 
 

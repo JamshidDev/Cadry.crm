@@ -132,6 +132,8 @@ export default {
   overflow: hidden !important;
   position: relative !important;
   width: 100% !important;
+  max-width: 100% !important;
+ 
 }
 .slide-right-enter-active{
   transition: all 0.2s linear;

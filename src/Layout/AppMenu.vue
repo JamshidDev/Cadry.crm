@@ -127,12 +127,12 @@ export default {
               visible: () => this.get_adminPermissions("organization_meds"),
               to: "/admin/meds",
             },
-            // {
-            //   label: "Tabel",
-            //   icon: "pi pi-id-card",
-            //   visible: () => this.get_adminPermissions("organization_meds"),
-            //   to: "/admin/tabel",
-            // },
+            {
+              label: "Tabel",
+              icon: "pi pi-id-card",
+              visible: () => this.get_adminPermissions("organization_meds"),
+              to: "/admin/tabel",
+            },
             {
               label: "Jazolanganlar",
               icon: "pi pi-th-large",

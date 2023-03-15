@@ -277,7 +277,7 @@
 
             <div class="col-12 sm:col-12 md:col-6 lg:col-3 xl:col-3">
               <h6 class="mb-2 pl-2">Shtat lavozimi</h6>
-              <Dropdown id="new_cadry_positionName" v-model="v$.positionName.$model"
+              <Dropdown id="new_cadry_positionName" v-model="v$.positionName.$model" :disabled="!positionPart" :loading="shtat_loading"
                 :class="{ 'p-invalid': v$.positionName.$invalid && submitted }" :options="StuffList"
                 optionLabel="staff_fullname" :filter="true" placeholder="Shtat lavozimni tanlang" class="w-full">
                 <template #value="slotProps">
@@ -481,6 +481,7 @@ export default {
   },
   data() {
     return {
+      shtat_loading:false,
       Formatter,
       cropperDialog: false,
       image: {
@@ -632,6 +633,7 @@ export default {
     addEmployee(isFormValid) {
       this.submitted = true;
       this.submitted_blob = true;
+      console.log(isFormValid);
       if (isFormValid && this.cropper_blob) {
         let language_ids = [];
         this.employeeLanguage.forEach((item) => {
@@ -681,32 +683,35 @@ export default {
 
 
 
-        console.table(form);
+        console.log(form);
 
-        employeeAdd.create_Cadry({ form }).then((res) => {
-          if (res.data.status == 1) {
-            this.$refs.warning_alert.controlDialog(true, "Mavjud xodim", res.data.organization, res.data.fullname,)
+        // employeeAdd.create_Cadry({ form }).then((res) => {
+        //   if (res.data.status == 1) {
+        //     this.$refs.warning_alert.controlDialog(true, "Mavjud xodim", res.data.organization, res.data.fullname,)
 
-          } else if (res.data.status == 2) {
-            this.$refs.warning_alert.controlDialog(true, "Mavjud xodim", 'Xodim arxivda mavjud',)
-          } else if (res.data.status == 3) {
-            this.$refs.warning_alert.controlDialog(true, "Taqiqlangan", ' ', "Xodim mehnat faoliyati davrida qo'pol xatolari tufayli")
-          }
-          else if (res.data.status == 4) {
-            this.$refs.warning_alert.controlDialog(true, "Muvofaqqiyatli bajarildi", 'Yangi xodim ishga qabul qilindi.', "",)
-          }
-        }).catch((error) => {
-          console.log(error);
-        })
+        //   } else if (res.data.status == 2) {
+        //     this.$refs.warning_alert.controlDialog(true, "Mavjud xodim", 'Xodim arxivda mavjud',)
+        //   } else if (res.data.status == 3) {
+        //     this.$refs.warning_alert.controlDialog(true, "Taqiqlangan", ' ', "Xodim mehnat faoliyati davrida qo'pol xatolari tufayli")
+        //   }
+        //   else if (res.data.status == 4) {
+        //     this.$refs.warning_alert.controlDialog(true, "Muvofaqqiyatli bajarildi", 'Yangi xodim ishga qabul qilindi.', "",)
+        //   }
+        // }).catch((error) => {
+        //   console.log(error);
+        // })
       }
     },
 
     get_Stuff(id) {
+      this.shtat_loading = true;
+      this.positionName = null;
       employeeAdd
         .get_Stuff({ department_id: id })
         .then((res) => {
           console.log(res.data);
           this.StuffList = res.data;
+          this.shtat_loading = false;
         })
         .catch((error) => {
           console.log(error);

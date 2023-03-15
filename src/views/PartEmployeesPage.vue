@@ -1468,6 +1468,7 @@ export default {
       this.searchBtn();
     },
     changePagination(event) {
+      console.log(event);
       this.organization.page = event.page;
       this.organization.per_page = event.per_page;
       localStorage.setItem("page_1", event.page);
