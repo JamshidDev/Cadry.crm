@@ -680,26 +680,21 @@ export default {
         form.append("gmail", this.gmail? this.gmail : '' )
         form.append("inostrans", this.inostrans ? 1 : 0)
         form.append("date_inostrans", this.inostrans ? Formatter.outDateFormatter(this.date_inostrans) : '')
+        employeeAdd.create_Cadry({ form }).then((res) => {
+          if (res.data.status == 1) {
+            this.$refs.warning_alert.controlDialog(true, "Mavjud xodim", res.data.organization, res.data.fullname,)
 
-
-
-        console.log(form);
-
-        // employeeAdd.create_Cadry({ form }).then((res) => {
-        //   if (res.data.status == 1) {
-        //     this.$refs.warning_alert.controlDialog(true, "Mavjud xodim", res.data.organization, res.data.fullname,)
-
-        //   } else if (res.data.status == 2) {
-        //     this.$refs.warning_alert.controlDialog(true, "Mavjud xodim", 'Xodim arxivda mavjud',)
-        //   } else if (res.data.status == 3) {
-        //     this.$refs.warning_alert.controlDialog(true, "Taqiqlangan", ' ', "Xodim mehnat faoliyati davrida qo'pol xatolari tufayli")
-        //   }
-        //   else if (res.data.status == 4) {
-        //     this.$refs.warning_alert.controlDialog(true, "Muvofaqqiyatli bajarildi", 'Yangi xodim ishga qabul qilindi.', "",)
-        //   }
-        // }).catch((error) => {
-        //   console.log(error);
-        // })
+          } else if (res.data.status == 2) {
+            this.$refs.warning_alert.controlDialog(true, "Mavjud xodim", 'Xodim arxivda mavjud',)
+          } else if (res.data.status == 3) {
+            this.$refs.warning_alert.controlDialog(true, "Taqiqlangan", ' ', "Xodim mehnat faoliyati davrida qo'pol xatolari tufayli")
+          }
+          else if (res.data.status == 4) {
+            this.$refs.warning_alert.controlDialog(true, "Muvofaqqiyatli bajarildi", 'Yangi xodim ishga qabul qilindi.', "",)
+          }
+        }).catch((error) => {
+          console.log(error);
+        })
       }
     },
 
