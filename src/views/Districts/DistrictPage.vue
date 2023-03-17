@@ -9,7 +9,7 @@
                 <div class="col-12 y-0 pt-0 pb-1">
                     <span class=" text-sm  xl:text-lg lg:text-base font-semibold"> <span class="text-blue-600">{{
                         department_name }}</span>
-                        dagi tumanlar ro'yhati
+                        dagi tumanlar ro'yhati ({{ totalItem }})
                     </span>
                 </div>
             </div>
@@ -142,8 +142,11 @@ export default {
             department_name: "",
             params: {
                 search: null,
-                page: localStorage.getItem("page_21") ? Number(localStorage.getItem("page_21")) : 1,
-                per_page: localStorage.getItem("per_page_21") ? Number(localStorage.getItem("per_page_21")) : 10,
+                page:1,
+                per_page:10,
+                
+                // page: localStorage.getItem("page_21") ? Number(localStorage.getItem("page_21")) : 1,
+                // per_page: localStorage.getItem("per_page_21") ? Number(localStorage.getItem("per_page_21")) : 10,
             },
 
             stuffDialog: false,

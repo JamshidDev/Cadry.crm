@@ -18,7 +18,7 @@ const delete_Regions = (payload)=>{
 
 
 const get_District = (payload)=>{
-    return axios.get(`/api/organization/${payload.region_id}/cities`, )
+    return axios.get(`/api/organization/${payload.region_id}/cities`,{params:payload.params} )
 }
 
 const update_District = (payload)=>{
