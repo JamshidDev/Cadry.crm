@@ -1,14 +1,15 @@
 // import Vue from "vue";
-import Vuex from "vuex";
+import Vuex from 'vuex';
 
-import appModules from "./Modules/appModules";
-import adminModules from './Modules/adminModules'
-import statisticModule from "./Modules/statisticModule";
-import ViewStatisticModule from "./Modules/ViewStatisticModule";
-import searchModule from "./Modules/searchModule";
-import factoryModule from "./Modules/factoryModule";
-import skillModules from "./Modules/skillModules";
-import tabelModule from "./Modules/tabelModule";
+import adminModules from './Modules/adminModules';
+import appModules from './Modules/appModules';
+import factoryModule from './Modules/factoryModule';
+import offerModule from './Modules/offerModule';
+import searchModule from './Modules/searchModule';
+import skillModules from './Modules/skillModules';
+import statisticModule from './Modules/statisticModule';
+import tabelModule from './Modules/tabelModule';
+import ViewStatisticModule from './Modules/ViewStatisticModule';
 
 // Vue.use(Vuex);
 
@@ -22,5 +23,6 @@ export default new Vuex.Store({
     factoryModule,
     skillModules,
     tabelModule,
+    offerModule,
   },
 });

@@ -7,7 +7,8 @@
   </div>
 </template>
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters } from 'vuex';
+
 export default {
   data() {
     return {
@@ -106,6 +107,13 @@ export default {
             ]),
 
           items: [
+          {
+              label: "Deadline",
+              icon: "pi pi-clock",
+              visible: () =>
+                this.get_adminPermissions("organization_vacations"),
+              to: "/admin/deadline",
+            },
             {
               label: "Ta'tillar",
               icon: "pi pi-calendar",
@@ -145,6 +153,13 @@ export default {
               visible: () =>
                 this.get_adminPermissions("organization_incentives"),
               to: "/admin/incentive",
+            },
+            {
+              label: "Tavsiya etilganlar",
+              icon: "pi pi-briefcase",
+              visible: () =>
+                this.get_adminPermissions("organization_incentives"),
+              to: "/admin/recomended",
             },
           ],
         },

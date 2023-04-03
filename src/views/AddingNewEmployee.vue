@@ -66,8 +66,7 @@
                 </div>
                 <div class="col-12">
                   <h6 class="mb-2">Sharif</h6>
-                  <InputText type="text" id="new_cadry_thirdName" v-model="thirdName"
-                   class="w-full font-semibold"
+                  <InputText type="text" id="new_cadry_thirdName" v-model="thirdName" class="w-full font-semibold"
                     placeholder="Sharifni kiriting" />
                 </div>
               </div>
@@ -190,8 +189,7 @@
             <div class="col-12 sm:col-12 md:col-6 lg:col-3 xl:col-3">
               <h6 class="mb-2 pl-2">Pasport seriyasi</h6>
               <InputText type="text" class="w-full" placeholder="Seriyani kiriting" id="new_cadry_passportSeriya"
-                v-model="passportSeriya"
-                 />
+                v-model="passportSeriya" />
             </div>
 
             <div class="col-12 sm:col-12 md:col-6 lg:col-3 xl:col-3">
@@ -277,9 +275,10 @@
 
             <div class="col-12 sm:col-12 md:col-6 lg:col-3 xl:col-3">
               <h6 class="mb-2 pl-2">Shtat lavozimi</h6>
-              <Dropdown id="new_cadry_positionName" v-model="v$.positionName.$model" :disabled="!positionPart" :loading="shtat_loading"
-                :class="{ 'p-invalid': v$.positionName.$invalid && submitted }" :options="StuffList"
-                optionLabel="staff_fullname" :filter="true" placeholder="Shtat lavozimni tanlang" class="w-full">
+              <Dropdown id="new_cadry_positionName" v-model="v$.positionName.$model" :disabled="!positionPart"
+                :loading="shtat_loading" :class="{ 'p-invalid': v$.positionName.$invalid && submitted }"
+                :options="StuffList" optionLabel="staff_fullname" :filter="true" placeholder="Shtat lavozimni tanlang"
+                class="w-full">
                 <template #value="slotProps">
                   <div class="country-item country-item-value" v-if="slotProps.value">
                     <div>{{ slotProps.value.staff_fullname }}</div>
@@ -331,6 +330,39 @@
               <InputText type="number" class="w-full" placeholder="Kiriting" v-model="status_dec"
                 id="new_cadry_tabelNumber" />
             </div>
+
+
+
+            <div class="col-12 sm:col-12 md:col-6 lg:col-3 xl:col-3">
+              <h6 class="mb-2 pl-2">Shartnoma turi</h6>
+              <Dropdown id="new_cadry_academic" v-model="v$.work_status_id.$model"
+                :class="{ 'p-invalid': v$.work_status_id.$invalid && submitted }" :options="work_status_list" optionLabel="name"
+                optionValue="id" placeholder="Malumoti tanlang" class="w-full" />
+            </div>
+
+            <div class="col-12 sm:col-12 md:col-6 lg:col-3 xl:col-3">
+              <span :class="work_status_id !==2 && 'hidden'">
+                <h6 class="mb-2 pl-2">Qachondan (Shartnoma)</h6>
+              <Calendar class="w-full" :manualInput="true" 
+                v-model="work_date1"
+                dateFormat="dd/mm/yy" v-maska="'##/##/####'" placeholder="Sanani tanlang" />
+              </span>
+             
+            </div>
+
+
+            <div class="col-12 sm:col-12 md:col-6 lg:col-3 xl:col-3">
+
+              <span :class="work_status_id !==2 && 'hidden'">
+                <h6 class="mb-2 pl-2">Qachongacha (Shartnoma)</h6>
+              <Calendar class="w-full" :manualInput="true"
+                v-model="work_date2"
+                dateFormat="dd/mm/yy" v-maska="'##/##/####'" placeholder="Sanani tanlang" />
+              </span>
+
+             
+            </div>
+
 
 
           </div>
@@ -457,17 +489,24 @@
   </div>
 </template>
 <script>
-import avatar from '../assets/avatar/empty-avatar.jpg'
-import SuccessAlert from "../components/Alerts/SuccessAlert.vue";
-import WarningAlert from "../components/Alerts/WarningAlert.vue";
-import employeeAdd from "../service/servises/employeeAdd";
-import { globalValidate } from "../validation/vuevalidate";
-import Formatter from "../util/formatter";
-import { minLength, required } from "@vuelidate/validators";
-import { useVuelidate } from "@vuelidate/core";
-import { Cropper } from "vue-advanced-cropper";
-import BreadCrumb from "../components/BreadCrumb/BreadCrumb.vue";
-import "vue-advanced-cropper/dist/style.css";
+import 'vue-advanced-cropper/dist/style.css';
+
+import { Cropper } from 'vue-advanced-cropper';
+
+import { useVuelidate } from '@vuelidate/core';
+import {
+  minLength,
+  required,
+} from '@vuelidate/validators';
+
+import avatar from '../assets/avatar/empty-avatar.jpg';
+import SuccessAlert from '../components/Alerts/SuccessAlert.vue';
+import WarningAlert from '../components/Alerts/WarningAlert.vue';
+import BreadCrumb from '../components/BreadCrumb/BreadCrumb.vue';
+import employeeAdd from '../service/servises/employeeAdd';
+import Formatter from '../util/formatter';
+import { globalValidate } from '../validation/vuevalidate';
+
 export default {
   components: {
     SuccessAlert,
@@ -481,7 +520,7 @@ export default {
   },
   data() {
     return {
-      shtat_loading:false,
+      shtat_loading: false,
       Formatter,
       cropperDialog: false,
       image: {
@@ -555,6 +594,12 @@ export default {
         },
       ],
 
+      work_status_list: [],
+      work_status_id: null,
+      work_date1: null,
+      work_date2: null,
+
+
       submitted: false,
       displayResponsive: false,
       succesDialog: false,
@@ -591,6 +636,8 @@ export default {
       positionAmount: globalValidate.positionAmount,
       command_number: globalValidate.command_number,
 
+      work_status_id:globalValidate.work_status_id,
+
       academic: globalValidate.academic,
       academicDegree: globalValidate.academicDegree,
       academicTitle: globalValidate.academicTitle,
@@ -624,6 +671,7 @@ export default {
           this.LanguageList = res.data.languages;
           this.PositionDegreeList = res.data.worklevels;
           this.EducationList = res.data.educations;
+          this.work_status_list = res.data.work_statuses;
         })
         .catch((error) => {
           console.log(error);
@@ -644,7 +692,7 @@ export default {
         form.append("photo", this.cropper_blob, "avatar.jpg");
         form.append("last_name", this.lastName)
         form.append("first_name", this.firstName)
-        form.append("middle_name", this.thirdName? this.thirdName : '' )
+        form.append("middle_name", this.thirdName ? this.thirdName : '')
         form.append("birht_date", Formatter.outDateFormatter(this.bornDate))
         form.append("birth_city_id", this.bornDistric.id)
         form.append("birth_region_id", this.bornRegion)
@@ -677,9 +725,16 @@ export default {
         form.append("order", this.order)
         form.append("status_dec", this.status_dec)
 
-        form.append("gmail", this.gmail? this.gmail : '' )
+        form.append("gmail", this.gmail ? this.gmail : '')
         form.append("inostrans", this.inostrans ? 1 : 0)
-        form.append("date_inostrans", this.inostrans ? Formatter.outDateFormatter(this.date_inostrans) : '')
+        form.append("date_inostrans", this.inostrans ? Formatter.outDateFormatter(this.date_inostrans) : '');
+
+        form.append("work_status_id", this.work_status_id);
+        form.append("work_date1", this.work_date1 ? Formatter.outDateFormatter(this.work_date1) : '');
+        form.append("work_date2", this.work_date2 ? Formatter.outDateFormatter(this.work_date2) : '');
+
+
+
         employeeAdd.create_Cadry({ form }).then((res) => {
           if (res.data.status == 1) {
             this.$refs.warning_alert.controlDialog(true, "Mavjud xodim", res.data.organization, res.data.fullname,)

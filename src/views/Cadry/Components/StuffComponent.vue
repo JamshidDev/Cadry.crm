@@ -145,12 +145,14 @@
   </div>
 </template>
 <script>
-import formatter from "../../../util/formatter";
-import EditButton from "../../../components/buttons/EditButton.vue";
-import DeleteButton from "../../../components/buttons/DeleteButton.vue";
-import ViewButton from "@/components/buttons/ViewButton.vue";
-import employeeStuff from "../../../service/servises/employeeStuff";
-import AddButton from "@/components/buttons/AddButton.vue";
+import AddButton from '@/components/buttons/AddButton.vue';
+import ViewButton from '@/components/buttons/ViewButton.vue';
+
+import DeleteButton from '../../../components/buttons/DeleteButton.vue';
+import EditButton from '../../../components/buttons/EditButton.vue';
+import employeeStuff from '../../../service/servises/employeeStuff';
+import formatter from '../../../util/formatter';
+
 export default {
   props: {
     List: {

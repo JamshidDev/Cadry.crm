@@ -1,4 +1,4 @@
-import axios from "../index";
+import axios from '../index';
 
 // user resume details request
 const get_ResumeDetails = (payload)=>{

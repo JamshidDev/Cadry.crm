@@ -251,37 +251,37 @@
             <div class="w-full overflow-x-auto">
               <table class="w-full" style="min-width: 600px">
                 <tr>
-                  <td width="10%" class="uppercase text-base font-semibold text-center" style="min-width: 10%">
+                  <td width="10%" class="uppercase text-sm font-medium text-center" style="min-width: 10%">
                     Sana
                   </td>
-                  <td width="50%" class="uppercase text-base font-semibold" style="min-width: 50%">
+                  <td width="50%" class="uppercase text-sm font-medium" style="min-width: 50%">
                     Lavozim nomi
                   </td>
-                  <td width="5%" class="uppercase text-base font-semibold text-center" style="min-width: 5%">
+                  <td width="5%" class="uppercase text-sm font-medium text-center" style="min-width: 5%">
                     Stavka
                   </td>
-                  <td width="15%" class="uppercase text-base font-semibold text-center" style="min-width:15%">
+                  <td width="15%" class="uppercase text-sm font-medium text-center" style="min-width:15%">
                     Faoliyat turi
                   </td>
-                  <td width="20%" class="uppercase text-base font-semibold text-center py-1 " style="min-width:20%"></td>
+                  <td width="20%" class="uppercase text-sm font-medium text-center py-1 " style="min-width:20%"></td>
                 </tr>
                 <tbody class="pt-4">
                   <tr v-for="item in stuffList" :key="item.id" class="border-1 border-300 my-1 w-full">
                     <td class="text-sm font-semibold text-blue-600 text-center">
                       {{ formatter.arrowDateFormat(item.staff_date) }}
                     </td>
-                    <td class="text-base font-semibold text-blue-600 text-left">
+                    <td class="text-sm font-semibold text-blue-600 text-left">
                       {{ item.staff_full }}
                     </td>
-                    <td class="text-base font-semibold text-blue-600 text-center">
+                    <td class="text-sm font-semibold text-blue-600 text-center">
                       {{ item.rate }}
                     </td>
-                    <td class="text-base font-semibold text-blue-600 text-center">
+                    <td class="text-sm font-semibold text-blue-600 text-center">
                       {{ item.staff_status }}
                     </td>
                     <td class="flex gap-2">
-                      <Button label="Lavozimni o'zgartirish" @click="editItemStuff(item.id)"
-                        class="text-sm font-light py-2" icon="pi pi-user-edit" />
+                      <Button label="Lavozimni o'zgartirish" @click="editItemStuff(item.id)" :loading="stuff_loading"
+                        class="text-sm font-normal py-2" icon="pi pi-user-edit" />
                       <delete-button v-if="stuffList.length > 1" :deleteItem="item.id"
                         @deleteAcceptEvent="deleteStuffItem($event)"></delete-button>
                     </td>
@@ -408,14 +408,14 @@
 
             <div class="col-12" v-show="!stuffDialogType">
               <Checkbox inputId="binary" v-model="status" :binary="true" />
-              <span class="pl-2 text-blue-500 font-semibold">Yangi lavozimga tayinlash</span>
+              <span class="pl-2 text-blue-500 font-normal">Yangi lavozimga tayinlash</span>
             </div>
             <div class="col-12" v-show="stuffDialogType || status">
               <div class="grid pt-2 pb-0">
                 <div class="xl:col-4 lg:col-4 md:col-4 col-12 py-0">
-                  <h6 class="mb-2 pl-2 text-500">Prikaz raqam</h6>
-                  <InputText type="text" class="w-full font-semibold" placeholder="Kiriting" id="command_number"
-                    v-model="command_number" />
+                  <h6 class="mb-2 pl-2 text-500 font-normal">Prikaz raqam</h6>
+                  <InputText type="text" class="w-full font-semibold p-inputtext-sm" placeholder="Kiriting"
+                    id="command_number" v-model="command_number" />
                 </div>
               </div>
             </div>
@@ -423,18 +423,18 @@
 
 
             <div class="col-12 xl:col-6">
-              <h6 class="mb-2 pl-2 text-500">
+              <h6 class="mb-2 pl-2 text-500 font-normal">
                 Bo'limni tanlang ({{ stuff_departmentList.length }})
               </h6>
               <Dropdown v-model="stuff_department" :options="stuff_departmentList" optionLabel="name" :filter="true"
-                placeholder="Tanlang" class="w-full p-input-sm" @change="changeDepartment" :class="{
+                placeholder="Tanlang" class="w-full p-inputtext-sm font-normal" @change="changeDepartment" :class="{
                   'p-invalid': stuff_department_Error && stuff_submitted,
                 }">
                 <template #value="slotProps">
-                  <div class="font-semibold" v-if="slotProps.value">
+                  <div class="font-medium" v-if="slotProps.value">
                     <div>{{ slotProps.value.name }}</div>
                   </div>
-                  <span v-else class="font-semibold">
+                  <span v-else class="font-medium">
                     {{ slotProps.placeholder }}
                   </span>
                 </template>
@@ -446,11 +446,11 @@
               </Dropdown>
             </div>
             <div class="col-12 xl:col-6">
-              <h6 class="mb-2 pl-2 text-500">
+              <h6 class="mb-2 pl-2 text-500 font-normal">
                 Lavozimni tanlang ({{ stuff_stuffList.length }})
               </h6>
               <Dropdown v-model="stuff_stuff" :options="stuff_stuffList" optionLabel="staff_fullname" :filter="true"
-                placeholder="Tanlang" class="w-full p-input-sm">
+                placeholder="Tanlang" class="w-full p-inputtext-sm">
                 <template #value="slotProps">
                   <div class="font-semibold" v-if="slotProps.value">
                     <div>{{ slotProps.value.staff_fullname }}</div>
@@ -468,36 +468,58 @@
             </div>
 
             <div class="col-12 xl:col-4 lg:col-4">
-              <h6 class="mb-2 pl-2 text-500">Faoliyat turi</h6>
+              <h6 class="mb-2 pl-2 text-500 font-normal">Faoliyat turi</h6>
               <Dropdown v-model="stuff_status" :options="stuff_statusList" optionLabel="name" placeholder="Tanlang"
-                class="w-full font-semibold" />
+                class="w-full font-medium p-inputtext-sm" />
             </div>
             <div class="col-12 xl:col-4 lg:col-4">
-              <h6 class="mb-2 pl-2 text-500">Lavozim sanasi</h6>
-              <Calendar class="w-full font-semibold" :manualInput="true" v-model="stuff_date" v-maska="'##/##/####'"
-                dateFormat="dd/mm/yy" :showButtonBar="true" placeholder="Sanani tanlang" />
+              <h6 class="mb-2 pl-2 text-500 font-normal">Lavozim sanasi</h6>
+              <Calendar class="w-full font-medium p-inputtext-sm" :manualInput="true" v-model="stuff_date"
+                v-maska="'##/##/####'" dateFormat="dd/mm/yy" :showButtonBar="true" placeholder="Sanani tanlang" />
             </div>
             <div class="col-12 xl:col-4 lg:col-4">
-              <h6 class="mb-2 pl-2 text-500">Plan</h6>
-              <InputText type="number" class="w-full font-semibold" placeholder="Kiriting" id="stavka"
+              <h6 class="mb-2 pl-2 text-500 font-normal">Plan</h6>
+              <InputText type="number" class="w-full font-medium p-inputtext-sm" placeholder="Kiriting" id="stavka"
                 v-model="stuff_plan" />
             </div>
-
             <div class="col-12 xl:col-4 lg:col-4">
-              <h6 class="mb-2 pl-2 text-500">Lavozim raziryadi</h6>
-              <InputText type="number" class="w-full font-semibold" placeholder="Kiriting" id="stavka" v-model="rank" />
+              <h6 class="mb-2 pl-2 text-500 font-normal">Shartnoma turi</h6>
+              <Dropdown v-model="work_status_id" :options="work_status_list" optionLabel="name" optionValue="id"  placeholder="Tanlang"
+                class="w-full font-medium p-inputtext-sm" />
+            </div>
+            <div class="col-12 xl:col-4 lg:col-4">
+             <span :class="work_status_id !==2 && 'hidden'">
+              <h6 class="mb-2 pl-2 text-500 font-normal">Qachondan (Shartnoma)</h6>
+              <Calendar :disabled="!work_status_id" class="w-full font-medium p-inputtext-sm" :manualInput="true"
+                v-model="work_date1" v-maska="'##/##/####'" dateFormat="dd/mm/yy" :showButtonBar="true"
+                placeholder="Sanani tanlang" />
+             </span>
+            </div>
+            <div class="col-12 xl:col-4 lg:col-4">
+            <span :class="work_status_id !==2 && 'hidden'">
+              <h6 class="mb-2 pl-2 text-500 font-normal">Qachongacha (Shartnoma)</h6>
+              <Calendar :disabled="!work_status_id" class="w-full font-medium p-inputtext-sm" :manualInput="true"
+                v-model="work_date2" v-maska="'##/##/####'" dateFormat="dd/mm/yy" :showButtonBar="true"
+                placeholder="Sanani tanlang" />
+            </span>
             </div>
 
             <div class="col-12 xl:col-4 lg:col-4">
-              <h6 class="mb-2 pl-2 text-500">Tarif koeffitsienti </h6>
-              <InputText type="number" class="w-full font-semibold" placeholder="Kiriting" id="stavka"
+              <h6 class="mb-2 pl-2 text-500 font-normal">Lavozim raziryadi</h6>
+              <InputText type="number" class="w-full font-medium p-inputtext-sm" placeholder="Kiriting" id="stavka"
+                v-model="rank" />
+            </div>
+
+            <div class="col-12 xl:col-4 lg:col-4">
+              <h6 class="mb-2 pl-2 text-500 font-normal">Tarif koeffitsienti </h6>
+              <InputText type="number" class="w-full font-medium p-inputtext-sm" placeholder="Kiriting" id="stavka"
                 v-model="coefficient" />
             </div>
 
 
             <div class="col-12 xl:col-4 lg:col-4">
-              <h6 class="mb-2 pl-2 text-500">Eng kam oylik ish haqi </h6>
-              <InputText type="number" class="w-full font-semibold" placeholder="Kiriting" id="stavka"
+              <h6 class="mb-2 pl-2 text-500 font-normal">Eng kam oylik ish haqi </h6>
+              <InputText type="number" class="w-full font-medium p-inputtext-sm" placeholder="Kiriting" id="stavka"
                 v-model="min_sum" />
             </div>
 
@@ -523,7 +545,7 @@
               <span class="pl-2 text-500">Xodim mehnat faoliyatiga yangi lavozim nomi qo'shilsinmi</span>
             </div>
             <div class="col-12" v-show="add_career && !stuffDialogType">
-              <h6 class="mb-2 pl-2 text-500">Mehnat faoliyati</h6>
+              <h6 class="mb-2 pl-2 text-500 font-normal">Mehnat faoliyati</h6>
               <Dropdown v-model="update_career" :options="check_career_list" optionLabel="staff" placeholder="Tanlang"
                 option-value="id" class="w-full" />
             </div>
@@ -545,22 +567,32 @@
   </div>
 </template>
 <script>
-import ProgressBarLoader from "../../../components/loaders/ProgressBarLoader.vue";
-import formatter from "../../../util/formatter";
-import default_avatar from "@/assets/avatar/default_avatar.png";
-import { Cropper } from "vue-advanced-cropper";
-import "vue-advanced-cropper/dist/style.css";
-import { globalValidate } from "../../../validation/vuevalidate";
-import employeeService from "../../../service/servises/employeeService";
-import organizationsService from "../../../service/servises/organizationsService";
-import { minLength, required } from "@vuelidate/validators";
-import { useVuelidate } from "@vuelidate/core";
-import EditButton from "@/components/buttons/EditButton.vue";
-import DeleteButton from "@/components/buttons/DeleteButton.vue";
-import TextButton from "@/components/buttons/TextButton.vue";
-import DepartmentStuffService from "../../../service/servises/DepartmentStuffService";
-import StuffComponent from "@/views/Cadry/Components/StuffComponent.vue";
-import converter from "../../../util/converter";
+import 'vue-advanced-cropper/dist/style.css';
+
+import { Cropper } from 'vue-advanced-cropper';
+
+import default_avatar from '@/assets/avatar/default_avatar.png';
+import DeleteButton from '@/components/buttons/DeleteButton.vue';
+import EditButton from '@/components/buttons/EditButton.vue';
+import TextButton from '@/components/buttons/TextButton.vue';
+import StuffComponent from '@/views/Cadry/Components/StuffComponent.vue';
+import { useVuelidate } from '@vuelidate/core';
+import {
+  minLength,
+  required,
+} from '@vuelidate/validators';
+
+import ProgressBarLoader
+  from '../../../components/loaders/ProgressBarLoader.vue';
+import DepartmentStuffService
+  from '../../../service/servises/DepartmentStuffService';
+import employeeService from '../../../service/servises/employeeService';
+import organizationsService
+  from '../../../service/servises/organizationsService';
+import converter from '../../../util/converter';
+import formatter from '../../../util/formatter';
+import { globalValidate } from '../../../validation/vuevalidate';
+
 export default {
   components: {
     Cropper,
@@ -669,7 +701,7 @@ export default {
           id: 0,
         },
       ],
-
+      stuff_loading: false,
       stuffDialog: false,
       stuffDialogType: true,
       stuff_departmentList: [],
@@ -692,6 +724,10 @@ export default {
       rank: null,
       coefficient: null,
       min_sum: null,
+      work_status_list: [],
+      work_status_id: null,
+      work_date1: null,
+      work_date2: null,
 
 
       gmail: null,
@@ -807,7 +843,7 @@ export default {
 
 
 
-    
+
   },
 
   created() {
@@ -1088,6 +1124,10 @@ export default {
         this.rank = 0;
         this.coefficient = 0;
         this.min_sum = 920000;
+        this.work_status_list = res.data.work_statuses;
+        this.work_date1 = null,
+        this.work_date2 = null,
+        this.work_status_id = null,
         this.controlstuffDialog(true);
       });
     },
@@ -1095,8 +1135,8 @@ export default {
     editItemStuff(id) {
       this.cadry_stuff_id = id;
       this.stuffDialogType = false;
+      this.stuff_loading = true;
       employeeService.update_CadryStuff({ id }).then((res) => {
-        console.log(res.data);
         this.stuff_departmentList = res.data.departments;
         this.stuff_department = res.data.department_id;
         this.stuff_stuffList = res.data.department_staffs;
@@ -1111,9 +1151,18 @@ export default {
         this.coefficient = res.data.coefficient;
         this.min_sum = res.data.min_sum == 0 ? 920000 : res.data.min_sum;
         this.stuff_date = formatter.interDateFormatter(res.data.staff_date);
+
+        this.work_status_list = res.data.work_statuses;
+        this.work_status_id = res.data.work_status_id?.id;
+        this.work_date1 =res.data.work_date1? this.formatter.interDateFormatter(res.data.work_date1) : res.data.work_date1;
+        this.work_date2 =res.data.work_date1? this.formatter.interDateFormatter(res.data.work_date2) : res.data.work_date1;
+        this.stuff_loading = false;
         this.controlstuffDialog(true);
         this.get_check_career();
-      });
+        
+      }).catch((error)=>{
+        this.stuff_loading = false;
+      })
     },
 
     editStuff() {
@@ -1134,6 +1183,9 @@ export default {
         rank: this.rank,
         coefficient: this.coefficient,
         min_sum: this.min_sum,
+        work_status_id: this.work_status_id,
+        work_date1: this.work_status_id==2? this.formatter.outDateFormatter(this.work_date1) : null,
+        work_date2: this.work_status_id==2? this.formatter.outDateFormatter(this.work_date2) : null,
 
       };
       if (!this.stuff_department_Error) {
@@ -1269,5 +1321,4 @@ export default {
       }
     }
   }
-}
-</style>
+}</style>

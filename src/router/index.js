@@ -1,4 +1,8 @@
-import { createRouter, createWebHistory } from "vue-router";
+import {
+  createRouter,
+  createWebHistory,
+} from 'vue-router';
+
 const checkToken = () => {
   const token_date = localStorage.getItem("token_created_date");
   let date_token = new Date(token_date).getTime();
@@ -364,6 +368,20 @@ const routes = [
         },
       },
       {
+        path: "/admin/deadline",
+        name: "deadline",
+        component: function () {
+          return import("../views/Deadline/Deadlines.vue");
+        },
+      },
+      {
+        path: "/admin/recomended",
+        name: "recomended",
+        component: function () {
+          return import("../views/Recomended/Recomended.vue");
+        },
+      },
+      {
         path: "/admin/vacation",
         name: "vacation",
         component: function () {
@@ -500,6 +518,13 @@ const routes = [
     name: "login",
     component: function () {
       return import("../Layout/LoginPage.vue");
+    },
+  },
+  {
+    path: "/reception/:reception_token",
+    name: "reception",
+    component: function () {
+      return import("../views/Offer/Offer.vue");
     },
   },
   {

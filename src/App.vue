@@ -26,7 +26,7 @@
           {{ errorMessage.message }}
         </p>
         <p class="text-500 text-base text-center font-medium">
-          Sizverda kutilmagan xatolik yuzaga keldi...
+          Sizda kutilmagan xatolik yuzaga keldi...
         </p>
         <template #footer>
           <div class="grid">
@@ -46,10 +46,12 @@
 </template>
 
 <script>
-import LayoutVue from "./Layout/Layout.vue";
-import EventBus from "./util/appEventBus.js";
-import instance from "./service/index";
-import { mapActions } from "vuex";
+import { mapActions } from 'vuex';
+
+import LayoutVue from './Layout/Layout.vue';
+import instance from './service/index';
+import EventBus from './util/appEventBus.js';
+
 export default {
   components: {
     LayoutVue,

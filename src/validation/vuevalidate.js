@@ -1,4 +1,8 @@
-import { minLength,maxLength, required } from "@vuelidate/validators";
+import {
+  maxLength,
+  minLength,
+  required,
+} from '@vuelidate/validators';
 
 // Vue validate global details
 export const globalValidate = {
@@ -113,6 +117,11 @@ academic:{
     required,
   },
   employeeSelectedOrgan:{
+    required,
+  },
+
+  // Work statuses
+  work_status_id:{
     required,
   },
 

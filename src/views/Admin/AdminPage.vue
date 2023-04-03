@@ -216,15 +216,17 @@
   </div>
 </template>
     <script>
-import TextButton from "@/components/buttons/TextButton.vue";
-import DeleteButton from "@/components/buttons/DeleteButton.vue";
-import EditButton from "@/components/buttons/EditButton.vue";
-import TablePagination from "@/components/Pagination/TablePagination.vue";
-import MedLoader from "@/components/loaders/MedLoader.vue";
-import formatter from "@/util/formatter";
-import AdminService from "@/service/servises/AdminService";
-import BreadCrumb from "../../components/BreadCrumb/BreadCrumb.vue";
-import EditMoadal from "./components/EditMoadal.vue";
+import DeleteButton from '@/components/buttons/DeleteButton.vue';
+import EditButton from '@/components/buttons/EditButton.vue';
+import TextButton from '@/components/buttons/TextButton.vue';
+import MedLoader from '@/components/loaders/MedLoader.vue';
+import TablePagination from '@/components/Pagination/TablePagination.vue';
+import AdminService from '@/service/servises/AdminService';
+import formatter from '@/util/formatter';
+
+import BreadCrumb from '../../components/BreadCrumb/BreadCrumb.vue';
+import EditMoadal from './components/EditMoadal.vue';
+
 export default {
   components: {
     TextButton,

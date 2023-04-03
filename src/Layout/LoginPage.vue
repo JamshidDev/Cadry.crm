@@ -31,7 +31,7 @@
           <div class="col-12 flex justify-content-center">
             <img
               class="large_logo mx-auto"
-              src="@/assets/kadr-logo.png"
+              src="@/assets/picture/login_logo.png"
             />
           </div>
           <div class="col-12 pt-4">
@@ -53,7 +53,7 @@
            <div class="col-12 flex justif-content-center">
              <img
               class="login_logo mx-auto"
-              src="@/assets/kadr-logo.png"
+              src="@/assets/picture/login_logo.png"
               alt=""
             />
            </div>
@@ -114,8 +114,10 @@
  </div>
 </template>
 <script>
-import authService from "../service/servises/authService";
-import { mapActions } from "vuex";
+import { mapActions } from 'vuex';
+
+import authService from '../service/servises/authService';
+
 export default {
   data() {
     return {
