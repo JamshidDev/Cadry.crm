@@ -3,16 +3,12 @@
     <div class="col-12">
       <div class="grid">
         <div class="col-12 pb-0">
-          <bread-crumb
-            :breadCump="[{ name: 'Xodimlar', path: '/admin/partemployee' }]"
-          ></bread-crumb>
+          <bread-crumb :breadCump="[{ name: 'Xodimlar', path: '/admin/partemployee' }]"></bread-crumb>
         </div>
         <div class="col-12 y-0 py-0">
-          <span class="text-2xl font-semibold"
-            >Xodimlar
+          <span class="text-2xl font-semibold">Xodimlar
             <span class="text-base text-primary pl-2">
-              ({{ totalCadries }})</span
-            >
+              ({{ totalCadries }})</span>
           </span>
         </div>
       </div>
@@ -21,24 +17,12 @@
       <div class="grid">
         <div class="col-12 pb-0">
           <!-- Leader cadry -->
-          <div
-            class="grid p-0"
-            v-if="get_adminPermissions('cadry_leader_cadries')"
-          >
+          <div class="grid p-0" v-if="get_adminPermissions('cadry_leader_cadries')">
             <div class="col-12 sm:col-6 md:col-6 lg:col-3 xl:col-3 p-fluid">
               <h6 class="mb-1 pl-2 text-sm">Katta korxona - 1</h6>
-              <Dropdown
-                id="adressDistrict"
-                v-model="railwayVal"
-                :options="railwayList"
-                optionLabel="name"
-                class="p-inputtext-sm"
-                :filter="true"
-                placeholder="Katta korxona"
-                emptyMessage="Hech narsa topilmadi"
-                emptyFilterMessage="Tizmda ma'lumot topilmadi..."
-                disabled
-              >
+              <Dropdown id="adressDistrict" v-model="railwayVal" :options="railwayList" optionLabel="name"
+                class="p-inputtext-sm" :filter="true" placeholder="Katta korxona" emptyMessage="Hech narsa topilmadi"
+                emptyFilterMessage="Tizmda ma'lumot topilmadi..." disabled>
                 <template #value="slotProps" class="custop_dropdown">
                   <div class="max-w-100" v-if="slotProps.value">
                     <div>{{ slotProps.value.name }}</div>
@@ -60,22 +44,13 @@
                 Korxona -
                 {{
                   organizationList.length
-                    ? organizationList.length - 1
-                    : organizationList.length
+                  ? organizationList.length - 1
+                  : organizationList.length
                 }}
               </h6>
-              <Dropdown
-                id="adressDistrict"
-                v-model="organizationVal"
-                :options="organizationList"
-                optionLabel="name"
-                class="p-inputtext-sm"
-                :filter="true"
-                placeholder="Korxona"
-                emptyMessage="Hech narsa topilmadi"
-                emptyFilterMessage="Tizmda ma'lumot topilmadi..."
-                @change="changeOrganization"
-              >
+              <Dropdown id="adressDistrict" v-model="organizationVal" :options="organizationList" optionLabel="name"
+                class="p-inputtext-sm" :filter="true" placeholder="Korxona" emptyMessage="Hech narsa topilmadi"
+                emptyFilterMessage="Tizmda ma'lumot topilmadi..." @change="changeOrganization">
                 <template #value="slotProps" class="custop_dropdown">
                   <div class="max-w-100" v-if="slotProps.value">
                     <div>{{ slotProps.value.name }}</div>
@@ -97,23 +72,14 @@
                 Bo'lim va bekat -
                 {{
                   departmentList.length
-                    ? departmentList.length - 1
-                    : departmentList.length
+                  ? departmentList.length - 1
+                  : departmentList.length
                 }}
               </h6>
-              <Dropdown
-                id="adressDistrict"
-                v-model="departmentValue"
-                :options="departmentList"
-                optionLabel="name"
-                class="p-inputtext-sm"
-                :filter="true"
-                :loading="loadingDepartment"
-                placeholder="Bo'lim va bekat"
-                emptyMessage="Hech narsa topilmadi"
-                emptyFilterMessage="Tizmda ma'lumot topilmadi..."
-                @change="changeDepartment"
-              >
+              <Dropdown id="adressDistrict" v-model="departmentValue" :options="departmentList" optionLabel="name"
+                class="p-inputtext-sm" :filter="true" :loading="loadingDepartment" placeholder="Bo'lim va bekat"
+                emptyMessage="Hech narsa topilmadi" emptyFilterMessage="Tizmda ma'lumot topilmadi..."
+                @change="changeDepartment">
                 <template #value="slotProps" class="custop_dropdown">
                   <div class="max-w-100" v-if="slotProps.value">
                     <div>{{ slotProps.value.name }}</div>
@@ -133,21 +99,13 @@
             <div class="col-12 sm:col-6 md:col-6 lg:col-3 xl:col-3">
               <div class="grid mt-2">
                 <div class="col-12">
-                  <Button
-                    icon="pi pi-filter"
-                    label="Filter"
-                    class="w-full p-button-secondary mx-2 p-button-sm"
-                    @click="openFilterPanel2"
-                  />
+                  <Button icon="pi pi-filter" label="Filter" class="w-full p-button-secondary mx-2 p-button-sm"
+                    @click="openFilterPanel2" />
                 </div>
               </div>
 
               <!-- Additional filter menu -->
-              <OverlayPanel
-                ref="op2"
-                :breakpoints="{ '960px': '75vw', '640px': '100vw' }"
-                :style="{ width: '550px' }"
-              >
+              <OverlayPanel ref="op2" :breakpoints="{ '960px': '75vw', '640px': '100vw' }" :style="{ width: '550px' }">
                 <div class="grid">
                   <div class="col-12">
                     <h6 class="text-sm mb-0 font-bold">
@@ -161,13 +119,8 @@
                     </div>
                     <div class="w-full flex">
                       <div class="w-full">
-                        <InputText
-                          type="text"
-                          v-model="organization.first_name"
-                          class="w-full p-inputtext-sm"
-                          placeholder="Ismni kiriting"
-                          @keyup.enter="searchBtn()"
-                        />
+                        <InputText type="text" v-model="organization.first_name" class="w-full p-inputtext-sm"
+                          placeholder="Ismni kiriting" @keyup.enter="searchBtn()" />
                       </div>
                     </div>
                   </div>
@@ -178,13 +131,8 @@
                     </div>
                     <div class="w-full flex">
                       <div class="w-full">
-                        <InputText
-                          type="text"
-                          v-model="organization.last_name"
-                          class="w-full p-inputtext-sm"
-                          placeholder="Familiyani kiriting"
-                          @keyup.enter="searchBtn()"
-                        />
+                        <InputText type="text" v-model="organization.last_name" class="w-full p-inputtext-sm"
+                          placeholder="Familiyani kiriting" @keyup.enter="searchBtn()" />
                       </div>
                     </div>
                   </div>
@@ -195,13 +143,8 @@
                     </div>
                     <div class="w-full flex">
                       <div class="w-full">
-                        <InputText
-                          type="text"
-                          v-model="organization.middle_name"
-                          class="w-full font-semibold p-inputtext-sm"
-                          placeholder="Kiriting"
-                          @keyup.enter="searchBtn()"
-                        />
+                        <InputText type="text" v-model="organization.middle_name"
+                          class="w-full font-semibold p-inputtext-sm" placeholder="Kiriting" @keyup.enter="searchBtn()" />
                       </div>
                     </div>
                   </div>
@@ -212,14 +155,8 @@
                     </div>
                     <div class="w-full flex">
                       <div class="w-full">
-                        <Dropdown
-                          v-model="educationValue"
-                          :options="educationList"
-                          optionLabel="name"
-                          placeholder="Tanlang"
-                          class="w-full p-inputtext-sm"
-                          @change="changeEducation"
-                        />
+                        <Dropdown v-model="educationValue" :options="educationList" optionLabel="name"
+                          placeholder="Tanlang" class="w-full p-inputtext-sm" @change="changeEducation" />
                       </div>
                     </div>
                   </div>
@@ -230,14 +167,8 @@
                     </div>
                     <div class="w-full flex">
                       <div class="w-full">
-                        <Dropdown
-                          v-model="regionValue"
-                          :options="regionList"
-                          optionLabel="name"
-                          placeholder="Tanlang"
-                          class="w-full p-inputtext-sm"
-                          @change="change_adressRegion"
-                        />
+                        <Dropdown v-model="regionValue" :options="regionList" optionLabel="name" placeholder="Tanlang"
+                          class="w-full p-inputtext-sm" @change="change_adressRegion" />
                       </div>
                     </div>
                   </div>
@@ -248,24 +179,12 @@
                       </h6>
                     </div>
                     <div class="w-full flex">
-                      <Dropdown
-                        :loading="districtLoading"
-                        v-model="districtVal"
-                        :options="districtList"
-                        optionLabel="name"
-                        :filter="true"
-                        placeholder="Tanlang"
-                        class="w-full p-inputtext-sm"
-                        emptyMessage="Hech narsa topilmadi"
-                        @change="change_adressDistrict"
-                        :disabled="districtList.length == 0"
-                        emptyFilterMessage="Tizmda ma'lumot topilmadi..."
-                      >
+                      <Dropdown :loading="districtLoading" v-model="districtVal" :options="districtList"
+                        optionLabel="name" :filter="true" placeholder="Tanlang" class="w-full p-inputtext-sm"
+                        emptyMessage="Hech narsa topilmadi" @change="change_adressDistrict"
+                        :disabled="districtList.length == 0" emptyFilterMessage="Tizmda ma'lumot topilmadi...">
                         <template #value="slotProps">
-                          <div
-                            class="country-item country-item-value w-full"
-                            v-if="slotProps.value"
-                          >
+                          <div class="country-item country-item-value w-full" v-if="slotProps.value">
                             <div>{{ slotProps.value.name }}</div>
                           </div>
                           <span v-else>
@@ -287,14 +206,8 @@
                     </div>
                     <div class="w-full flex">
                       <div class="w-full">
-                        <Dropdown
-                          v-model="birth_region"
-                          :options="regionList"
-                          optionLabel="name"
-                          placeholder="Tanlang"
-                          class="w-full p-inputtext-sm"
-                          @change="change_BirthRegion"
-                        />
+                        <Dropdown v-model="birth_region" :options="regionList" optionLabel="name" placeholder="Tanlang"
+                          class="w-full p-inputtext-sm" @change="change_BirthRegion" />
                       </div>
                     </div>
                   </div>
@@ -305,24 +218,12 @@
                       </h6>
                     </div>
                     <div class="w-full flex">
-                      <Dropdown
-                        :loading="birth_districtLoading"
-                        v-model="birth_districtVal"
-                        :options="birth_districtList"
-                        optionLabel="name"
-                        :filter="true"
-                        placeholder="Tanlang"
-                        class="w-full p-inputtext-sm"
-                        emptyMessage="Hech narsa topilmadi"
-                        @change="birth_changeDistrict"
-                        :disabled="birth_districtList.length == 0"
-                        emptyFilterMessage="Tizmda ma'lumot topilmadi..."
-                      >
+                      <Dropdown :loading="birth_districtLoading" v-model="birth_districtVal" :options="birth_districtList"
+                        optionLabel="name" :filter="true" placeholder="Tanlang" class="w-full p-inputtext-sm"
+                        emptyMessage="Hech narsa topilmadi" @change="birth_changeDistrict"
+                        :disabled="birth_districtList.length == 0" emptyFilterMessage="Tizmda ma'lumot topilmadi...">
                         <template #value="slotProps">
-                          <div
-                            class="country-item country-item-value w-full"
-                            v-if="slotProps.value"
-                          >
+                          <div class="country-item country-item-value w-full" v-if="slotProps.value">
                             <div>{{ slotProps.value.name }}</div>
                           </div>
                           <span v-else>
@@ -344,14 +245,8 @@
                     </div>
                     <div class="w-full flex">
                       <div class="w-full">
-                        <Dropdown
-                          v-model="vacationValue"
-                          :options="vacationList"
-                          optionLabel="name"
-                          placeholder="Ta'til"
-                          class="w-full p-inputtext-sm"
-                          @change="changeVacation"
-                        />
+                        <Dropdown v-model="vacationValue" :options="vacationList" optionLabel="name" placeholder="Ta'til"
+                          class="w-full p-inputtext-sm" @change="changeVacation" />
                       </div>
                     </div>
                   </div>
@@ -365,13 +260,7 @@
                     </div>
                     <div class="w-full flex">
                       <div class="w-full">
-                        <Slider
-                          class=""
-                          v-model="selectedAge"
-                          :step="1"
-                          :range="true"
-                          @change="changeCadrAge"
-                        />
+                        <Slider class="" v-model="selectedAge" :step="1" :range="true" @change="changeCadrAge" />
                       </div>
                     </div>
                   </div>
@@ -381,14 +270,8 @@
                     </div>
                     <div class="w-full flex">
                       <div class="w-full">
-                        <Dropdown
-                          v-model="genderValue"
-                          :options="genderList"
-                          optionLabel="name"
-                          placeholder="Tanlang"
-                          class="w-full p-inputtext-sm"
-                          @change="changeGender"
-                        />
+                        <Dropdown v-model="genderValue" :options="genderList" optionLabel="name" placeholder="Tanlang"
+                          class="w-full p-inputtext-sm" @change="changeGender" />
                       </div>
                     </div>
                   </div>
@@ -402,22 +285,12 @@
                       <div class="col-6">
                         <div class="grid">
                           <div class="col-6">
-                            <Tag
-                              class="cursor-pointer w-full"
-                              value="Izlash"
-                              severity="info"
-                              icon="pi pi-search"
-                              @click="searchBtn()"
-                            ></Tag>
+                            <Tag class="cursor-pointer w-full" value="Izlash" severity="info" icon="pi pi-search"
+                              @click="searchBtn()"></Tag>
                           </div>
                           <div class="col-6">
-                            <Tag
-                              class="cursor-pointer w-full"
-                              value="Tozalash"
-                              severity="danger"
-                              icon="pi pi-filter-slash"
-                              @click="clearFilterDetails()"
-                            ></Tag>
+                            <Tag class="cursor-pointer w-full" value="Tozalash" severity="danger"
+                              icon="pi pi-filter-slash" @click="clearFilterDetails()"></Tag>
                           </div>
                         </div>
                       </div>
@@ -431,43 +304,21 @@
 
         <!-- Cadry -->
         <div class="col-12 pb-0">
-          <div
-            class="grid p-0"
-            v-if="!get_adminPermissions('cadry_leader_cadries')"
-          >
+          <div class="grid p-0" v-if="!get_adminPermissions('cadry_leader_cadries')">
             <div class="col-12 sm:col-6 md:col-6 lg:col-2 xl:col-2 p-fluid">
-              <InputText
-                type="text"
-                v-model="organization.first_name"
-                class="w-full p-inputtext-sm"
-                placeholder="Ismni kiriting"
-                @keyup.enter="searchBtn()"
-              />
+              <InputText type="text" v-model="organization.first_name" class="w-full p-inputtext-sm"
+                placeholder="Ismni kiriting" @keyup.enter="searchBtn()" />
             </div>
 
             <div class="col-12 sm:col-6 md:col-6 lg:col-2 xl:col-2 p-fluid">
-              <InputText
-                type="text"
-                v-model="organization.last_name"
-                class="w-full p-inputtext-sm"
-                placeholder="Familiyani kiriting"
-                @keyup.enter="searchBtn()"
-              />
+              <InputText type="text" v-model="organization.last_name" class="w-full p-inputtext-sm"
+                placeholder="Familiyani kiriting" @keyup.enter="searchBtn()" />
             </div>
 
             <div class="col-12 sm:col-6 md:col-6 lg:col-3 xl:col-3 p-fluid">
-              <Dropdown
-                id="adressDistrict"
-                v-model="departmentValue"
-                :options="departmentList"
-                optionLabel="name"
-                class="p-inputtext-sm"
-                :filter="true"
-                placeholder="Bo'limni tanlang"
-                emptyMessage="Hech narsa topilmadi"
-                emptyFilterMessage="Tizmda ma'lumot topilmadi..."
-                @change="changeDepartment"
-              >
+              <Dropdown id="adressDistrict" v-model="departmentValue" :options="departmentList" optionLabel="name"
+                class="p-inputtext-sm" :filter="true" placeholder="Bo'limni tanlang" emptyMessage="Hech narsa topilmadi"
+                emptyFilterMessage="Tizmda ma'lumot topilmadi..." @change="changeDepartment">
                 <template #value="slotProps" class="custop_dropdown">
                   <div class="max-w-100" v-if="slotProps.value">
                     <div>{{ slotProps.value.name }}</div>
@@ -487,30 +338,17 @@
             <div class="col-12 sm:col-6 md:col-6 lg:col-3 xl:col-3">
               <div class="grid">
                 <div class="col-6">
-                  <Button
-                    icon="pi pi-filter"
-                    label="Filter"
-                    class="w-full p-button-secondary mx-2 p-button-sm"
-                    @click="openFilterPanel"
-                  />
+                  <Button icon="pi pi-filter" label="Filter" class="w-full p-button-secondary mx-2 p-button-sm"
+                    @click="openFilterPanel" />
                 </div>
                 <div class="col-6">
-                  <SplitButton
-                    label="Yuklash"
-                    @click="downloadControl(true)"
-                    icon="pi pi-arrow-circle-down"
-                    class="p-button-sm p-button-success w-full"
-                    :model="downloadItems"
-                  ></SplitButton>
+                  <SplitButton label="Yuklash" @click="downloadControl(true)" icon="pi pi-arrow-circle-down"
+                    class="p-button-sm p-button-success w-full" :model="downloadItems"></SplitButton>
                 </div>
               </div>
 
               <!-- Additional filter menu -->
-              <OverlayPanel
-                ref="op"
-                :breakpoints="{ '960px': '75vw', '640px': '100vw' }"
-                :style="{ width: '550px' }"
-              >
+              <OverlayPanel ref="op" :breakpoints="{ '960px': '75vw', '640px': '100vw' }" :style="{ width: '550px' }">
                 <div class="grid">
                   <div class="col-12">
                     <h6 class="text-sm mb-0 font-bold">
@@ -523,25 +361,12 @@
                       <h6 class="text-sm mb-0">Lavozim {{ Stuffs.length }}</h6>
                     </div>
                     <div class="w-full flex">
-                      <Dropdown
-                        id="adressDistrict"
-                        v-model="stuffValue"
-                        :options="Stuffs"
-                        optionLabel="name"
-                        :filter="true"
-                        placeholder="Tanlang"
-                        class="w-full p-inputtext-sm"
-                        @change="changeStuffs"
-                        emptyMessage="Hech narsa topilmadi"
-                        emptyFilterMessage="Tizmda ma'lumot topilmadi..."
-                        @before-show="beforeOpen"
-                        :disabled="Stuffs.length == 0"
-                      >
+                      <Dropdown id="adressDistrict" v-model="stuffValue" :options="Stuffs" optionLabel="name"
+                        :filter="true" placeholder="Tanlang" class="w-full p-inputtext-sm" @change="changeStuffs"
+                        emptyMessage="Hech narsa topilmadi" emptyFilterMessage="Tizmda ma'lumot topilmadi..."
+                        @before-show="beforeOpen" :disabled="Stuffs.length == 0">
                         <template #value="slotProps">
-                          <div
-                            class="country-item country-item-value w-full"
-                            v-if="slotProps.value"
-                          >
+                          <div class="country-item country-item-value w-full" v-if="slotProps.value">
                             <div>{{ slotProps.value.name }}</div>
                           </div>
                           <span v-else>
@@ -562,14 +387,8 @@
                     </div>
                     <div class="w-full flex">
                       <div class="w-full">
-                        <Dropdown
-                          v-model="educationValue"
-                          :options="educationList"
-                          optionLabel="name"
-                          placeholder="Tanlang"
-                          class="w-full p-inputtext-sm"
-                          @change="changeEducation"
-                        />
+                        <Dropdown v-model="educationValue" :options="educationList" optionLabel="name"
+                          placeholder="Tanlang" class="w-full p-inputtext-sm" @change="changeEducation" />
                       </div>
                     </div>
                   </div>
@@ -579,14 +398,8 @@
                     </div>
                     <div class="w-full flex">
                       <div class="w-full">
-                        <Dropdown
-                          v-model="regionValue"
-                          :options="regionList"
-                          optionLabel="name"
-                          placeholder="Tanlang"
-                          class="w-full p-inputtext-sm"
-                          @change="change_adressRegion"
-                        />
+                        <Dropdown v-model="regionValue" :options="regionList" optionLabel="name" placeholder="Tanlang"
+                          class="w-full p-inputtext-sm" @change="change_adressRegion" />
                       </div>
                     </div>
                   </div>
@@ -597,24 +410,12 @@
                       </h6>
                     </div>
                     <div class="w-full flex">
-                      <Dropdown
-                        :loading="districtLoading"
-                        v-model="districtVal"
-                        :options="districtList"
-                        optionLabel="name"
-                        :filter="true"
-                        placeholder="Tanlang"
-                        class="w-full p-inputtext-sm"
-                        emptyMessage="Hech narsa topilmadi"
-                        @change="change_adressDistrict"
-                        :disabled="districtList.length == 0"
-                        emptyFilterMessage="Tizmda ma'lumot topilmadi..."
-                      >
+                      <Dropdown :loading="districtLoading" v-model="districtVal" :options="districtList"
+                        optionLabel="name" :filter="true" placeholder="Tanlang" class="w-full p-inputtext-sm"
+                        emptyMessage="Hech narsa topilmadi" @change="change_adressDistrict"
+                        :disabled="districtList.length == 0" emptyFilterMessage="Tizmda ma'lumot topilmadi...">
                         <template #value="slotProps">
-                          <div
-                            class="country-item country-item-value w-full"
-                            v-if="slotProps.value"
-                          >
+                          <div class="country-item country-item-value w-full" v-if="slotProps.value">
                             <div>{{ slotProps.value.name }}</div>
                           </div>
                           <span v-else>
@@ -635,19 +436,13 @@
                     </div>
                     <div class="w-full flex">
                       <div class="w-full">
-                        <Dropdown
-                          v-model="birth_region"
-                          :options="regionList"
-                          optionLabel="name"
-                          placeholder="Tanlang"
-                          class="w-full p-inputtext-sm"
-                          @change="change_BirthRegion"
-                        />
+                        <Dropdown v-model="birth_region" :options="regionList" optionLabel="name" placeholder="Tanlang"
+                          class="w-full p-inputtext-sm" @change="change_BirthRegion" />
                       </div>
                     </div>
                   </div>
 
-                  
+
                   <div class="col-6">
                     <div class="col-12">
                       <h6 class="text-sm mb-0">
@@ -655,24 +450,12 @@
                       </h6>
                     </div>
                     <div class="w-full flex">
-                      <Dropdown
-                        :loading="birth_districtLoading"
-                        v-model="birth_districtVal"
-                        :options="birth_districtList"
-                        optionLabel="name"
-                        :filter="true"
-                        placeholder="Tanlang"
-                        class="w-full p-inputtext-sm"
-                        emptyMessage="Hech narsa topilmadi"
-                        @change="birth_changeDistrict"
-                        :disabled="birth_districtList.length == 0"
-                        emptyFilterMessage="Tizmda ma'lumot topilmadi..."
-                      >
+                      <Dropdown :loading="birth_districtLoading" v-model="birth_districtVal" :options="birth_districtList"
+                        optionLabel="name" :filter="true" placeholder="Tanlang" class="w-full p-inputtext-sm"
+                        emptyMessage="Hech narsa topilmadi" @change="birth_changeDistrict"
+                        :disabled="birth_districtList.length == 0" emptyFilterMessage="Tizmda ma'lumot topilmadi...">
                         <template #value="slotProps">
-                          <div
-                            class="country-item country-item-value w-full"
-                            v-if="slotProps.value"
-                          >
+                          <div class="country-item country-item-value w-full" v-if="slotProps.value">
                             <div>{{ slotProps.value.name }}</div>
                           </div>
                           <span v-else>
@@ -694,14 +477,8 @@
                     </div>
                     <div class="w-full flex">
                       <div class="w-full">
-                        <Dropdown
-                          v-model="vacationValue"
-                          :options="vacationList"
-                          optionLabel="name"
-                          placeholder="Ta'til"
-                          class="w-full p-inputtext-sm"
-                          @change="changeVacation"
-                        />
+                        <Dropdown v-model="vacationValue" :options="vacationList" optionLabel="name" placeholder="Ta'til"
+                          class="w-full p-inputtext-sm" @change="changeVacation" />
                       </div>
                     </div>
                   </div>
@@ -711,12 +488,8 @@
                     </div>
                     <div class="w-full flex">
                       <div class="w-full">
-                        <InputText
-                          type="text"
-                          v-model="organization.middle_name"
-                          class="w-full font-semibold p-inputtext-sm"
-                          placeholder="Kiriting"
-                        />
+                        <InputText type="text" v-model="organization.middle_name"
+                          class="w-full font-semibold p-inputtext-sm" placeholder="Kiriting" />
                       </div>
                     </div>
                   </div>
@@ -729,13 +502,7 @@
                     </div>
                     <div class="w-full flex">
                       <div class="w-full">
-                        <Slider
-                          class=""
-                          v-model="selectedAge"
-                          :step="1"
-                          :range="true"
-                          @change="changeCadrAge"
-                        />
+                        <Slider class="" v-model="selectedAge" :step="1" :range="true" @change="changeCadrAge" />
                       </div>
                     </div>
                   </div>
@@ -745,14 +512,8 @@
                     </div>
                     <div class="w-full flex">
                       <div class="w-full">
-                        <Dropdown
-                          v-model="genderValue"
-                          :options="genderList"
-                          optionLabel="name"
-                          placeholder="Tanlang"
-                          class="w-full p-inputtext-sm"
-                          @change="changeGender"
-                        />
+                        <Dropdown v-model="genderValue" :options="genderList" optionLabel="name" placeholder="Tanlang"
+                          class="w-full p-inputtext-sm" @change="changeGender" />
                       </div>
                     </div>
                   </div>
@@ -766,22 +527,12 @@
                       <div class="col-6">
                         <div class="grid">
                           <div class="col-6">
-                            <Tag
-                              class="cursor-pointer w-full"
-                              value="Izlash"
-                              severity="info"
-                              icon="pi pi-search"
-                              @click="searchBtn()"
-                            ></Tag>
+                            <Tag class="cursor-pointer w-full" value="Izlash" severity="info" icon="pi pi-search"
+                              @click="searchBtn()"></Tag>
                           </div>
                           <div class="col-6">
-                            <Tag
-                              class="cursor-pointer w-full"
-                              value="Tozalash"
-                              severity="danger"
-                              icon="pi pi-filter-slash"
-                              @click="clearFilterDetails()"
-                            ></Tag>
+                            <Tag class="cursor-pointer w-full" value="Tozalash" severity="danger"
+                              icon="pi pi-filter-slash" @click="clearFilterDetails()"></Tag>
                           </div>
                         </div>
                       </div>
@@ -791,13 +542,8 @@
               </OverlayPanel>
             </div>
             <div class="col-12 sm:col-6 md:col-6 lg:col-2 xl:col-2 p-fluid">
-              <Button
-                icon="pi pi-plus"
-                @click="goNewPush()"
-                class="p-button-info font-medium p-button-sm"
-                label="Xodim"
-                v-tooltip.bottom="`Yangi xodim qo'shish`"
-              />
+              <Button icon="pi pi-plus" @click="goNewPush()" class="p-button-info font-medium p-button-sm" label="Xodim"
+                v-tooltip.bottom="`Yangi xodim qo'shish`" />
             </div>
           </div>
         </div>
@@ -806,41 +552,27 @@
 
     <!-- Employees table ---start -->
     <div class="col-12 pt-0" v-show="!loadingtable">
-      <DataTable
-        ref="dt"
-        :value="cadries"
-        dataKey="id"
-        responsiveLayout="scroll"
-        showGridlines
-        class="p-datatable-sm"
-        v-show="totalCadries"
-        v-model:selection="selectitem" selectionMode="multiple"
-      >
+      <DataTable ref="dt" :value="cadries" dataKey="id"  responsiveLayout="scroll"  showGridlines  class="p-datatable-sm"
+        v-show="totalCadries" v-model:selection="selectitem" selectionMode="single">
         <template #header v-if="selectMode">
           <div class="grid">
             <div class="col-12">
-              <div
-                class="
-                  text-800 text-sm
-                  lg:text-base
-                  xl:text-base
-                  font-medium
-                  text-center text-blue-600
-                "
-                v-show="!isSelectAll"
-              >
+              <div class="
+                    text-800 text-sm
+                    lg:text-base
+                    xl:text-base
+                    font-medium
+                    text-center text-blue-600
+                  " v-show="!isSelectAll">
                 Tanlanganlar soni - {{ this.selectOptions.length }}
               </div>
-              <div
-                class="
-                  text-800 text-sm
-                  lg:text-base
-                  xl:text-base
-                  font-medium
-                  text-center text-red-600
-                "
-                v-show="isSelectAll"
-              >
+              <div class="
+                    text-800 text-sm
+                    lg:text-base
+                    xl:text-base
+                    font-medium
+                    text-center text-red-600
+                  " v-show="isSelectAll">
                 Tanlanmaganlar soni - {{ this.unSelectItemId.length }}
               </div>
             </div>
@@ -848,7 +580,7 @@
         </template>
         <Column style="min-width: 30px; width: 36px">
           <template #header>
-            <div class="text-800 text-sm font-medium">No</div>
+            <div class=" text-sm uppercase font-medium">No</div>
           </template>
           <template #body="slotProps">
             <div class="w-full text-center text-sm font-normal">
@@ -858,63 +590,45 @@
         </Column>
         <Column style="min-width: 50px; width: 50px">
           <template #header>
-            <div class="text-800 text-sm lg:text-base xl:text-base font-medium">
+            <div class="text-sm uppercase font-medium">
               Rasm
             </div>
           </template>
           <template #body="slotProps">
             <div class="flex justify-content-center">
-              <Image
-                :src="slotProps.data.photo"
-                alt="Rasm yo'q"
-                width="30"
-                height="30"
-                preview
-              />
+              <Image :src="slotProps.data.photo" alt="Rasm yo'q" width="30" height="30" preview />
             </div>
           </template>
         </Column>
         <Column style="min-width: 50px; width: 50px" v-if="selectMode">
           <template #header>
             <div class="text-800 flex justify-content-center w-full">
-              <Checkbox
-                :value="true"
-                v-model="selectAllOption"
-                @change="changeSelectAll"
-              />
+              <Checkbox :value="true" v-model="selectAllOption" @change="changeSelectAll" />
             </div>
           </template>
           <template #body="slotProps">
             <div class="flex justify-content-center">
-              <Checkbox
-                :value="slotProps.data.id"
-                v-model="selectOptions"
-                @change="changeRowSelect(slotProps.data.id)"
-              />
+              <Checkbox :value="slotProps.data.id" v-model="selectOptions" @change="changeRowSelect(slotProps.data.id)" />
             </div>
           </template>
         </Column>
-        <Column field="name" style="min-width: 100px; width: 200px">
+        <Column field="name" style="min-width: 100px; width: 200px" frozen alignFrozen="left">
           <template #header>
-            <div class="text-800 text-sm lg:text-base xl:text-base font-medium">
+            <div class="text-sm uppercase font-medium">
               F.I.SH
             </div>
           </template>
           <template #body="slotProps">
-            <div
-              class="
-                text-sm
-                sm:text-sm
-                md:text-sm
-                lg:text-base
-                xl:text-base
-                font-normal
-                hover:text-blue-500
-                cursor-pointer
-              "
-              v-tooltip.bottom="`Tahrirlash`"
-              @click="goPush(slotProps.data.id)"
-            >
+            <div class="
+                  text-sm
+                  sm:text-sm
+                  md:text-sm
+                  lg:text-base
+                  xl:text-base
+                  font-normal
+                  hover:text-blue-500
+                  cursor-pointer
+                " v-tooltip.bottom="`Tahrirlash`" @click="goPush(slotProps.data.id)">
               <div>{{ slotProps.data.fullname }}</div>
             </div>
           </template>
@@ -922,124 +636,92 @@
 
         <Column style="min-width: 200px">
           <template #header>
-            <div class="text-800 text-sm lg:text-base xl:text-base font-medium font-poppins">Lavozimi</div>
+            <div class="text-sm uppercase font-medium">Lavozim</div>
           </template>
           <template #body="slotProps">
-            <div
-              class="text-sm sm:text-sm md:text-sm lg:text-base xl:text-base font-poppins"
-            >
+            <div class="text-sm sm:text-sm md:text-sm lg:text-base xl:text-base font-poppins">
               {{
                 slotProps.data.staff
-                  ? slotProps.data.staff.staff_full
-                  : `Tizimda ma'lumot yo'q`
+                ? slotProps.data.staff.staff_full
+                : `Tizimda ma'lumot yo'q`
               }}
             </div>
           </template>
         </Column>
-        <Column
-          style="min-width: 100px; width: 200px"
-          v-if="!departmentValue?.id"
-        >
+        <Column style="min-width: 100px; width: 200px" v-if="!departmentValue?.id">
           <template #header>
-            <div class="text-800 text-sm lg:text-base xl:text-base font-medium">
+            <div class="text-sm uppercase font-medium">
               {{
                 get_adminPermissions("cadry_leader_cadries")
-                  ? organization.organization_id
-                    ? "Bo'lim nomi"
-                    : "Korxona nomi"
-                  : "Bo'lim nomi"
+                ? organization.organization_id
+                  ? "Bo'lim nomi"
+                  : "Korxona nomi"
+                : "Bo'lim nomi"
               }}
             </div>
           </template>
           <template #body="slotProps">
-            <div
-              class="
-                text-sm
-                sm:text-sm
-                md:text-sm
-                lg:text-base
-                xl:text-base
-                font-normal
-              "
-            >
-              <span v-if="!get_adminPermissions('cadry_leader_cadries')"
-                >{{ slotProps.data.department }}</span
-              >
-              <span
-                v-if="
-                  get_adminPermissions('cadry_leader_cadries') &&
-                  organization.organization_id
-                "
-                >{{ slotProps.data.department }}</span
-              >
-              <span
-                v-if="
-                  get_adminPermissions('cadry_leader_cadries') &&
-                  !organization.organization_id
-                "
-                >{{ slotProps.data.organization }}</span
-              >
+            <div class="
+                  text-sm
+                  sm:text-sm
+                  md:text-sm
+                  lg:text-base
+                  xl:text-base
+                  font-normal
+                ">
+              <span v-if="!get_adminPermissions('cadry_leader_cadries')">{{ slotProps.data.department }}</span>
+              <span v-if="
+                get_adminPermissions('cadry_leader_cadries') &&
+                organization.organization_id
+              ">{{ slotProps.data.department }}</span>
+              <span v-if="
+                get_adminPermissions('cadry_leader_cadries') &&
+                !organization.organization_id
+              ">{{ slotProps.data.organization }}</span>
             </div>
           </template>
         </Column>
-        <Column
-          style="min-width: 100px; width: 200px"
-          v-if="!departmentValue?.id"
-        >
+        <Column style="min-width: 100px; width: 200px">
           <template #header>
-            <div class="text-800 text-sm lg:text-base xl:text-base font-medium">
-             Pochta
+            <div class="text-sm uppercase font-medium">
+              Pochta
             </div>
           </template>
           <template #body="slotProps">
-            <div
-              class="
-                text-sm
-                sm:text-sm
-                md:text-sm
-                lg:text-base
-                xl:text-base
-                font-normal
-              "
-            >
-            {{ slotProps.data.gmail }}
+            <div class="
+                  text-sm
+                  sm:text-sm
+                  md:text-sm
+                  lg:text-base
+                  xl:text-base
+                  font-normal
+                ">
+              {{ slotProps.data.gmail }}
             </div>
           </template>
         </Column>
 
-        <Column :exportable="false" style="min-width: 100px; width: 100px">
+
+       
+
+        <Column  style="min-width: 60px; width: 60px" lignFrozen="right" frozen >
           <template #header>
             <div class="text-800 text-sm lg:text-base xl:text-base font-medium">
-              Amallar
+
             </div>
           </template>
           <template #body="slotProps">
             <div class="flex w-full align-items-center gap-2">
-              <download-button
-                :color="'bg-primary active:bg-primary'"
-                :border="'border-1 border-primary border-round'"
-                v-tooltip.left="`Ma'lumotlarni ko'rish`"
-                :icon="'pi pi-id-card'"
-                @click="goPushDetails(slotProps.data.id)"
-              ></download-button>
-              <download-button
-                v-tooltip.left="`Ma'lumotlarni yuklash`"
-                :color="'bg-green-600 active:bg-green-600'"
-                :border="'border-1 border-green-600 border-round'"
-                :icon="'pi pi-cloud-download'"
-                @click="DowloadResume(slotProps.data.id)"
-              ></download-button>
+              <button v-ripple class="custom-icon-btn custom-btn-primary" @click="toggle($event, slotProps.data.id)">
+                <i class="bx bx-dots-vertical-rounded"></i>
+              </button>
+              <Menu ref="menu" id="overlay_menu" :model="menu_items" :popup="true" />
             </div>
           </template>
         </Column>
         <template #footer>
-          <table-pagination
-            v-show="totalCadries > 10"
-            :total_page="totalCadries"
-            :page="organization.page"
-            :per_page="organization.per_page"
-            @pagination="changePagination($event)"
-          ></table-pagination>
+          <table-pagination v-show="totalCadries > 10" :total_page="totalCadries" :page="organization.page"
+            :per_page="organization.per_page" @pagination="changePagination($event)"></table-pagination>
         </template>
       </DataTable>
       <search-not-found-page v-show="!totalCadries"></search-not-found-page>
@@ -1049,25 +731,16 @@
     </div>
     <div class="col-12">
       <Toast position="bottom-right" />
-      <word-template
-        :cadry_id="Dowload_cadry_id"
-        v-show="false"
-        ref="word_resume"
-      ></word-template>
+      <word-template :cadry_id="Dowload_cadry_id" v-show="false" ref="word_resume"></word-template>
       <employee-details ref="show_resume"></employee-details>
       <export-panel ref="export_to_excel"></export-panel>
-      <Dialog
-        v-model:visible="selectionDialog"
-        :breakpoints="{
-          '1960px': '30vw',
-          '1600px': '40vw',
-          '1200px': '70vw',
-          '960px': '80vw',
-          '640px': '90vw',
-        }"
-        :style="{ width: '50vw' }"
-        :modal="true"
-      >
+      <Dialog v-model:visible="selectionDialog" :breakpoints="{
+        '1960px': '30vw',
+        '1600px': '40vw',
+        '1200px': '70vw',
+        '960px': '80vw',
+        '640px': '90vw',
+      }" :style="{ width: '50vw' }" :modal="true">
         <template #header>
           <h6 class="uppercase text-lg text-center text-blue-500 font-medium">
             Xodimlarni ma'lumotlarini yuklash
@@ -1075,18 +748,12 @@
         </template>
         <div class="grid pt-2">
           <div class="col-12">
-            <InputText
-              type="text"
-              v-model="file_name"
-              class="w-full p-inputtext-sm font-medium text-base"
-              placeholder="Fayl nomi"
-            />
+            <InputText type="text" v-model="file_name" class="w-full p-inputtext-sm font-medium text-base"
+              placeholder="Fayl nomi" />
           </div>
           <div class="col-12">
             <Checkbox :value="true" v-model="cadry_pasport" />
-            <label class="pl-2 text-700 font-normal"
-              >Xodimlarni pasport nusxasi ham yuklansinmi?</label
-            >
+            <label class="pl-2 text-700 font-normal">Xodimlarni pasport nusxasi ham yuklansinmi?</label>
           </div>
 
           <div class="col-12">
@@ -1094,8 +761,8 @@
               Yuklanishga yuborilayotgan ma'lumotlari soni -
               <span class="text-blue-500 font-medium">{{
                 isSelectAll
-                  ? totalCadries - unSelectItemId.length
-                  : selectItemId.length
+                ? totalCadries - unSelectItemId.length
+                : selectItemId.length
               }}</span>
             </h6>
             <h6 class="mb-1 mt-0 pl-2 text-700 font-normal">
@@ -1108,34 +775,37 @@
         <template #footer>
           <div class="col-12 pt-2">
             <div class="flex justify-content-center">
-              <Button
-                :loading="dowloadLoading"
-                icon="pi pi-arrow-circle-down"
-                :label="downloadBtnText"
-                class="p-button-success p-button-sm font-bold"
-                @click="startDownloadZip()"
-              />
+              <Button :loading="dowloadLoading" icon="pi pi-arrow-circle-down" :label="downloadBtnText"
+                class="p-button-success p-button-sm font-bold" @click="startDownloadZip()" />
+
             </div>
           </div>
         </template>
       </Dialog>
+      <BusinnesTripModal @commander_send="send_commander_cadry($event)" ref="business_ref"/>
     </div>
   </div>
 </template>
 <script>
-import TablePagination from "../components/Pagination/TablePagination.vue";
-import DownloadButton from "@/components/buttons/DownloadButton.vue";
-import organizationsService from "../service/servises/organizationsService";
-import employeeService from "../service/servises/employeeService";
-import EmployeeLoader from "../components/loaders/EmployeeLoader.vue";
-import SearchNotFoundPage from "../components/EmptyComponent/SearchNotFoundPage.vue";
-import WordTemplate from "../components/Eksport/WordTemplate.vue";
-import EmployeeDetails from "../components/partEmployee/EmployeeDetails.vue";
-import ExportPanel from "../components/Eksport/ExportPanel.vue";
-import BreadCrumb from "../components/BreadCrumb/BreadCrumb.vue";
-import EksportService from "@/service/servises/EksportService";
-import LeaderService from "@/service/servises/LeaderService";
-import { mapGetters } from "vuex";
+import { mapGetters } from 'vuex';
+
+import DownloadButton from '@/components/buttons/DownloadButton.vue';
+import commanderService from '@/service/servises/commanderService';
+import EksportService from '@/service/servises/EksportService';
+import LeaderService from '@/service/servises/LeaderService';
+
+import BreadCrumb from '../components/BreadCrumb/BreadCrumb.vue';
+import ExportPanel from '../components/Eksport/ExportPanel.vue';
+import WordTemplate from '../components/Eksport/WordTemplate.vue';
+import SearchNotFoundPage
+  from '../components/EmptyComponent/SearchNotFoundPage.vue';
+import EmployeeLoader from '../components/loaders/EmployeeLoader.vue';
+import TablePagination from '../components/Pagination/TablePagination.vue';
+import EmployeeDetails from '../components/partEmployee/EmployeeDetails.vue';
+import employeeService from '../service/servises/employeeService';
+import organizationsService from '../service/servises/organizationsService';
+import BusinnesTripModal from './BusinessTrip/BusinnesTripModal.vue';
+
 export default {
   components: {
     EmployeeLoader,
@@ -1146,12 +816,42 @@ export default {
     DownloadButton,
     ExportPanel,
     BreadCrumb,
+    BusinnesTripModal,
   },
   data() {
     return {
       districtLoading: false,
       birth_districtLoading: false,
 
+      menu_items: [
+        {
+          label: 'Amallar',
+          items: [
+            {
+              label: "Yuklash",
+              icon: 'pi pi-download',
+              command:()=>{
+                this.DowloadResume();
+              } 
+            },
+            {
+              label: "Ko'rish",
+              icon: 'pi pi-id-card',
+              command: () => {
+                this.goPushDetails()
+              }
+            },
+            {
+              label: "Xizmat safari",
+              icon: 'pi pi-home',
+              command: () => {
+                this.business_trip()
+              }
+            },
+          ]
+        },
+      ],
+        active_cadry_id:null,
       selectitem: null,
       isSelectAll: false,
       selectOptions: [],
@@ -1348,7 +1048,24 @@ export default {
         this.get_Department(org.id);
       }
     },
+    send_commander_cadry(data){
+      commanderService.add_commander({
+        cadry_id:this.active_cadry_id,
+        data,
+      }).then((res)=>{
+        this.$toast.add({
+        severity: "success",
+        summary: "Muvofaqqiyatli bajarildi",
+        detail: "Xizmat safariga jo'natildi",
+        life: 2000,
+      });
+      })
+    },
 
+    toggle(event, id){
+      this.active_cadry_id = id;
+       this.$refs.menu.toggle(event);
+},
     get_Stuffs(id) {
       employeeService
         .get_Stuffs({ organization_id: id })
@@ -1448,7 +1165,7 @@ export default {
       this.birth_districtVal = null;
       this.searchBtn();
     },
-    
+
     birth_changeDistrict(event) {
       this.organization.birth_city_id = event.value.id;
       this.searchBtn();
@@ -1468,7 +1185,6 @@ export default {
       this.searchBtn();
     },
     changePagination(event) {
-      console.log(event);
       this.organization.page = event.page;
       this.organization.per_page = event.per_page;
       localStorage.setItem("page_1", event.page);
@@ -1543,7 +1259,7 @@ export default {
       this.$router.push(`/admin/editemployee/${id}`);
     },
     goPushDetails(id) {
-      this.$router.push(`/admin/employee/view/${id}`);
+      this.$router.push(`/admin/employee/view/${this.active_cadry_id}`);
     },
     goNewPush() {
       this.$router.push("/admin/addnewemployee");
@@ -1554,13 +1270,16 @@ export default {
     },
 
     // Dowload resume
-    DowloadResume(id) {
-      this.$refs.word_resume.generateWord(id);
+    DowloadResume() {
+      this.$refs.word_resume.generateWord(this.active_cadry_id);
     },
 
     // Opent resume
     openResume(id) {
       this.$refs.show_resume.showResume(id);
+    },
+    business_trip(){
+      this.$refs.business_ref.control_modal()
     },
 
     beforeOpen(event) {
@@ -1587,9 +1306,9 @@ export default {
       this.regionValue = null;
       this.birth_region = null;
       this.genderValue = null;
-      this.birth_districtList =[];
+      this.birth_districtList = [];
       this.birth_districtVal = null;
-      this.districtList =[];
+      this.districtList = [];
       this.districtVal = null;
 
       this.selectedAge = [10, 80];
@@ -1617,7 +1336,7 @@ export default {
       this.selectionDialog = item;
     },
   },
-  created() {
+  mounted() {
     this.getEmployee(this.organization);
     this.checkLeader();
     // this.get_Department();
@@ -1628,7 +1347,9 @@ export default {
   },
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
+// custom-icon-btn custom-btn-primary
+
 // table {
 //   border-collapse: collapse;
 //   width: 100%;

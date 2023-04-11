@@ -55,7 +55,11 @@ export default {
             this.message = item.message;
             this.loading = false;
             this.is_submitted = true;
+        },
+        stop_loading(){
+            this.loading = false;
         }
+
     }
 
 }

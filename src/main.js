@@ -1,87 +1,80 @@
+import './assets/style/layouts.scss';
 
+import {
+  createApp,
+  reactive,
+} from 'vue';
 
-import { createApp, reactive } from 'vue'
-import App from './App.vue'
-import router from './router'
-import store from './store/index'
-import Maska from 'maska'
-
-
-
-// PrimeVue components
-
-import PrimeVue from 'primevue/config';
-
-import Dialog from 'primevue/dialog';
-import Button from 'primevue/button';
-import Breadcrumb from 'primevue/breadcrumb';
-import Toolbar from 'primevue/toolbar';
-import SplitButton from 'primevue/splitbutton';
-import Menu from 'primevue/menu';
-import Avatar from 'primevue/avatar';
-import Chart from 'primevue/chart';
-import Divider from 'primevue/divider';
-import BadgeDirective from 'primevue/badgedirective';
-import Tag from 'primevue/tag';
-import Dropdown from 'primevue/dropdown';
-import InputSwitch from 'primevue/inputswitch';
-import InputText from 'primevue/inputtext';
-import DataTable from 'primevue/datatable';
-import Column from 'primevue/column';
-import ColumnGroup from 'primevue/columngroup';     //optional for column grouping
-import Row from 'primevue/row';  
-import Tooltip from 'primevue/tooltip';
-import OverlayPanel from 'primevue/overlaypanel';
-import Calendar from 'primevue/calendar';
-import InputNumber from 'primevue/inputnumber';
-import Password from 'primevue/password';
-import ToastService from 'primevue/toastservice';
-import Toast from 'primevue/toast';
-import Galleria from 'primevue/galleria';
-import Image from 'primevue/image';
-import Menubar from 'primevue/menubar';
-import AutoComplete from 'primevue/autocomplete';
-import Sidebar from 'primevue/sidebar';
-import Slider from 'primevue/slider';
-import ConfirmationService from 'primevue/confirmationservice';
-import ConfirmDialog from 'primevue/confirmdialog';
-import Steps from 'primevue/steps';
-import Textarea from 'primevue/textarea';
-import Skeleton from 'primevue/skeleton';
-import Knob from 'primevue/knob';
-import ContextMenu from 'primevue/contextmenu';
-import Paginator from 'primevue/paginator';
-import ScrollPanel from 'primevue/scrollpanel';
-import ProgressSpinner from 'primevue/progressspinner';
-import SelectButton from 'primevue/selectbutton';
-import MultiSelect from 'primevue/multiselect';
-import Chip from 'primevue/chip';
-import Message from 'primevue/message';
-import Checkbox from 'primevue/checkbox';
+import Maska from 'maska';
 import Accordion from 'primevue/accordion';
 import AccordionTab from 'primevue/accordiontab';
+import AutoComplete from 'primevue/autocomplete';
+import Avatar from 'primevue/avatar';
+import BadgeDirective from 'primevue/badgedirective';
+import Breadcrumb from 'primevue/breadcrumb';
+import Button from 'primevue/button';
+import Calendar from 'primevue/calendar';
+import Chart from 'primevue/chart';
+import Checkbox from 'primevue/checkbox';
+import Chip from 'primevue/chip';
+import Column from 'primevue/column';
+import ColumnGroup
+  from 'primevue/columngroup';     //optional for column grouping
+// PrimeVue components
+import PrimeVue from 'primevue/config';
+import ConfirmationService from 'primevue/confirmationservice';
+import ConfirmDialog from 'primevue/confirmdialog';
+import ContextMenu from 'primevue/contextmenu';
+import DataTable from 'primevue/datatable';
+import Dialog from 'primevue/dialog';
+import Divider from 'primevue/divider';
+import Dropdown from 'primevue/dropdown';
 import Fieldset from 'primevue/fieldset';
-import Panel from 'primevue/panel';
-import TreeSelect from 'primevue/treeselect';
-import JsonExcel from "vue-json-excel3";
-import PanelMenu from 'primevue/panelmenu';
-import TabMenu from 'primevue/tabmenu';
-import TabView from 'primevue/tabview';
-import TabPanel from 'primevue/tabpanel';
-import Rating from 'primevue/rating';
-import ProgressBar from 'primevue/progressbar';
-import VueApexCharts from "vue3-apexcharts";
 import FileUpload from 'primevue/fileupload';
+import Galleria from 'primevue/galleria';
+import Image from 'primevue/image';
+import InputNumber from 'primevue/inputnumber';
+import InputSwitch from 'primevue/inputswitch';
+import InputText from 'primevue/inputtext';
+import Knob from 'primevue/knob';
+import Menu from 'primevue/menu';
+import Menubar from 'primevue/menubar';
+import Message from 'primevue/message';
+import MultiSelect from 'primevue/multiselect';
+import OverlayPanel from 'primevue/overlaypanel';
+import Paginator from 'primevue/paginator';
+import Panel from 'primevue/panel';
+import PanelMenu from 'primevue/panelmenu';
+import Password from 'primevue/password';
+import ProgressBar from 'primevue/progressbar';
+import ProgressSpinner from 'primevue/progressspinner';
+import Rating from 'primevue/rating';
+import Ripple from 'primevue/ripple';
+import Row from 'primevue/row';
+import ScrollPanel from 'primevue/scrollpanel';
+import SelectButton from 'primevue/selectbutton';
+import Sidebar from 'primevue/sidebar';
+import Skeleton from 'primevue/skeleton';
+import Slider from 'primevue/slider';
+import SplitButton from 'primevue/splitbutton';
+import Steps from 'primevue/steps';
+import TabMenu from 'primevue/tabmenu';
+import TabPanel from 'primevue/tabpanel';
+import TabView from 'primevue/tabview';
+import Tag from 'primevue/tag';
+import Textarea from 'primevue/textarea';
+import Toast from 'primevue/toast';
+import ToastService from 'primevue/toastservice';
 import ToggleButton from 'primevue/togglebutton';
+import Toolbar from 'primevue/toolbar';
+import Tooltip from 'primevue/tooltip';
+import TreeSelect from 'primevue/treeselect';
+import JsonExcel from 'vue-json-excel3';
+import VueApexCharts from 'vue3-apexcharts';
 
-import "./assets/style/layouts.scss"
-
-
-
-
-
-
-
+import App from './App.vue';
+import router from './router';
+import store from './store/index';
 
 const app = createApp(App)
 
@@ -117,7 +110,7 @@ app.config.globalProperties.$appState = reactive({ theme: 'lara-light-blue', dar
 
 
 
-// app.directive('ripple', Ripple);
+app.directive('ripple', Ripple);
 // app.directive('code', CodeHighlight);
 app.directive('Badge', BadgeDirective);
 app.directive('tooltip', Tooltip);

@@ -175,7 +175,6 @@ export default {
             "set_candidate_form2","set_candidate_academy_delete"
         ]),
         check_form(isValid) {
-            console.log(isValid);
             this.submitted = true;
             this.save_store()
             if (isValid) {

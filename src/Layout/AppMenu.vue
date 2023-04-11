@@ -108,11 +108,18 @@ export default {
 
           items: [
           {
-              label: "Deadline",
+              label: "Muddatlar",
               icon: "pi pi-clock",
               visible: () =>
                 this.get_adminPermissions("organization_vacations"),
               to: "/admin/deadline",
+            },
+            {
+              label: "Xizmat safari",
+              icon: "pi pi-cloud",
+              visible: () =>
+                this.get_adminPermissions("organization_vacations"),
+              to: "/business-trip",
             },
             {
               label: "Ta'tillar",
@@ -121,6 +128,7 @@ export default {
                 this.get_adminPermissions("organization_vacations"),
               to: "/admin/vacation",
             },
+            
             {
               label: "Ta'til muddati",
               icon: "pi pi-calendar",

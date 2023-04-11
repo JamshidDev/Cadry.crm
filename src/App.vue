@@ -142,6 +142,31 @@ export default {
     white-space: normal !important;
   
   }
+  .custom-icon-btn {
+  padding: 10px 12px;
+  background-color: transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+  color: #3b82f6;
+  background-color: #3b83f62b;
+
+  &:hover {
+    background-color: #3b83f64c;
+  }
+
+  &:focus {
+    background-color: #3b83f6b8;
+    color: #fff;
+  }
+
+  i {
+    font-size: 16px;
+    font-weight: bold;
+
+  }
+}
+
 </style>
 
 

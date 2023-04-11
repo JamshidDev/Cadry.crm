@@ -213,6 +213,9 @@ export default {
             career_name: { required: helpers.withMessage("Maydon to'ldirilishi shart!", required) },
         };
     },
+    created(){
+       
+    }
 }
 </script>
 

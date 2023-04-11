@@ -287,15 +287,17 @@
   </div>
 </template>
 <script>
-import DeleteButton from "../components/buttons/DeleteButton.vue";
-import EditButton from "../components/buttons/EditButton.vue";
-import ViewButtonV from "../components/buttons/ViewButtonV.vue";
-import DepartmentStuffService from "../service/servises/DepartmentStuffService";
-import DepartmentStuffLoader from "../components/loaders/DepartmentStuffLoader.vue";
-import DepartmentService from "../service/servises/DepartmentService";
-import BreadCrumb from "../components/BreadCrumb/BreadCrumb.vue";
-import NoDataComponent from "../components/EmptyComponent/NoDataComponent.vue";
-import TablePagination from "../components/Pagination/TablePagination.vue";
+import BreadCrumb from '../components/BreadCrumb/BreadCrumb.vue';
+import DeleteButton from '../components/buttons/DeleteButton.vue';
+import EditButton from '../components/buttons/EditButton.vue';
+import ViewButtonV from '../components/buttons/ViewButtonV.vue';
+import NoDataComponent from '../components/EmptyComponent/NoDataComponent.vue';
+import DepartmentStuffLoader
+  from '../components/loaders/DepartmentStuffLoader.vue';
+import TablePagination from '../components/Pagination/TablePagination.vue';
+import DepartmentService from '../service/servises/DepartmentService';
+import DepartmentStuffService from '../service/servises/DepartmentStuffService';
+
 export default {
   components: {
     DeleteButton,
@@ -423,12 +425,15 @@ export default {
       DepartmentStuffService.delete_DepartmentStuff({id}).then((res)=>{
 
         this.get_DepartmentStuff(this.$route.params.id, false);
+
         this.$toast.add({
               severity: "success",
               summary: "Muvofaqqiyatli bajarildi",
               detail: "O'chirildi",
               life: 2000,
             });
+
+            
       }).catch((error)=>{
         console.log(error);
       })

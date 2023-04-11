@@ -198,7 +198,7 @@ export default {
   },
   computed: {
     ...mapGetters([
-      "get_candidate_form1", "get_select_infos"
+      "get_candidate_form1", "get_select_infos","get_candidate_picture"
     ]),
   },
   data() {
@@ -235,7 +235,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      "set_candidate_form1",
+      "set_candidate_form1","set_candidate_picture",
     ]),
     check_form(isValid) {
       this.submitted = true;
@@ -266,7 +266,7 @@ export default {
       this.passport_city = this.get_candidate_form1.passport_city;
       this.passport_date = this.get_candidate_form1.passport_date;
       this.passport_date2 = this.get_candidate_form1.passport_date2;
-      this.image = this.get_candidate_form1.avatar_picture? this.get_candidate_form1.avatar_picture : {
+      this.image = this.get_candidate_picture? this.get_candidate_picture : {
         src: null,
         type: "image/jpg",
         blob:null,
@@ -292,10 +292,10 @@ export default {
         passport_city: this.passport_city,
         passport_date: this.passport_date,
         passport_date2: this.passport_date2,
-        avatar_picture: this.image,
         phone: this.phone,
 
       }
+      this.set_candidate_picture(this.image)
       this.set_candidate_form1(data)
 
     },
@@ -315,7 +315,6 @@ export default {
 
   validations() {
     return {
-
       firt_name: { required: helpers.withMessage("Maydon to'ldirilishi shart!", required) },
       last_name: { required: helpers.withMessage("Maydon to'ldirilishi shart!", required) },
       third_name: { required: helpers.withMessage("Maydon to'ldirilishi shart!", required) },

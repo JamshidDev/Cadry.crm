@@ -24,7 +24,7 @@
     "node-polyfill-webpack-plugin": "^2.0.0",
     "primeflex": "^3.2.1",
     "primeicons": "^5.0.0",
-    "primevue": "^3.15.0",
+    "primevue": "^3.26.1",
     "vee-validate": "^4.6.9",
     "vue": "^3.2.45",
     "vue-advanced-cropper": "^2.8.1",

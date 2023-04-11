@@ -56,6 +56,7 @@
             </div>
         </div>
         <CheckLoader ref="ref_check_loader" />
+        <Toast position="top-right" />
     </div>
 </template>
 
@@ -115,7 +116,7 @@ export default {
     },
     computed: {
         ...mapGetters([
-            "get_candidate_relatives", "get_candidate_careers", "get_candidate_form1", "get_candidate_form2", "get_candidate_academy"
+            "get_candidate_relatives", "get_candidate_careers", "get_candidate_form1", "get_candidate_form2", "get_candidate_academy","get_candidate_picture"
         ]),
     },
     methods: {
@@ -123,7 +124,6 @@ export default {
             "set_select_infos",
         ]),
         next_Step() {
-
             // this.active_step++;
             if (this.active_step == 1) {
                 this.$refs.ref_form1.remote_check()
@@ -152,7 +152,6 @@ export default {
             })
         },
         submit_msg() {
-            console.log(this.get_candidate_form1);
             let candidate = new FormData();
             candidate.append('first_name', this.get_candidate_form1.firt_name);
             candidate.append('last_name', this.get_candidate_form1.last_name);
@@ -171,7 +170,7 @@ export default {
             candidate.append('pass_region_id', this.get_candidate_form1.passport_region.id);
             candidate.append('pass_city_id', this.get_candidate_form1.passport_city.id);
             candidate.append('pass_city_id', this.get_candidate_form1.passport_city.id);
-            candidate.append('photo', this.get_candidate_form1.avatar_picture.blob);
+            candidate.append('photo', this.get_candidate_picture.blob);
             candidate.append('phone', this.get_candidate_form1.phone);
             candidate.append('education_id', this.get_candidate_form2.academy.id);
             candidate.append('academictitle_id', this.get_candidate_form2.academy_title.id);
@@ -186,10 +185,6 @@ export default {
             candidate.append('career', JSON.stringify(this.get_candidate_careers));
             candidate.append('institut', JSON.stringify(this.get_candidate_academy));
 
-            console.log(this.get_candidate_academy);
-
-
-
 
             SlugService.add_condidate(
                 {
@@ -197,14 +192,28 @@ export default {
                     data: candidate,
                 }
             ).then((res) => {
-                this.$refs.ref_form5.submitted_msg(res.data)
+                this.$refs.ref_form5.submitted_msg(res.data);
+                localStorage.removeItem('candidate_relatives');
+                localStorage.removeItem('candidate_careers');
+                localStorage.removeItem('candidate_form1');
+                localStorage.removeItem('candidate_form2');
+                localStorage.removeItem('candidate_academy');
+
             }).catch((error) => {
-                console.log(error);
+                console.log(error.message);
+                this.$refs.ref_form5.stop_loading();
+                this.$toast.add({
+              severity: "error",
+              summary: error.message,
+              detail: "Iltimos keyinroq qayta urinib ko'ring",
+              life: 4000,
+            });
             })
         }
     },
     created() {
-        this.get_confirm_link()
+        this.get_confirm_link();
+       
     }
 }
 </script>

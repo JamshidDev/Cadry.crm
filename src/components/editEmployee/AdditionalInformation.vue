@@ -854,19 +854,21 @@
   </div>
 </template>
 <script>
-import DeleteButton from "../buttons/DeleteButton.vue";
-import EditButton from "../buttons/EditButton.vue";
-import ViewButton from "@/components/buttons/ViewButton.vue";
-import formatter from "../../util/formatter.js";
-import ProgressBarLoader from "../loaders/ProgressBarLoader.vue";
-import employeeAdditionalService from "../../service/servises/employeeAdditionalService";
-import employeeIncentiveService from "../../service/servises/employeeIncentiveService";
-import employeeStuff from "../../service/servises/employeeStuff";
-import employeeMed from "../../service/servises/employeeMed";
-import VacationService from '@/service/servises/VacationService'
-import VacationDate from '@/service/servises/VacationDate'
+import ViewButton from '@/components/buttons/ViewButton.vue';
+import VacationDate from '@/service/servises/VacationDate';
+import VacationService from '@/service/servises/VacationService';
 
+import employeeAdditionalService
+  from '../../service/servises/employeeAdditionalService';
+import employeeIncentiveService
+  from '../../service/servises/employeeIncentiveService';
+import employeeMed from '../../service/servises/employeeMed';
+import employeeStuff from '../../service/servises/employeeStuff';
+import formatter from '../../util/formatter.js';
 import AddButton from '../buttons/AddButton.vue';
+import DeleteButton from '../buttons/DeleteButton.vue';
+import EditButton from '../buttons/EditButton.vue';
+import ProgressBarLoader from '../loaders/ProgressBarLoader.vue';
 
 export default {
   components: {
@@ -927,14 +929,12 @@ export default {
       employeeAdditionalService
         .get_CadryPunishment({ id })
         .then((res) => {
-          console.log(res.data);
           this.punishmentList = res.data.punishments;
 
           this.controlLoader(false);
         })
         .catch((error) => {
           this.controlLoader(false);
-          console.log(error);
         });
     },
     addItemPunishment() {
@@ -979,7 +979,6 @@ export default {
           });
           })
           .catch((error) => {
-            console.log(error);
           });
       } else {
         employeeAdditionalService
@@ -994,7 +993,6 @@ export default {
           });
           })
           .catch((error) => {
-            console.log(error);
           });
       }
     },
@@ -1012,7 +1010,6 @@ export default {
           });
         })
         .catch((error) => {
-          console.log(error);
         });
     },
 
@@ -1020,11 +1017,9 @@ export default {
       employeeIncentiveService
         .get_CadryIncentive({ id })
         .then((res) => {
-          console.log(res.data);
           this.incentiveList = res.data.incentives;
         })
         .catch((error) => {
-          console.log(error);
         });
     },
 
@@ -1079,7 +1074,6 @@ export default {
             this.get_Incentive(this.$route.params.id);
           })
           .catch((error) => {
-            console.log(error);
           });
       } else {
         employeeIncentiveService
@@ -1094,7 +1088,6 @@ export default {
             this.get_Incentive(this.$route.params.id);
           })
           .catch((error) => {
-            console.log(error);
           });
       }
     },
@@ -1142,7 +1135,6 @@ export default {
     },
 
     uploadFile(event) {
-      console.log(event);
       const { files } = event.target;
       let fileArray = files[0].name.split(".");
       let extention = fileArray[fileArray.length - 1];
@@ -1235,7 +1227,6 @@ export default {
         date2:formatter.outDateFormatter(this.med_date2),
         result:this.med_comment,
       }
-      console.log(this.med_id);
       employeeMed.update_CadryMed({id:this.med_id, data}).then((res)=>{
         this.get_cadryMed(this.$route.params.id);
         this.$toast.add({
@@ -1266,7 +1257,6 @@ export default {
 
     get_vacationList(id){
       VacationService.get_CadryVacationList({id}).then((res)=>{
-        console.log(res.data.vacations);
         this.VacationList = res.data.vacations
       })
     },
@@ -1285,7 +1275,6 @@ export default {
 
     get_VacationDate(){
       VacationDate.get_Cadry_Vacation_Date({cadry_id:this.$route.params.id}).then((res)=>{
-        console.log(res.data);
       })
     },
 
@@ -1313,7 +1302,6 @@ export default {
     this.get_vacationList(this.$route.params.id)
     this.get_punishment(this.$route.params.id, true);
     this.get_VacationDate();
-    console.log(12);
   },
 };
 </script>

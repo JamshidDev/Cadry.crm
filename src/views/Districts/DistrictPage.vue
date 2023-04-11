@@ -4,7 +4,7 @@
             <div class="grid">
                 <div class="col-12 pb-0">
                     <bread-crumb
-                        :breadCump="[{ name: 'Viloyatlar', path: '/admin/country-zone' }, { name: 'Shtatlar', path: '' },]"></bread-crumb>
+                        :breadCump="[{ name: 'Viloyatlar', path: '/admin/country-zone' }, { name: 'Tumanlar', path: '' },]"></bread-crumb>
                 </div>
                 <div class="col-12 y-0 pt-0 pb-1">
                     <span class=" text-sm  xl:text-lg lg:text-base font-semibold"> <span class="text-blue-600">{{
@@ -57,8 +57,8 @@
                     </template>
                     <template #body="slotProps">
                         <div class="flex gap-2">
-                            <view-button-v v-tooltip.bottom="`Xodimlarni ko'rish`" :icon="'pi-users'"
-                                @click="goCadry(slotProps.data.id, slotProps.data.staff_fullname)"></view-button-v>
+                            <!-- <view-button-v v-tooltip.bottom="`Xodimlarni ko'rish`" :icon="'pi-users'"
+                                @click="goCadry(slotProps.data.id, slotProps.data.name)"></view-button-v> -->
                             <edit-button :editItem="slotProps.data" @editEvent="editStuff($event)"></edit-button>
                             <delete-button :deleteItem="slotProps.data.id"
                                 @deleteAcceptEvent="deleteItemDepStuff($event)"></delete-button>
@@ -112,16 +112,19 @@
     </div>
 </template>
 <script>
-import DeleteButton from "@/components/buttons/DeleteButton.vue";
-import EditButton from "@/components/buttons/EditButton.vue";
-import ViewButtonV from "@/components/buttons/ViewButtonV.vue";
-import DepartmentStuffService from "@/service/servises/DepartmentStuffService.js";
-import DepartmentStuffLoader from "@/components/loaders/DepartmentStuffLoader.vue";
-import DepartmentService from "@/service/servises/DepartmentService.js";
-import CountryZone from "@/service/servises/Country-zone.js";
-import BreadCrumb from "@/components/BreadCrumb/BreadCrumb.vue";
-import NoDataComponent from "@/components/EmptyComponent/NoDataComponent.vue";
-import TablePagination from "@/components/Pagination/TablePagination.vue";
+import BreadCrumb from '@/components/BreadCrumb/BreadCrumb.vue';
+import DeleteButton from '@/components/buttons/DeleteButton.vue';
+import EditButton from '@/components/buttons/EditButton.vue';
+import ViewButtonV from '@/components/buttons/ViewButtonV.vue';
+import NoDataComponent from '@/components/EmptyComponent/NoDataComponent.vue';
+import DepartmentStuffLoader
+  from '@/components/loaders/DepartmentStuffLoader.vue';
+import TablePagination from '@/components/Pagination/TablePagination.vue';
+import CountryZone from '@/service/servises/Country-zone.js';
+import DepartmentService from '@/service/servises/DepartmentService.js';
+import DepartmentStuffService
+  from '@/service/servises/DepartmentStuffService.js';
+
 export default {
     components: {
         DeleteButton,
@@ -250,15 +253,15 @@ export default {
             this.$router.push("/admin/partfactory");
         },
 
-        goCadry(id, name) {
-            this.$router.push({
-                name: "departmentstuffcadry", params: {
-                    id, name,
-                    depId: this.$route.params.id,
-                    depName: this.$route.params.name,
-                }
-            });
-        },
+        // goCadry(id, name) {
+        //     this.$router.push({
+        //         name: "departmentstuffcadry", params: {
+        //             id, name,
+        //             depId: this.$route.params.id,
+        //             depName: this.$route.params.name,
+        //         }
+        //     });
+        // },
         searchByName() {
             console.log(this.searchPartName);
         },

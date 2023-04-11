@@ -382,6 +382,20 @@ const routes = [
         },
       },
       {
+        path: "/business-trip",
+        name: "business-trip",
+        component: function () {
+          return import("../views/BusinessTrip/BusinessTrip.vue");
+        },
+      },
+      {
+        path: "/admin/recomended/cadry/:id",
+        name: "recomended-cadry",
+        component: function () {
+          return import("../views/Preview/Preview.vue");
+        },
+      },
+      {
         path: "/admin/vacation",
         name: "vacation",
         component: function () {
