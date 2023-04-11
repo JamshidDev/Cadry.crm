@@ -225,7 +225,7 @@ export default {
         {
           label: "Xavsizlik",
           icon: "pi pi-shield",
-          visible: () => this.get_adminPermissions("admin"),
+          visible: () => this.get_adminPermissions("organization_archive"),
           items: [
             {
               label: "Ma'sullar",
@@ -236,7 +236,8 @@ export default {
             {
               label: "Kirishlar",
               icon: "pi pi-book",
-              visible: () => this.get_adminPermissions("admin"),
+              visible: () => this.get_adminPermissions("organization_archive"),
+              to:'/admin/login-history'
             },
             {
               label: "Amallar",

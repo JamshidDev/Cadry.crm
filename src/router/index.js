@@ -368,6 +368,13 @@ const routes = [
         },
       },
       {
+        path: "/admin/login-history",
+        name: "login-history",
+        component: function () {
+          return import("../views/Secure/Login_History.vue");
+        },
+      },
+      {
         path: "/admin/deadline",
         name: "deadline",
         component: function () {

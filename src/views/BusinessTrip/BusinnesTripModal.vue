@@ -136,6 +136,7 @@ import formatter from '../../util/formatter';
 export default {
     data() {
         return {
+            is_edit_event:false,
             dialog: false,
             country_id:null,
             commander_payment_id:null,
@@ -224,6 +225,7 @@ export default {
     },
     methods: {
         control_modal() {
+            this.is_edit_event = false;
             this.dialog = true;
         },
         
@@ -242,7 +244,12 @@ export default {
                 days:this.days,
                 reason:this.reason,
             }
-            this.$emit('commander_send', data);
+            if(this.is_edit_event){
+                this.$emit('edit_commander_send', data);
+            }else{
+                this.$emit('commander_send', data);
+            }
+            
             this.dialog=false;
 
             }
@@ -258,6 +265,7 @@ export default {
             })
         },
         edit_modal(data){
+            this.is_edit_event = true;
             this.position = data.position;
             this.date1 = this.formatter.interDateFormatter(data.date1);
             this.date2 = this.formatter.interDateFormatter(data.date2);
@@ -265,9 +273,9 @@ export default {
             this.reason = data.reason;
             this.command_number =data.command_number;
             this.date_command = this.formatter.interDateFormatter(data.date_command);
-            // this.country_id = data.country_id.id;
-            // this.commander_payment_id = data.country_id.commander_payment_id;
-            // this.commander_pupose_id = data.country_id.commander_pupose_id;
+            this.country_id = data.country;
+            this.commander_payment_id = data.commander_payment;
+            this.commander_pupose_id = data.commander_pupose;
 
             this.submitted = false;
             this.dialog=true;

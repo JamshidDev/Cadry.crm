@@ -12,6 +12,10 @@ const commander_cadry = (payload)=>{
     return axios.get(`/api/cadry/commanders`)
 }
 
+const edit_commander_cadry = (payload)=>{
+    return axios.put(`/api/cadry/commander/${payload.commander_id}/update`, payload.data)
+}
+
 const delete_commander = (payload)=>{
     return axios.delete(`/api/cadry/commander/${payload.commander_id}/delete`)
 }
@@ -19,4 +23,4 @@ const delete_commander = (payload)=>{
 
 
 
-export default {commander_info,add_commander, commander_cadry, delete_commander}
+export default {commander_info,add_commander, commander_cadry, delete_commander, edit_commander_cadry}

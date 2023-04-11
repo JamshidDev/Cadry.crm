@@ -166,7 +166,7 @@
         <div class="col-12 py-0" v-show="loader">
             <med-loader></med-loader>
         </div>
-        <BusinnesTripModal ref="edit_business" />
+        <BusinnesTripModal ref="edit_business" @edit_commander_send="edit_commander($event)" />
         <DeleteModal ref="delete_modal" @delete_accept="delete_element" />
         <Toast position="bottom-right" />
     </div>
@@ -258,6 +258,20 @@ export default {
         },
         delete_item() {
             this.$refs.delete_modal.control_modal();
+        },
+        edit_commander(data){
+            commanderService.edit_commander_cadry({
+                commander_id:this.active_cadry.id,
+                data,
+            }).then((res)=>{
+                this.$toast.add({
+                    severity: "success",
+                    summary: "Muvofaqqiyatli bajarildi",
+                    detail: "Tahrirlandi",
+                    life: 2000,
+                });
+                this.get_list(false);
+            })
         },
         delete_element() {
             commanderService.delete_commander({ commander_id: this.active_cadry.id }).then((res) => {
