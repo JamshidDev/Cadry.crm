@@ -228,9 +228,15 @@
             </div>
 
             <div class="col-12 sm:col-12 md:col-6 lg:col-3 xl:col-3">
-              <h6 class="mb-2 pl-2">Berilgan sana</h6>
+              <h6 class="mb-2 pl-2">Pasport berilgan sanasi</h6>
               <Calendar class="w-full" :manualInput="true" id="new_cadry_passportDate" v-model="v$.passportDate.$model"
                 :class="{ 'p-invalid': v$.passportDate.$invalid && submitted }" v-maska="'##/##/####'"
+                placeholder="Sanani tanlang" dateFormat="dd/mm/yy" :showButtonBar="true" />
+            </div>
+            <div class="col-12 sm:col-12 md:col-6 lg:col-3 xl:col-3">
+              <h6 class="mb-2 pl-2">Pasport tugash sanasi</h6>
+              <Calendar class="w-full" :manualInput="true" id="new_cadry_passportDate" v-model="v$.pasport_date2.$model"
+                v-maska="'##/##/####'"  :class="{ 'p-invalid': v$.pasport_date2.$invalid && submitted }"
                 placeholder="Sanani tanlang" dateFormat="dd/mm/yy" :showButtonBar="true" />
             </div>
           </div>
@@ -544,6 +550,7 @@ export default {
       passportRegion: null,
       passportDistrict: null,
       passportDate: "",
+      pasport_date2:null,
 
       positionDate: "",
       positionPart: null,
@@ -627,6 +634,7 @@ export default {
       passportRegion: globalValidate.passportRegion,
       passportDistrict: globalValidate.passportDistrict,
       passportDate: globalValidate.passportDate,
+      pasport_date2 :globalValidate.pasport_date2,
 
       positionDate: globalValidate.positionDate,
       positionPart: globalValidate.positionPart,
@@ -703,7 +711,8 @@ export default {
         form.append("pass_city_id", this.passportDistrict.id)
         form.append("jshshir", this.passportJSHR)
         form.append("passport", this.passportSeriya)
-        form.append("pass_date", Formatter.outDateFormatter(this.passportDate))
+        form.append("pass_date", Formatter.outDateFormatter(this.passportDate));
+        form.append("pass_date2", Formatter.outDateFormatter(this.pasport_date2));
         form.append("job_date", Formatter.outDateFormatter(this.positionFirstDate))
         form.append("post_date", Formatter.outDateFormatter(this.positionDate))
         form.append("worklevel_id", this.positionDegree)

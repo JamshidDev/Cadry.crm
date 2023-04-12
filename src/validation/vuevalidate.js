@@ -61,6 +61,9 @@ export const globalValidate = {
   passportDate:{
     required,
   },
+  pasport_date2:{
+    required,
+  },
 
 
 //   Position validate

@@ -60,7 +60,7 @@
                         <div class="w-full text-center font-medium text-sm">{{ slotProps.data.email }}</div>
                     </template>
                 </Column>
-                <Column style="min-width:100px; width: 100px;">
+                <Column style="min-width:130px; width: 130px;">
                     <template #header>
                         <div class="text-800 text-sm lg:text-base xl:text-sm uppercase font-medium">
                             Sana
@@ -68,7 +68,7 @@
                     </template>
                     <template #body="slotProps">
                         <div class="w-full text-center font-medium text-sm">
-                            {{ formatter.arrowDateFormat(slotProps.data.created_at) }}
+                            {{ get_time(slotProps.data.created_at) }}
                         </div>
                     </template>
                 </Column>
@@ -131,7 +131,6 @@ import BreadCrumb from '@/components/BreadCrumb/BreadCrumb.vue';
 import NoDataComponent from '@/components/EmptyComponent/NoDataComponent.vue';
 import MedLoader from '@/components/loaders/MedLoader.vue';
 import TablePagination from '@/components/Pagination/TablePagination.vue';
-import DeadlineService from '@/service/servises/DeadlineService';
 import formatter from '@/util/formatter';
 
 import SecureService from '../../service/servises/SecureService';
@@ -175,7 +174,6 @@ export default {
         get_log_admin() {
             this.loader = true;
             SecureService.get_log_admin(this.params).then((res) => {
-                console.log(res.data);
                 this.totalPage = res.data.users.pagination.total;
                 let number = (this.params.page - 1) * this.params.per_page;
                 res.data.users.data.forEach((item) => {
@@ -191,6 +189,12 @@ export default {
             this.params.per_page = event.per_page;
             this.get_log_admin()
         },
+        get_time(time){
+            let date = this.formatter.arrowDateFormat(time);
+            let hours = new Date(time).getHours();
+            let minutes = new Date(time).getMinutes();
+            return date + ` ${hours>9? hours : '0'+hours}:${minutes>9? minutes : '0'+minutes }`
+        }
 
     },
     created() {

@@ -187,9 +187,15 @@
           </div>
 
           <div class="col-12 sm:col-12 md:col-6 lg:col-3 xl:col-3">
-            <h6 class="mb-2 pl-2 text-500">Berilgan sana</h6>
+            <h6 class="mb-2 pl-2 text-500">Pasport berilgan sana</h6>
             <Calendar class="w-full font-semibold" :manualInput="true" id="passportDate" v-model="v$.passportDate.$model"
               :class="{ 'p-invalid': v$.passportDate.$invalid && submitted }" v-maska="'##/##/####'"
+              placeholder="Sanani tanlang" dateFormat="dd/mm/yy" :showButtonBar="true" />
+          </div>
+          <div class="col-12 sm:col-12 md:col-6 lg:col-3 xl:col-3">
+            <h6 class="mb-2 pl-2 text-500">Pasport tugash sana</h6>
+            <Calendar class="w-full font-semibold" :manualInput="true" id="pasport_date2" v-model="v$.pasport_date2.$model"
+              :class="{ 'p-invalid': v$.pasport_date2.$invalid && submitted }" v-maska="'##/##/####'"
               placeholder="Sanani tanlang" dateFormat="dd/mm/yy" :showButtonBar="true" />
           </div>
 
@@ -633,6 +639,7 @@ export default {
       passportRegion: null,
       passportDistrict: null,
       passportDate: "",
+      pasport_date2:null,
       employeePhone: null,
       positionFirstDate: "",
       positionDegree: null,
@@ -663,6 +670,7 @@ export default {
         pass_region_id: null,
         pass_city_id: null,
         pass_date: null,
+        pass_date2:null,
         passport: null,
         jshshir: null,
         sex: null,
@@ -757,6 +765,7 @@ export default {
       passportRegion: globalValidate.passportRegion,
       passportDistrict: globalValidate.passportDistrict,
       passportDate: globalValidate.passportDate,
+      pasport_date2:globalValidate.pasport_date2,
       employeePhone: globalValidate.employeePhone,
       employeeGender: globalValidate.employeeGender,
 
@@ -880,6 +889,7 @@ export default {
           this.passportDistrict = cadry.pass_city_id;
           this.pass_city_id = cadry.pass_city_id.id;
           this.passportDate = formatter.interDateFormatter(cadry.pass_date);
+          this.pasport_date2 =cadry.pass_date2? formatter.interDateFormatter(cadry.pass_date2) : null,
           this.positionFirstDate = formatter.interDateFormatter(cadry.job_date);
           formatter.outDateFormatter(cadry.job_date);
           this.positionDegree = cadry.worklevel_id.id;
@@ -917,6 +927,7 @@ export default {
       this.cadry.pass_region_id = this.passportRegion;
       this.cadry.pass_city_id = this.passportDistrict.id;
       this.cadry.pass_date = formatter.outDateFormatter(this.passportDate);
+      this.cadry.pass_date2 =   formatter.outDateFormatter(this.pasport_date2);
       this.cadry.passport = this.passportSeriya;
       this.cadry.jshshir = this.passportJSHR;
       this.cadry.sex = this.employeeGender;

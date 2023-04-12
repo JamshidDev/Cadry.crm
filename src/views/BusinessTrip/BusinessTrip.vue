@@ -168,7 +168,8 @@
         </div>
         <BusinnesTripModal ref="edit_business" @edit_commander_send="edit_commander($event)" />
         <DeleteModal ref="delete_modal" @delete_accept="delete_element" />
-        <Toast position="bottom-right" />
+        <ConfirmModal ref="confirm_modal" @confirm_accept="confirm_commander" />
+        <Toast position="bottom-right"  />
     </div>
 </template>
 
@@ -182,6 +183,7 @@ import formatter from '@/util/formatter';
 import DeleteModal from '@/views/BusinessTrip/DeleteModal.vue';
 
 import BusinnesTripModal from './BusinnesTripModal.vue';
+import ConfirmModal from './ConfirmModal.vue';
 
 export default {
     components: {
@@ -192,6 +194,7 @@ export default {
         MedLoader,
         BusinnesTripModal,
         DeleteModal,
+        ConfirmModal,
     },
     data() {
         return {
@@ -210,6 +213,13 @@ export default {
                 {
                     label: 'Amallar',
                     items: [
+                    {
+                            label: "Tasdiqlash",
+                            icon: 'pi pi-check-square',
+                            command: () => {
+                                this.confirm_modal();
+                            }
+                        },
                         {
                             label: "Tahrirlash",
                             icon: 'pi pi-pencil',
@@ -259,6 +269,9 @@ export default {
         delete_item() {
             this.$refs.delete_modal.control_modal();
         },
+        confirm_modal(){
+            this.$refs.confirm_modal.control_modal();
+        },
         edit_commander(data){
             commanderService.edit_commander_cadry({
                 commander_id:this.active_cadry.id,
@@ -268,6 +281,18 @@ export default {
                     severity: "success",
                     summary: "Muvofaqqiyatli bajarildi",
                     detail: "Tahrirlandi",
+                    life: 2000,
+                });
+                this.get_list(false);
+            })
+        },
+        confirm_commander(){
+            commanderService.commander_accept({commander_id:this.active_cadry.id}).then((res)=>{
+                console.log(res.data);
+                this.$toast.add({
+                    severity: "success",
+                    summary: "Muvofaqqiyatli bajarildi",
+                    detail: "Tasdiqlandi",
                     life: 2000,
                 });
                 this.get_list(false);
