@@ -7,7 +7,7 @@ const instance = axios.create({
     
     //  baseURL: `http://192.168.217.187`
 
-    baseURL: `https://exodim.itdevs.uz`
+    baseURL: `http://api-cadry.odas.uz`
 });
 
 instance.interceptors.request.use(function (config) {
