@@ -14,7 +14,7 @@
     </div>
     <div class="col-12 md:col-6 lg:col-6 xl:col-6">
       <div class="flex justify-content-end">
-        <Button icon="pi pi-trash" @click="controFinishDialog(true)" class="p-button-danger p-button-sm mx-2"
+        <Button v-if="get_adminPermissions('organization_departments')" icon="pi pi-trash" @click="controFinishDialog(true)" class="p-button-danger p-button-sm mx-2"
           label="Yakunlash" v-tooltip.bottom="`Xodim mehnat faoliyatini yakunlash`" />
         <Button icon="pi pi-save" @click="updateEmployee(!v$.$invalid)" class="p-button-secondary p-button-sm"
           label="Saqlash" v-tooltip.bottom="`Ma'lumotlarni qayta saqlash`" />
@@ -247,7 +247,7 @@
       </div>
 
       <!-- Position information details -->
-      <div class="col-12 mb-4 border-1 border-300 border-round-sm py-4">
+      <div class="col-12 mb-4 border-1 border-300 border-round-sm py-4" v-if="get_adminPermissions('organization_departments')">
         <div class="grid xl:px-4 xl:mx-4 lg:px-2 xl:mx-2">
           <div class="col-12 xl:col-6"></div>
           <div class="col-12 xl:col-6 flex justify-content-end">
@@ -576,6 +576,7 @@
 import 'vue-advanced-cropper/dist/style.css';
 
 import { Cropper } from 'vue-advanced-cropper';
+import { mapGetters } from 'vuex';
 
 import default_avatar from '@/assets/avatar/default_avatar.png';
 import DeleteButton from '@/components/buttons/DeleteButton.vue';
@@ -774,6 +775,7 @@ export default {
     };
   },
   computed: {
+    ...mapGetters(["get_adminPermissions", "get_TitlePermission"]),
     prikaz_num_err() {
       if (!this.prikaz_number) {
         return true;

@@ -9,6 +9,9 @@ const get_exportAnyDetails = (payload)=>{
     return axios.get(`/api/organization/cadry/ExportToExcel`, {params:payload})
 }
 
+const get_Cadry_Resume = (payload)=>{
+    return axios.get(`/api/cadry/download/resume/${payload.id}`, { responseType: 'blob' })
+}
 const get_cadryZip = (payload)=>{
     return axios.get(`/api/cadry/ExportCadriesToWord`, {params:payload})
 }
@@ -32,4 +35,4 @@ const export_department = (payload)=>{
 
 
 
-export default {get_ResumeDetails, get_exportAnyDetails, get_cadryZip,get_Task,delete_Task,export_department}
+export default {get_ResumeDetails,get_Cadry_Resume, get_exportAnyDetails, get_cadryZip,get_Task,delete_Task,export_department}

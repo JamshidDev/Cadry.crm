@@ -143,7 +143,6 @@ export default {
           authService
             .get_AdminDetails()
             .then((res) => {
-              console.log(res.data);
               let permissions = [];
               if (
                 res.data.roles.permissions &&

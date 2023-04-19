@@ -734,6 +734,7 @@
       <word-template :cadry_id="Dowload_cadry_id" v-show="false" ref="word_resume"></word-template>
       <employee-details ref="show_resume"></employee-details>
       <export-panel ref="export_to_excel"></export-panel>
+      <Cadry_Info ref="view_cadty_resume"></Cadry_Info>
       <Dialog v-model:visible="selectionDialog" :breakpoints="{
         '1960px': '30vw',
         '1600px': '40vw',
@@ -793,6 +794,7 @@ import DownloadButton from '@/components/buttons/DownloadButton.vue';
 import commanderService from '@/service/servises/commanderService';
 import EksportService from '@/service/servises/EksportService';
 import LeaderService from '@/service/servises/LeaderService';
+import Cadry_Info from '@/views/View_Cadry/Cadry_Info.vue';
 
 import BreadCrumb from '../components/BreadCrumb/BreadCrumb.vue';
 import ExportPanel from '../components/Eksport/ExportPanel.vue';
@@ -817,6 +819,7 @@ export default {
     ExportPanel,
     BreadCrumb,
     BusinnesTripModal,
+    Cadry_Info,
   },
   data() {
     return {
@@ -838,7 +841,7 @@ export default {
               label: "Ko'rish",
               icon: 'pi pi-id-card',
               command: () => {
-                this.goPushDetails()
+                this.$refs.view_cadty_resume.control_sidebar(this.active_cadry_id)
               }
             },
             {

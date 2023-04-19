@@ -280,7 +280,8 @@
   </div>
 </template>
 <script>
-import EksportService from "../../service/servises/EksportService";
+import EksportService from '../../service/servises/EksportService';
+
 export default {
   props: {
     cadry_id: {
@@ -318,19 +319,19 @@ export default {
     },
   },
   methods: {
-    generateWord(id) {
-      EksportService.get_ResumeDetails({ id: id })
-        .then((res) => {
-          this.editTemplate(res.data);
-          let fileName = res.data.cadry.fullname.split(" ");
+    generateWord(id, fullname) {
+      console.log(id);
+      EksportService.get_Cadry_Resume({ id }).then((response) => {
+        var fileURL = window.URL.createObjectURL(new Blob([response.data], { type: 'application/application/vnd.openxmlformats-officedocument.wordprocessingml.document' }));
+        var fileLink = document.createElement('a');
+        fileLink.href = fileURL;
+        fileLink.setAttribute('download', `${fullname? fullname : 'Resume'}.docx`);
+        document.body.appendChild(fileLink);
+        fileLink.click();
 
-          setTimeout(() => {
-            this.Export2Word("exportContent", fileName[1]);
-          }, 800);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      }).catch((error) => {
+        console.log(error);
+      })
     },
     async editTemplate(item) {
       this.cadry.fullName = item.cadry.fullname;
