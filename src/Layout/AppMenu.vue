@@ -240,6 +240,12 @@ export default {
               to:'/admin/login-history'
             },
             {
+              label: "Turniket",
+              icon: "pi pi-shield",
+              visible: () => this.get_adminPermissions("organization_archive"),
+              to:'/admin/turnicet-history'
+            },
+            {
               label: "Amallar",
               icon: "pi pi-shield",
               visible: () => this.get_adminPermissions("admin"),

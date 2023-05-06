@@ -375,6 +375,13 @@ const routes = [
         },
       },
       {
+        path: "/admin/turnicet-history",
+        name: "turnicet-history",
+        component: function () {
+          return import("../views/Turnicatet/Turnicet.vue");
+        },
+      },
+      {
         path: "/admin/deadline",
         name: "deadline",
         component: function () {
