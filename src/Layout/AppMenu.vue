@@ -242,7 +242,7 @@ export default {
             {
               label: "Turniket",
               icon: "pi pi-shield",
-              visible: () => this.get_adminPermissions("organization_archive"),
+              visible: () => this.get_adminPermissions("turnicet"),
               to:'/admin/turnicet-history'
             },
             {

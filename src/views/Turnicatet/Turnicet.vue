@@ -13,22 +13,24 @@
                             </span>
                         </div>
                         <div class="col-6 xl:col-3 lg:col-4 md:col-6 col-12 pr-0">
-                            <InputText type="text"  class="w-full p-inputtext-sm" placeholder="Qidiruv"
-                                v-model="params.search"  @keyup.enter="get_deadlines()" />
+                            <InputText type="text" class="w-full p-inputtext-sm" placeholder="Qidiruv"
+                                v-model="params.search" @keyup.enter="get_deadlines()" />
                         </div>
                         <div class="col-6 xl:col-3 lg:col-4 md:col-6 col-12 pr-0">
                             <Calendar class="w-full p-inputtext-sm" :manualInput="true" v-model="date.datetime1"
-                            @date-select="change_calendar()"   dateFormat="dd/mm/yy" v-maska="'##/##/####'" placeholder="Sana dan..." />
+                                hourFormat="24" showTime dateFormat="dd/mm/yy" v-maska="'##/##/####'"
+                                placeholder="Sana dan..." />
                         </div>
                         <div class="col-6 xl:col-3 lg:col-4 md:col-6 col-12 pr-0">
-                            <Calendar class="w-full p-inputtext-sm" :manualInput="true" v-model="date.datetime2" 
-                            @date-select="change_calendar()" dateFormat="dd/mm/yy" v-maska="'##/##/####'" placeholder="Sana gacha..." />
+                            <Calendar class="w-full p-inputtext-sm" :manualInput="true" v-model="date.datetime2"
+                                hourFormat="24" showTime dateFormat="dd/mm/yy" v-maska="'##/##/####'"
+                                placeholder="Sana gacha..." />
                         </div>
                         <div class="col-6 xl:col-3 lg:col-4 md:col-6 col-12 pr-0 flex justify-content-between">
                             <Dropdown v-model="params.status" :options="status_list" optionLabel="name" optionValue="id"
-                                class="p-inputtext-sm w-10" placeholder="Kategoriyani tanlang"
-                                @change="get_deadlines()" />
-                                <Button   @click="clear_filter()" icon="pi pi-filter-slash" size="small" severity="danger"  />
+                                class="p-inputtext-sm w-8" placeholder="Kategoriyani tanlang" @change="get_deadlines()" />
+                            <Button @click="get_deadlines()" icon="pi pi-search" size="small" severity="primary" />
+                            <Button @click="clear_filter()" icon="pi pi-filter-slash" size="small" severity="danger" />
                         </div>
                     </div>
                 </div>
@@ -149,9 +151,9 @@ export default {
 
             formatter,
             totalPage: 0,
-            date:{
-                datetime1:null, 
-                datetime2:null,
+            date: {
+                datetime1: null,
+                datetime2: null,
             },
             params: {
                 page: 1,
@@ -166,6 +168,8 @@ export default {
     methods: {
         get_deadlines() {
             this.loader = true;
+            this.params.datetime1 = this.date.datetime1 ? this.formatter.outDateFormatter(this.date.datetime1) : null;
+            this.params.datetime2 = this.date.datetime2 ? this.formatter.outDateFormatter(this.date.datetime2) : null;
             let params = this.params;
             Turnicated.get_Turnicateds(params).then((res) => {
                 this.totalPage = res.data.cadries.pagination.total;
@@ -188,11 +192,11 @@ export default {
             this.get_deadlines(this.params)
         },
         change_calendar() {
-            this.params.datetime1 = this.date.datetime1?  this.formatter.outDateFormatter(this.date.datetime1) : null;
-            this.params.datetime2 = this.date.datetime2?  this.formatter.outDateFormatter(this.date.datetime2) : null;
+            this.params.datetime1 = this.date.datetime1 ? this.formatter.outDateFormatter(this.date.datetime1) : null;
+            this.params.datetime2 = this.date.datetime2 ? this.formatter.outDateFormatter(this.date.datetime2) : null;
             this.get_deadlines()
         },
-        clear_filter(){
+        clear_filter() {
             this.date.datetime1 = null;
             this.date.datetime2 = null;
             this.params.datetime1 = null;
@@ -203,7 +207,16 @@ export default {
         },
     },
     mounted() {
-        this.get_deadlines()
+        this.get_deadlines();
+        let date = new Date();
+        let year = date.getFullYear();
+        let month = date.getMonth() + 1;
+        let day = date.getDate();
+        let hour = date.getHours()>9? date.getHours() : '0' + date.getHours(); 
+        let minute = date.getMinutes()>9? date.getMinutes() : '0' + date.getMinutes();
+        let second = date.getSeconds()>9? date.getSeconds() : '0' + date.getSeconds();
+
+        
     }
 }
 </script>

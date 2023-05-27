@@ -14,6 +14,10 @@ const outDateFormatter = function (time) {
   return server_format
 };
 
+const turnicated_time_format = (time) =>{
+  
+};
+
 const textDateFormat = function (time){
   let textFormat = new Date(time).toLocaleDateString("en-GB")
   return textFormat.toString()
