@@ -1,9 +1,6 @@
 <template >
   <div class="w-full sidebar_box custom_bg">
-    <Menu
-      :model="item"
-      class="w-full sidebar_menu custom_bg px-2 pb-8 border-none border-noround"
-    />
+    <Menu :model="item" class="w-full sidebar_menu custom_bg px-2 pb-8 border-none border-noround" />
   </div>
 </template>
 <script>
@@ -107,7 +104,7 @@ export default {
             ]),
 
           items: [
-          {
+            {
               label: "Muddatlar",
               icon: "pi pi-clock",
               visible: () =>
@@ -128,7 +125,7 @@ export default {
                 this.get_adminPermissions("organization_vacations"),
               to: "/admin/vacation",
             },
-            
+
             {
               label: "Ta'til muddati",
               icon: "pi pi-calendar",
@@ -136,7 +133,7 @@ export default {
                 this.get_adminPermissions("organization_vacations"),
               to: "/admin/vacation-date",
             },
-           
+
             {
               label: "Tibbiy ko'rik ",
               icon: "pi pi-id-card",
@@ -225,7 +222,8 @@ export default {
         {
           label: "Xavsizlik",
           icon: "pi pi-shield",
-          visible: () => this.get_adminPermissions("organization_archive"),
+          visible: () =>
+            this.get_TitlePermission(["admin","turnicet" ]),
           items: [
             {
               label: "Ma'sullar",
@@ -237,13 +235,13 @@ export default {
               label: "Kirishlar",
               icon: "pi pi-book",
               visible: () => this.get_adminPermissions("organization_archive"),
-              to:'/admin/login-history'
+              to: '/admin/login-history'
             },
             {
               label: "Turniket",
               icon: "pi pi-shield",
               visible: () => this.get_adminPermissions("turnicet"),
-              to:'/admin/turnicet-history'
+              to: '/admin/turnicet-history'
             },
             {
               label: "Amallar",
@@ -272,6 +270,7 @@ export default {
   max-height: 100vh;
   overflow-y: auto !important;
 }
+
 // .sidebar_box::-webkit-scrollbar {
 //   width: 10px;
 //   scrollbar-color: #6ddd69 !important;
@@ -311,6 +310,7 @@ export default {
 
 .sidebar_menu {
   min-height: calc(100vh - 58px);
+
   .p-menuitem {
     font-weight: 500;
     outline-width: 10px;
@@ -320,26 +320,31 @@ export default {
     padding-right: 10px;
     font-size: 18px !important;
   }
+
   .p-menuitem-text {
     color: #aeb2b5 !important;
     font-weight: 400 !important;
   }
+
   .p-menuitem-link:hover {
     background: #51657a !important;
     border-radius: 6px;
   }
- 
+
   .p-menuitem-link:focus {
     border-radius: 6px;
     background: #51657a !important;
   }
+
   .p-menuitem-link:visited {
     border-radius: 6px;
     background: #51657a !important;
   }
+
   .router-link-active {
     border-radius: 6px;
     background: #51657a !important;
+
     .p-menuitem-icon,
     .p-menuitem-text {
       color: #fff !important;
@@ -349,5 +354,4 @@ export default {
 
 .sidebar_menu {
   width: 100%;
-}
-</style>
+}</style>
