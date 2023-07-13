@@ -1,5 +1,4 @@
-import axios from "../index";
-
+import axios from '../index';
 
 const get_Tabels = (payload)=>{
     return axios.get(`/api/tabel/cadries`, {params:payload})
@@ -11,6 +10,12 @@ const dowload_Tabels = (payload)=>{
     return axios.get(`/api/tabel/export?year=${payload.year}&month=${payload.month}`,{ responseType: 'blob' })
 }
 
+const load_Turnicate = (payload)=>{
+    return axios.get(`/api/cadry/tabel/turnicet-load`, {params:payload})
+}
 
 
-export default {get_Tabels, create_Tabels, dowload_Tabels}
+
+
+
+export default {get_Tabels, create_Tabels, dowload_Tabels, load_Turnicate}
