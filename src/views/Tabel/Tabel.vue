@@ -69,6 +69,14 @@
         @click="load_turnicate()"
         label="Turniketdan to'ldirish"
         :loading="loading"
+        v-tooltip.bottom="`Ma'lumotlarni turniketdan to'ldirish`"
+        class="p-button-success text-sm p-button-sm"
+      ></Button>
+      <Button
+        icon="pi pi-download"
+        @click="download_from_turnicate()"
+        label="Turniketdan Yuklash"
+        :loading="turnicate_loading"
         v-tooltip.bottom="`Ma'lumotlarni turniketdan yuklash`"
         class="p-button-success text-sm p-button-sm"
       ></Button>
@@ -251,6 +259,7 @@ export default {
       Formatter,
       loading: false,
       download_loading: false,
+      turnicate_loading:false,
       save_loading: false,
       is_delete: false,
       totalPage: 0,
@@ -318,6 +327,7 @@ export default {
       this.loading = true;
       this.download_loading = true;
       this.save_loading = true;
+      this.turnicate_loading = true;
       TabelService.get_Tabels({
         year: payload.year,
         month: payload.month,
@@ -347,6 +357,8 @@ export default {
         this.loading = false;
         this.download_loading = false;
         this.save_loading = false;
+      this.turnicate_loading = false;
+
       });
     },
 
@@ -354,11 +366,8 @@ export default {
       this.loading = true;
       this.download_loading = true;
       this.save_loading = true;
-      this.pagination_page(
-            [],
-            this.params.per_page,
-            this.params.page
-          );
+      this.turnicate_loading = true;
+      this.pagination_page([], this.params.per_page, this.params.page);
 
       TabelService.load_Turnicate({
         year: this.select_date.year,
@@ -392,6 +401,8 @@ export default {
           this.loading = false;
           this.download_loading = false;
           this.save_loading = false;
+      this.turnicate_loading = false;
+
         });
     },
 
@@ -604,6 +615,38 @@ export default {
         document.body.removeChild(fileLink);
         this.download_loading = false;
       });
+    },
+
+    download_from_turnicate() {
+      this.turnicate_loading = true;
+      TabelService.dowload_from_turnicate({
+        year: this.select_date.year,
+        month: this.select_date.month,
+      }).then((response) => {
+        console.log(response);
+        var fileURL = window.URL.createObjectURL(
+          new Blob([response.data], {
+            type: "application/excelx",
+          })
+        );
+        var fileLink = document.createElement("a");
+        fileLink.href = fileURL;
+        fileLink.setAttribute(
+          "download",
+          `Tabel(${
+            this.select_date.month > 10
+              ? this.select_date.month
+              : "0" + this.select_date.month
+          }-${this.select_date.year}).xlsx`
+        );
+        document.body.appendChild(fileLink);
+        fileLink.click();
+        document.body.removeChild(fileLink);
+        this.download_loading = false;
+      }).finally(()=>{
+      this.turnicate_loading = false;
+
+      })
     },
   },
   created() {

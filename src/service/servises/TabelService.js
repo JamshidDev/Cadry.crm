@@ -9,6 +9,9 @@ const create_Tabels = (payload)=>{
 const dowload_Tabels = (payload)=>{
     return axios.get(`/api/tabel/export?year=${payload.year}&month=${payload.month}`,{ responseType: 'blob' })
 }
+const dowload_from_turnicate = (payload)=>{
+    return axios.get(`/api/tabel/turnicet-download`,{params:payload, responseType: 'blob' })
+}
 
 const load_Turnicate = (payload)=>{
     return axios.get(`/api/cadry/tabel/turnicet-load`, {params:payload})
@@ -18,4 +21,4 @@ const load_Turnicate = (payload)=>{
 
 
 
-export default {get_Tabels, create_Tabels, dowload_Tabels, load_Turnicate}
+export default {get_Tabels, create_Tabels, dowload_Tabels, load_Turnicate, dowload_from_turnicate}
