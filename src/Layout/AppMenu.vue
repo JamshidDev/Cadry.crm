@@ -109,7 +109,7 @@ export default {
               icon: "pi pi-clock",
               visible: () =>
                 this.get_adminPermissions("organization_vacations"),
-              to: "/admin/deadline",
+              to: "/admin/deadline/0",
             },
             {
               label: "Xizmat safari",

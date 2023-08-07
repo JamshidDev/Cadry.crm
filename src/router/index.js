@@ -382,7 +382,7 @@ const routes = [
         },
       },
       {
-        path: "/admin/deadline",
+        path: "/admin/deadline/:category_id",
         name: "deadline",
         component: function () {
           return import("../views/Deadline/Deadlines.vue");

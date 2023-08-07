@@ -13,7 +13,7 @@
                             </span>
                         </div>
                         <div class="col-6 xl:col-4 lg:col-4 md:col-6 pr-0">
-                            <Dropdown v-model="category_val" :options="category_list" optionLabel="name"
+                            <Dropdown v-model="category_val" :options="category_list" optionLabel="name" optionValue="id"
                                 class="p-inputtext-sm w-full" placeholder="Kategoriyani tanlang" @change="change_category" />
                         </div>
                     </div>
@@ -90,11 +90,11 @@
                     </template>
                     <template #body="slotProps">
                         <div class="text-sm sm:text-sm md:text-sm lg:text-base xl:text-base flex w-full justify-content-center"
-                            v-if="!slotProps.data.days">
+                            v-if="!slotProps.data.date">
                             <Chip :label="`Ma'lumot yo'q`"
                                 class="mr-2 mb-2 text-sm text-yellow-700 bg-yellow-100 font-normal" />
                         </div>
-                        <div class="text-sm sm:text-sm md:text-sm lg:text-base xl:text-base" v-if="slotProps.data.days">
+                        <div class="text-sm sm:text-sm md:text-sm lg:text-base xl:text-base" v-if="slotProps.data.date">
                             <Chip :label="formatter.arrowDateFormat(slotProps.data.date)"
                                 class="mr-2 mb-2 text-sm text-blue-700 bg-blue-100 font-medium" />
                         </div>
@@ -135,10 +135,7 @@ export default {
             loader: false,
             deadline_list: [],
             category_list: [],
-            category_val: {
-                id: 2,
-                name: "Passport muddatlari yaqinlashayotganlar "
-            },
+            category_val:2,
             selectitem: null,
 
             formatter,
@@ -171,14 +168,22 @@ export default {
             this.get_deadlines(this.params)
         },
         change_category(event){
-            this.params.category_id = this.category_val.id;
+            this.params.category_id = this.category_val;
             this.params.page=1;
             this.params.per_page = 10;
             this.get_deadlines(this.params)
         }
     },
     created() {
+       let category_id = this.$route.params.category_id;
+       if( category_id == 0){
         this.get_deadlines(this.params)
+       }else{
+        this.params.category_id = category_id;
+        this.category_val = +category_id;
+        this.get_deadlines(this.params)
+       }
+        
     }
 }
 </script>
